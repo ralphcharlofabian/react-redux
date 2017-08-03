@@ -5,10 +5,11 @@ module.exports = {
     devServer: {
         inline: true,
         contentBase: './src',
-        port: 3000
+        port: 3000,
+        historyApiFallback: true
     },
     devtool: 'cheap-module-eval-source-map',
-    entry: './dev/js/index.js',
+    entry: './app/index.js',
     module: {
         loaders: [
             {
@@ -24,7 +25,8 @@ module.exports = {
     },
     output: {
         path: 'src',
-        filename: 'js/bundle.min.js'
+        filename: 'js/bundle.min.js',
+        publicPath: '/'
     },
     plugins: [
         new webpack.optimize.OccurrenceOrderPlugin()
