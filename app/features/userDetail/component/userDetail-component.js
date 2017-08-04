@@ -102,7 +102,7 @@ class UserDetailComponent extends React.Component {
                         <RaisedButton label="Edit Task"
                             primary={true}
                             style={style}
-                            onTouchTap={this.handleOpenEditModal.bind(this)}
+                            onTouchTap={this.handleOpenEditModal.bind(this,x.taskId )}
                         />
                         <Dialog
                             title="Edit Selected Task"
@@ -155,20 +155,24 @@ class UserDetailComponent extends React.Component {
         })
     }
     saveNewTask() {
+        const {addTask} =this.props
         this.setState({ displayText: false });
-        this.props.addTask(this.state.addTaskInput);
+        addTask(this.state.addTaskInput);
         this.setState({ openAddModal: false });
     }
 
     saveEditTask() {
+        const { editTask } = this.props
         this.setState({ displayText: false });
-        console.log(this.state.editTaskInput,'save edit task')
-        this.props.editTask(this.state.editTaskInput,1);
+        editTask(this.state.editTaskInput,this.state.editTaskSelectedId);
         this.setState({ openEditModal: false });
     }
 
-    handleOpenEditModal() {
-        this.setState({ openEditModal: true });
+    handleOpenEditModal(taskId) {
+       
+        this.setState({ openEditModal: true,
+        editTaskSelectedId:taskId });
+        
     }
     handleOpenAddModal() {
         this.setState({ openAddModal: true });
