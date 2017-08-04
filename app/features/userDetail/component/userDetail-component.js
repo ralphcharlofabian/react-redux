@@ -20,8 +20,9 @@ import {
 } from 'material-ui/Table';
 import TextField from 'material-ui/TextField';
 import Checkbox from 'material-ui/Checkbox';
-import {Link} from 'react-router';
+import { Link } from 'react-router';
 import Avatar from 'material-ui/Avatar';
+import Dialog from 'material-ui/Dialog';
 
 export const cyan400 = '#26c6da';
 export const cyan100 = '#b2ebf2';
@@ -35,8 +36,11 @@ class UserDetailComponent extends React.Component {
         super(props);
         this.state = {
             displayText: false,
-            addTaskState: '',
-            editTaskState: false
+            addTaskInput: '',
+            editTaskInput: '',
+            openAddModal: false,
+            openEditModal: false,
+            editTaskSelectedId:null
         }
     }
     UserListofTask() {
@@ -48,10 +52,38 @@ class UserDetailComponent extends React.Component {
                 marginBottom: 16,
             },
         };
-        const { taskToDo, toggleIsCompleted ,deleteTask} = this.props;
+        const { taskToDo, toggleIsCompleted, deleteTask } = this.props;
         const style = {
             margin: 12
         };
+
+        const actionsAddButton = [
+            <FlatButton
+                label="Cancel"
+                primary={true}
+                onTouchTap={this.handleClose.bind(this)}
+            />,
+            <FlatButton
+                label="Submit"
+                primary={true}
+                disabled={!this.state.addTaskInput}
+                onTouchTap={this.saveNewTask.bind(this)}
+            />
+        ];
+
+        const actionsEditButton = [
+            <FlatButton
+                label="Cancel"
+                primary={true}
+                onTouchTap={this.handleClose.bind(this)}
+            />,
+            <FlatButton
+                label="Submit"
+                primary={true}
+                disabled={!this.state.editTaskInput}
+                onTouchTap={this.saveEditTask.bind(this)}
+            />
+        ];
         return taskToDo.map((x, index) => {
             return (
                 <TableRow key={index} >
@@ -64,14 +96,42 @@ class UserDetailComponent extends React.Component {
                         />
                     </TableRowColumn>
                     <TableRowColumn >
-                      
+
                     </TableRowColumn>
                     <TableRowColumn>
                         <RaisedButton label="Edit Task"
-                                      primary={true}
-                                      style={style}
-                                      onClick={()=> this.setState({ editTaskState: true })}
+                            primary={true}
+                            style={style}
+                            onTouchTap={this.handleOpenEditModal.bind(this)}
                         />
+                        <Dialog
+                            title="Edit Selected Task"
+                            actions={actionsEditButton}
+                            modal={true}
+                            open={this.state.openEditModal}>
+                            <div>
+                                <TextField
+                                    ref='newTaskToBeAdd'
+                                    value={this.state.editTask}
+                                    onChange={this.handleEditTask.bind(this)}
+                                    floatingLabelText="Type new task to do" />
+                            </div>
+                        </Dialog>
+                        <Dialog
+                            title="Add New Task"
+                            actions={actionsAddButton}
+                            modal={true}
+                            open={this.state.openAddModal}>
+                            <div>
+                                <TextField
+                                    ref='newTaskToBeAdd'
+                                    value={this.state.addTask}
+                                    onChange={this.handleAddTask.bind(this)}
+                                    floatingLabelText="Type new task to do" />
+                            </div>
+                        </Dialog>
+
+
                         <RaisedButton label="Delete Task"
                             secondary={true}
                             style={style}
@@ -84,28 +144,46 @@ class UserDetailComponent extends React.Component {
         })
 
     }
-    handleChangeAddTask(event) {
+    handleAddTask(event) {
         this.setState({
-            addTaskState: event.target.value
+            addTaskInput: event.target.value
+        })
+    }
+    handleEditTask(event) {
+        this.setState({
+            editTaskInput: event.target.value
         })
     }
     saveNewTask() {
         this.setState({ displayText: false });
-        this.props.addTask(this.state.addTaskState);
+        this.props.addTask(this.state.addTaskInput);
+        this.setState({ openAddModal: false });
     }
-    renderEditForm(){
-         return (
-            <TableRow>
-                <TableRowColumn>
-                    <RaisedButton label="Save"  primary={true} />
-                </TableRowColumn>
-            </TableRow>
-        )
+
+    saveEditTask() {
+        this.setState({ displayText: false });
+        console.log(this.state.editTaskInput,'save edit task')
+        this.props.editTask(this.state.editTaskInput,1);
+        this.setState({ openEditModal: false });
     }
+
+    handleOpenEditModal() {
+        this.setState({ openEditModal: true });
+    }
+    handleOpenAddModal() {
+        this.setState({ openAddModal: true });
+    };
+
+    handleClose() {
+        this.setState({
+            openAddModal: false,
+            openEditModal: false
+        });
+    };
 
     render() {
         // const { addTask } = this.props;
-         const style = {
+        const style = {
             margin: 12
         };
         return (
@@ -113,8 +191,8 @@ class UserDetailComponent extends React.Component {
             <div>
                 <Card>
                     <CardTitle title="List to do" >
-                   
-                     </CardTitle >
+
+                    </CardTitle >
                     <Divider />
 
                     <CardHeader
@@ -122,7 +200,7 @@ class UserDetailComponent extends React.Component {
                         subtitle={this.props.description}
                         avatar={this.props.img}
                     />
-                    
+
                     <Divider />
                     <CardText >
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -135,31 +213,13 @@ class UserDetailComponent extends React.Component {
                                 labelPosition="before"
                                 primary={true}
                                 icon={<ContentAdd />}
-                                onTouchTap={() => this.setState({ displayText: true })}
+                                onTouchTap={this.handleOpenAddModal.bind(this)}
                             />
-                            {/* {this.addTaskToUser()} */}
-
-                            {this.state.displayText ?
-                                <div>
-                                    <TextField
-                                        ref='newTaskToBeAdd'
-                                        value={this.state.addTask}
-                                        onChange={this.handleChangeAddTask.bind(this)}
-                                        floatingLabelText="Type new task to do"
-                                    />
-                                    <RaisedButton label="Save" primary={true} onTouchTap={this.saveNewTask.bind(this)} />
-
-                                </div>
-
-
-                                : null}
-
                         </CardActions>
                     </CardText>
-
                     <CardMedia >
                         <Table >
-                            <TableHeader>
+                            <TableHeader >
                                 <TableRow>
                                     <TableHeaderColumn>Task to do</TableHeaderColumn>
                                     <TableHeaderColumn>Date</TableHeaderColumn>
@@ -167,22 +227,16 @@ class UserDetailComponent extends React.Component {
                                 </TableRow>
                             </TableHeader>
                             <TableBody displayRowCheckbox={false}>
-
-                             
-                                                  { this.UserListofTask()}
-                                                
+                                {this.UserListofTask()}
                             </TableBody>
-
                         </Table>
-
                     </CardMedia>
                 </Card>
-                 <RaisedButton
-                        label={ <Link to={"/"}>Back to User List</Link>}
-                        labelPosition="after"
-                        style={style}>
-                       
-                    </RaisedButton>
+                <RaisedButton
+                    label={<Link to={"/"}>Back to User List</Link>}
+                    labelPosition="after"
+                    style={style}>
+                </RaisedButton>
             </div>
         );
     }

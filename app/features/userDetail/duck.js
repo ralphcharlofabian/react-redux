@@ -39,6 +39,15 @@ export function ActiveUserReducer(state = null, action) {
                 }
                 break;
             }
+            case 'editTask':
+            {
+                 return state = { 
+                     ...state,
+                    taskToDo: state.taskToDo.map((x) => {              
+                        return x.taskId === action.taskId ?
+                            Object.assign({}, x, { task: action.payload }) : x})
+                }
+            }
         default:
             return state
     }
@@ -53,7 +62,15 @@ export function addTask(task) {
         payload: task
     }
 };
-
+export function editTask(task,taskId) {
+    console.log(task, 'action',taskId,'id');
+    return {
+        type: 'editTask',
+        payload: task,
+        taskId: taskId
+        
+    }
+};
 export function toggleIsCompleted(taskId) {
     console.log(taskId, 'action');
     return {

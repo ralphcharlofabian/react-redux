@@ -16,8 +16,7 @@ class UserDetail extends Component {
     }  
 
     render() {
-        const { user, addTask,toggleIsCompleted,deleteTask } = this.props;
-console.log(addTask,'addTask');
+        const { user, addTask,toggleIsCompleted,deleteTask,editTask } = this.props;
         return (
            
             <div>
@@ -30,6 +29,7 @@ console.log(addTask,'addTask');
                         img = {user.img}
                         taskToDo ={user.taskToDo}
                         addTask = {addTask}
+                        editTask = {editTask}
                         toggleIsCompleted ={toggleIsCompleted}
                         deleteTask ={deleteTask}
                     />
