@@ -28,6 +28,7 @@ class UserDetail extends Component {
                         description={user.description}
                         img = {user.img}
                         taskToDo ={user.taskToDo}
+                        dueDate ={user.dueDate}
                         addTask = {addTask}
                         editTask = {editTask}
                         toggleIsCompleted ={toggleIsCompleted}

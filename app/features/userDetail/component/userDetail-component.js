@@ -96,7 +96,7 @@ class UserDetailComponent extends React.Component {
                         />
                     </TableRowColumn>
                     <TableRowColumn >
-
+                            {x.dueDate}
                     </TableRowColumn>
                     <TableRowColumn>
                         <RaisedButton label="Edit Task"
@@ -227,7 +227,7 @@ class UserDetailComponent extends React.Component {
                                 <TableRow>
                                     <TableHeaderColumn>Task to do</TableHeaderColumn>
                                     <TableHeaderColumn>Date</TableHeaderColumn>
-                                    <TableHeaderColumn> </TableHeaderColumn>
+                                    <TableHeaderColumn>Options</TableHeaderColumn>
                                 </TableRow>
                             </TableHeader>
                             <TableBody displayRowCheckbox={false}>
