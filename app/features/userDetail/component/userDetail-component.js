@@ -23,6 +23,8 @@ import Checkbox from 'material-ui/Checkbox';
 import { Link } from 'react-router';
 import Avatar from 'material-ui/Avatar';
 import Dialog from 'material-ui/Dialog';
+import DatePicker from 'material-ui/DatePicker';
+import moment from 'moment';
 
 export const cyan400 = '#26c6da';
 export const cyan100 = '#b2ebf2';
@@ -40,7 +42,8 @@ class UserDetailComponent extends React.Component {
             editTaskInput: '',
             openAddModal: false,
             openEditModal: false,
-            editTaskSelectedId:null
+            editTaskSelectedId:null,
+            addTaskInputDate: null
         }
     }
     UserListofTask() {
@@ -128,12 +131,19 @@ class UserDetailComponent extends React.Component {
                                     value={this.state.addTask}
                                     onChange={this.handleAddTask.bind(this)}
                                     floatingLabelText="Type new task to do" />
+
+                                    <DatePicker hintText="Landscape Inline Dialog"
+                                    container="inline"
+                                    mode="landscape"
+                                    onChange={(event, x) => {this.handleAddTaskDate(x)}}
+                                    minDate ={new Date()}
+                                    />
                             </div>
                         </Dialog>
 
 
                         <RaisedButton label="Delete Task"
-                            secondary={true}
+                            secondary={true} 
                             style={style}
                             onClick={() => (deleteTask(x.taskId))}
                         />
@@ -143,6 +153,12 @@ class UserDetailComponent extends React.Component {
             )
         })
 
+    }
+    //error here due to date cnversion
+    handleAddTaskDate(x) {
+        this.setState({
+            addTaskInputDate: moment(x).month(1).format("YYYY-MM-DD")
+        })
     }
     handleAddTask(event) {
         this.setState({
@@ -157,7 +173,7 @@ class UserDetailComponent extends React.Component {
     saveNewTask() {
         const {addTask} =this.props
         this.setState({ displayText: false });
-        addTask(this.state.addTaskInput);
+        addTask(this.state.addTaskInput,this.state.addTaskInputDate);
         this.setState({ openAddModal: false });
     }
 
@@ -222,11 +238,11 @@ class UserDetailComponent extends React.Component {
                         </CardActions>
                     </CardText>
                     <CardMedia >
-                        <Table >
+                        <Table multiSelectable ={true}>
                             <TableHeader >
                                 <TableRow>
                                     <TableHeaderColumn>Task to do</TableHeaderColumn>
-                                    <TableHeaderColumn>Date</TableHeaderColumn>
+                                    <TableHeaderColumn>Due date</TableHeaderColumn>
                                     <TableHeaderColumn>Options</TableHeaderColumn>
                                 </TableRow>
                             </TableHeader>

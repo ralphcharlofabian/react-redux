@@ -15,7 +15,8 @@ export function ActiveUserReducer(state = null, action) {
                     taskToDo: [...state.taskToDo, {
                         taskId: state.taskToDo.length + 1,
                         isCompleted: false,
-                        task: action.payload
+                        task: action.task,
+                        dueDate:action.dueDate
                     }],
                 };
                 break;
@@ -55,11 +56,12 @@ export function ActiveUserReducer(state = null, action) {
 }
 
 //action
-export function addTask(task) {
+export function addTask(task,dueDate) {
     console.log(task, 'action');
     return {
         type: 'addTask',
-        payload: task
+        task,
+        dueDate
     }
 };
 export function editTask(task,taskId) {

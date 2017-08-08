@@ -2,7 +2,7 @@ import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from "react-dom";
 import store from './store';
-
+import * as moment from 'moment';
 import { Provider } from 'react-redux';
 import { Component } from 'react';
 import UserListComponent from './features/userList/component/userList-component';

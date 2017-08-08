@@ -18,19 +18,19 @@ export function rawData(){
                 taskId: 1,
                 task: 'Study React + Redux',
                 isCompleted: false,
-                dueDate:'10/22/2018'
+                dueDate:'2018-10-22'
             },
             {
                 taskId: 2,
                 task: 'Do Graphic Artworks',
                 isCompleted: true,
-                dueDate:'3/10/2016'
+                dueDate:'2018-3-20'
             },            
             {
                 taskId: 3,
                 task: 'Repack Tavel Baggage',
                 isCompleted: false,
-                dueDate:'8/14/2017'
+                dueDate:'2017-3-21'
             }]
         },
          {
@@ -44,25 +44,25 @@ export function rawData(){
                 taskId: 1,
                 task: 'Teach React + Redux',
                 isCompleted: false,
-                dueDate:'5/22/2015'
+                dueDate:'2016-1-21'
             },
             {
                 taskId: 2,
                 task: 'Film new tutorials on youtube',
                 isCompleted: true,
-                dueDate:'8/30/2017'
+                dueDate:'2018-3-1'
             },            
             {
                 taskId: 3,
                 task: 'Update GitHub',
                 isCompleted: false,
-                dueDate:'6/21/2018'
+                dueDate:'2018-12-21'
             },            
             {
                 taskId: 4,
                 task: 'Check Emails and Inquiry about React tutorial',
                 isCompleted: true,
-                dueDate:'5/21/2017'
+                dueDate:'2018-10-22'
             }]
         },
          {
@@ -76,51 +76,51 @@ export function rawData(){
                 taskId: 1,
                 task: 'Create UI/UX design for new client website',
                 isCompleted: false,
-                dueDate:'3/2/2018'
+                dueDate:'2017-8-14'
             },
             {
                 taskId: 2,
                 task: 'Day tour with friends',
                 isCompleted: true,
-                dueDate:'5/22/2015'
+                dueDate:'2018-11-22'
             },            
             {
                 taskId: 3,
                 task: 'Sideline street photography',
                 isCompleted: false,
-                dueDate:'7/12/2018'
+                dueDate:'2018-2-22'
             },            
             {
                 taskId: 4,
                 task: 'Attend reunion',
                 isCompleted: true,
-                dueDate:'5/22/2019'
+                dueDate:'2018-10-14'
             }]
         },
          {
             id:4,
-            firstName:'Des',
-            lastName:'Bernardo',
+            firstName:'Via',
+            lastName:'Birung',
             age:29,
-            description:'Software Engineer | Food lover | Blogger',
+            description:'Architect | Food lover | Blogger',
             img:'https://pbs.twimg.com/profile_images/449856612/cubegirl-avatar_400x400.jpg',
              taskToDo: [{
                 taskId: 1,
-                task: 'Do programable hardware for client',
+                task: 'Do house design for client',
                 isCompleted: false,
-                dueDate:'3/12/2020'
+                dueDate:'2018-10-22'
             },
             {
                 taskId: 2,
                 task: 'Check and visit new restaurant at Madeline st.',
                 isCompleted: true,
-                dueDate:'9/29/2015'
+                dueDate:'2018-3-12'
             },            
             {
                 taskId: 3,
                 task: 'Create Blog regarding self-motivation',
                 isCompleted: false,
-                 dueDate:'9/2/2017'
+                 dueDate:'2018-10-22'
             },            
             {
                 taskId: 4,
