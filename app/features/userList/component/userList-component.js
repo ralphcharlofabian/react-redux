@@ -6,11 +6,21 @@ import { List, ListItem } from 'material-ui/List';
 import Divider from 'material-ui/Divider';
 import { Link } from 'react-router';
 import Avatar from 'material-ui/Avatar';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import ContentAdd from 'material-ui/svg-icons/content/add';
+import Drawer from 'material-ui/Drawer';
+import MenuItem from 'material-ui/MenuItem';
+
 class UserListComponent extends React.Component {
     constructor(props) {
         super(props);
+        this.state ={
+            open:false
+        }
     }
 
+ handleToggle() {
+     this.setState({open: !this.state.open});}
 
     createListItems() {
         const { listOfUsers, selectUser } = this.props;
@@ -30,10 +40,15 @@ class UserListComponent extends React.Component {
         })
     }
     render() {
+        const style = {
+            marginRight: 20,
+        };
+
         return (
             <div>
                 <div>
-                    <AppBar title="User List" />
+                    <AppBar title="User List" 
+                    onLeftIconButtonTouchTap={this.handleToggle.bind(this)}/>
                 </div>
                 <Card>
                     <CardText>
@@ -41,7 +56,14 @@ class UserListComponent extends React.Component {
                         Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
                         Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
                         Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
+                        <FloatingActionButton style={style}>
+                            <ContentAdd />
+                        </FloatingActionButton>
                     </CardText>
+ <Drawer open={this.state.open}>
+          <MenuItem>Menu Item</MenuItem>
+          <MenuItem>Menu Item 2</MenuItem>
+        </Drawer>
                     <Divider />
                     <CardMedia >
                         {this.createListItems()}

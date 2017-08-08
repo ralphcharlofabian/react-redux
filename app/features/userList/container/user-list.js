@@ -6,12 +6,18 @@ import UserListComponent from '../component/userList-component';
 class UserList extends Component {
 
     render() {
-        const { users , selectUser } = this.props;
+        const { users , selectUser,addUser,firstName,lastName,age,description } = this.props;
         return (
             <ul>
                 <UserListComponent
                     listOfUsers={users}
                     selectUser ={selectUser}
+                    addUser ={addUser}
+                    firstName={firstName}
+                    lastName={lastName}
+                    age={age}
+                    description={description}
+
                 />
             </ul>
         );
@@ -25,7 +31,8 @@ function matchDispatchToProps(dispatch) {
 
 function mapStateToProps(state) {
     return {
-        users: state.users
+        users: state.users,
+        activeUserList:state.activeUserList
     }
 }
 

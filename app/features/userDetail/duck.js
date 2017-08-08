@@ -8,7 +8,6 @@ export function ActiveUserReducer(state = null, action) {
             }
         case 'addTask':
             {
-                console.log(state);
                 return state = {
 
                     ...state,

@@ -1,3 +1,39 @@
+//reducer
+export function ActiveUserListReducer(state = null, action) {
+    switch (action.type) {
+        case 'addUser':
+            {
+                return state = {
+
+                    ...state,
+                        id: 5,
+                        firstName: action.firstName,
+                        lastName: action.lastName,
+                        age:action.age,
+                        description: action.description
+                    
+                };
+                break;
+            }
+        default:
+            return state
+    }
+    return state;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //action
 export function selectUser(user) {
     return {
@@ -5,6 +41,24 @@ export function selectUser(user) {
         payload: user
     }
 };
+
+export function addUser(firstName,lastName,age,description) {
+    return {
+        type: 'addUser',
+        firstName,
+        lastName,
+        age,
+        description
+    }
+};
+
+
+
+
+
+
+
+
 export function rawData(){
     return [
         {

@@ -9,13 +9,6 @@ export default class App extends Component {
        return (
             <div>
                  <UserList />
-                <hr />
-             
-                {/* <h2>
-                    Username Details:
-                   <UserDetail/>
-                </h2>
-                  */}
             </div>
         );
     }
