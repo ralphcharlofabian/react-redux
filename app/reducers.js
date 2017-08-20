@@ -3,12 +3,13 @@ import { rawData } from './features/userList/duck';
 import { ActiveUserReducer } from './features/userDetail/duck';
 import {ActiveUserListReducer} from './features/userList/duck';
 import { routerReducer } from 'react-router-redux';
-
+import {rawDataCompany} from './features/aboutDeveloper/duck';
 const allReducers = combineReducers({
     users: rawData,
     activeUser: ActiveUserReducer,
     activeUserList:ActiveUserListReducer,
-    routing : routerReducer
+    routing : routerReducer,
+    company : rawDataCompany
 });
 
 export default allReducers;

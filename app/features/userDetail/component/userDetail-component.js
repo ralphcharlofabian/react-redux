@@ -205,11 +205,12 @@ class UserDetailComponent extends React.Component {
     render() {
         // const { addTask } = this.props;
         const style = {
-            margin: 12
+            margin: 12,
+            textDecoration: 'none'
         };
         return (
 
-            <div>
+            <div style={{paddingLeft:'10%',paddingRight:'10%'}}>
                 <Card>
                     <CardTitle title="List to do" >
 
@@ -224,10 +225,7 @@ class UserDetailComponent extends React.Component {
 
                     <Divider />
                     <CardText >
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-                    Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-                    Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
+                       
                       <CardActions>
                             <RaisedButton
                                 label="Add New Task"
@@ -254,9 +252,10 @@ class UserDetailComponent extends React.Component {
                     </CardMedia>
                 </Card>
                 <RaisedButton
-                    label={<Link to={"/"}>Back to User List</Link>}
+                style={style}
+                    label={<Link to={"/userList"}>Back to User List</Link>}
                     labelPosition="after"
-                    style={style}>
+                    >
                 </RaisedButton>
             </div>
         );

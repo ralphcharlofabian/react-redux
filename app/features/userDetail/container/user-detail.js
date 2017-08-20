@@ -10,7 +10,7 @@ class UserDetail extends Component {
         const { user ,addTask } = this.props;
         if (!user) {
             browserHistory.push(
-                '/'
+                '/userList'
             );
         }
     }  
