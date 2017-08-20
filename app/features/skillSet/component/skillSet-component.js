@@ -22,6 +22,7 @@ import {
   StepContent,
 } from 'material-ui/Stepper';
 import FlatButton from 'material-ui/FlatButton';
+import Paper from 'material-ui/Paper';
 
 class SkillSetComponent extends React.Component {
     constructor(props) {
@@ -31,7 +32,9 @@ class SkillSetComponent extends React.Component {
             stepIndex: 0,
         }
     }
-
+ handleImageLoad(event) {
+    console.log('Image loaded ', event.target)
+  }
 
 
     handleToggle() {
@@ -50,7 +53,16 @@ class SkillSetComponent extends React.Component {
                 overflowY: 'auto',
             },
         };
-        const { listOfCompany } = this.props;
+       const paper = {
+            height: '20%',
+            width: '40%',
+            margin: 20,
+            textAlign: 'center',
+            display: 'inline-block',
+            backgroundColor: '#d1ebff'
+            };
+
+            const imageSize ={padding:'10%',width:'80%', height:'80%'};
         return (
             <div style={{paddingLeft:'10%',paddingRight:'10%'}}>
                 <div>
@@ -96,6 +108,28 @@ class SkillSetComponent extends React.Component {
                     </Drawer >
                     <Divider />
                 </Card>
+                <Card>
+                    <center>
+                    <Paper style={paper} zDepth={1} rounded={false} > 
+                        <img src='https://www.quickhmi.com/files/slideshows/html5_javascript_css3.png' alt="Mountain View" style={imageSize} />
+                    </Paper>
+                     <Paper style={paper} zDepth={1} rounded={false} > 
+                        <img src='https://jscomplete.com/stf/images/workshops/react-redux.png' alt="Mountain View" style={imageSize} />
+                    </Paper>
+                     <Paper style={paper} zDepth={1} rounded={false} > 
+                        <img src='https://cdn.worldvectorlogo.com/logos/angular-3.svg' alt="Mountain View" style={imageSize} />
+                    </Paper>
+                     <Paper style={paper} zDepth={1} rounded={false} > 
+                        <img src='https://prepros.io/img/less-logo.png' alt="Mountain View" style={imageSize} />
+                    </Paper>
+                     <Paper style={paper} zDepth={1} rounded={false} > 
+                        <img src='https://cdn.worldvectorlogo.com/logos/material-ui.svg' alt="Mountain View" style={imageSize} />
+                    </Paper>
+                     <Paper style={paper} zDepth={1} rounded={false} > 
+                        <img src='https://cdn.worldvectorlogo.com/logos/nodejs-icon.svg' alt="Mountain View" style={imageSize} />
+                    </Paper>
+                    </center>
+                    </Card>
        
             </div>
         );

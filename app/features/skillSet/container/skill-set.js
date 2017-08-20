@@ -7,10 +7,12 @@ import * as duck from '../duck';
 class SkillSet extends Component {
 
     render() {
-        const { company } = this.props;
+           const { imageData } = this.props;
+       
         return (
            
             <div>
+                {console.log(imageData,'inside')}
                  <SkillSetComponent/>
                 
             </div>
@@ -27,10 +29,9 @@ function matchDispatchToProps(dispatch) {
 
 
 function mapStateToProps(state) {
-    
     return {
-        company: state.company
-    }
+        imageData: state.imageData
+    };
 }
 
 export default connect(mapStateToProps, matchDispatchToProps) (SkillSet);
