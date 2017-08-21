@@ -45,7 +45,7 @@ export function ActiveUserReducer(state = null, action) {
                      ...state,
                     taskToDo: state.taskToDo.map((x) => {              
                         return x.taskId === action.taskId ?
-                            Object.assign({}, x, { task: action.payload }) : x})
+                            Object.assign({}, x, { task: action.payload, dueDate:action.taskDate }) : x})
                 }
             }
         default:
@@ -63,12 +63,13 @@ export function addTask(task,dueDate) {
         dueDate
     }
 };
-export function editTask(task,taskId) {
-    console.log(task, 'action',taskId,'id');
+export function editTask(task,taskId,taskDate) {
+    console.log(task, 'action',taskId,'id',taskDate,'taskDate');
     return {
         type: 'editTask',
         payload: task,
-        taskId: taskId
+        taskId: taskId,
+        taskDate:taskDate
         
     }
 };

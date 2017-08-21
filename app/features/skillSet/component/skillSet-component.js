@@ -123,10 +123,16 @@ class SkillSetComponent extends React.Component {
                         <img src='https://prepros.io/img/less-logo.png' alt="Mountain View" style={imageSize} />
                     </Paper>
                      <Paper style={paper} zDepth={1} rounded={false} > 
-                        <img src='https://cdn.worldvectorlogo.com/logos/material-ui.svg' alt="Mountain View" style={imageSize} />
+                        <img src='https://cdn.worldvectorlogo.com/logos/nodejs-icon.svg' alt="Mountain View" style={imageSize} />
                     </Paper>
                      <Paper style={paper} zDepth={1} rounded={false} > 
-                        <img src='https://cdn.worldvectorlogo.com/logos/nodejs-icon.svg' alt="Mountain View" style={imageSize} />
+                        <img src='https://cdn.worldvectorlogo.com/logos/material-ui.svg' alt="Mountain View" style={imageSize} />
+                    </Paper>
+                      <Paper style={paper} zDepth={1} rounded={false} > 
+                        <img src='https://v4-alpha.getbootstrap.com/assets/brand/bootstrap-solid.svg' alt="Mountain View" style={imageSize} />
+                    </Paper>
+                     <Paper style={paper} zDepth={1} rounded={false} > 
+                        <img src='https://www.codesai.com/assets/csharp_logo.svg' alt="Mountain View" style={imageSize} />
                     </Paper>
                     </center>
                     </Card>

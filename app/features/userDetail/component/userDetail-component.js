@@ -26,13 +26,15 @@ import Dialog from 'material-ui/Dialog';
 import DatePicker from 'material-ui/DatePicker';
 import moment from 'moment';
 import Radium from 'radium'
-
+export const cyan50 = '#E0F7FA';
 export const cyan400 = '#26c6da';
 export const cyan100 = '#b2ebf2';
 export const cyanA100 = '#84ffff';
 export const lightBlue300 = '#4fc3f7';
 export const teal200 = '#80cbc4';
 export const grey50 = '#fafafa';
+
+import Snackbar from 'material-ui/Snackbar';
 class UserDetailComponent extends React.Component {
 
     constructor(props) {
@@ -44,7 +46,9 @@ class UserDetailComponent extends React.Component {
             openAddModal: false,
             openEditModal: false,
             editTaskSelectedId:null,
-            addTaskInputDate: null
+            addTaskInputDate: null,
+            openSnackBarAdd: false,
+            openSnackBarEdit:false
         }
     }
     UserListofTask() {
@@ -70,7 +74,7 @@ class UserDetailComponent extends React.Component {
             <FlatButton
                 label="Submit"
                 primary={true}
-                disabled={!this.state.addTaskInput}
+                disabled={!this.state.addTaskInput && !this.state.addTaskInput}
                 onTouchTap={this.saveNewTask.bind(this)}
             />
         ];
@@ -84,7 +88,7 @@ class UserDetailComponent extends React.Component {
             <FlatButton
                 label="Submit"
                 primary={true}
-                disabled={!this.state.editTaskInput}
+                disabled={!this.state.editTaskInput && !this.state.addTaskInputDate}
                 onTouchTap={this.saveEditTask.bind(this)}
             />
         ];
@@ -118,7 +122,15 @@ class UserDetailComponent extends React.Component {
                                     ref='newTaskToBeAdd'
                                     value={this.state.editTask}
                                     onChange={this.handleEditTask.bind(this)}
-                                    floatingLabelText="Type new task to do" />
+                                    floatingLabelText="Enter task to replace"
+                                    floatingLabelFixed={true}/>
+
+                                     <DatePicker hintText="Enter Due Date of Task"
+                                    container="inline"
+                                    mode="landscape"
+                                    onChange={(event, x) => {this.handleEditTaskDate(x)}}
+                                    minDate ={new Date()}
+                                    />
                             </div>
                         </Dialog>
                         <Dialog
@@ -130,10 +142,11 @@ class UserDetailComponent extends React.Component {
                                 <TextField
                                     ref='newTaskToBeAdd'
                                     value={this.state.addTask}
-                                    onChange={this.handleAddTask.bind(this)}
-                                    floatingLabelText="Type new task to do" />
+                                    onChange={this.handleAddTask.bind(this)} 
+                                    floatingLabelText="Enter new task to be added"
+                                    floatingLabelFixed={true}/>
 
-                                    <DatePicker hintText="Landscape Inline Dialog"
+                                    <DatePicker hintText="Enter Due Date of Task"
                                     container="inline"
                                     mode="landscape"
                                     onChange={(event, x) => {this.handleAddTaskDate(x)}}
@@ -161,6 +174,11 @@ class UserDetailComponent extends React.Component {
             addTaskInputDate: moment(x).month(1).format("YYYY-MM-DD")
         })
     }
+    handleEditTaskDate(x) {
+        this.setState({
+            editTaskInputDate: moment(x).month(1).format("YYYY-MM-DD")
+        })
+    }
     handleAddTask(event) {
         this.setState({
             addTaskInput: event.target.value
@@ -173,6 +191,7 @@ class UserDetailComponent extends React.Component {
     }
     saveNewTask() {
         const {addTask} =this.props
+        this.setState({openSnackBarAdd: true})
         this.setState({ displayText: false });
         addTask(this.state.addTaskInput,this.state.addTaskInputDate);
         this.setState({ openAddModal: false });
@@ -180,8 +199,9 @@ class UserDetailComponent extends React.Component {
 
     saveEditTask() {
         const { editTask } = this.props
+        this.setState({openSnackBarEdit: true})
         this.setState({ displayText: false });
-        editTask(this.state.editTaskInput,this.state.editTaskSelectedId);
+        editTask(this.state.editTaskInput,this.state.editTaskSelectedId,this.state.editTaskInputDate);
         this.setState({ openEditModal: false });
     }
 
@@ -201,7 +221,12 @@ class UserDetailComponent extends React.Component {
             openEditModal: false
         });
     };
-
+handleRequestClose() {
+    this.setState({
+      openSnackBarAdd: false,
+      openSnackBarEdit: false,
+    });
+  };
     render() {
         // const { addTask } = this.props;
         const style = {
@@ -257,6 +282,19 @@ class UserDetailComponent extends React.Component {
                     labelPosition="after"
                     >
                 </RaisedButton>
+
+                <Snackbar
+                    open={this.state.openSnackBarAdd}
+                    message="Task Added SUccessfully"
+                    autoHideDuration={4000}
+                    onRequestClose={this.handleRequestClose.bind(this)}
+                    />
+                     <Snackbar
+                    open={this.state.openSnackBarEdit}
+                    message="Task Edited SUccessfully"
+                    autoHideDuration={4000}
+                    onRequestClose={this.handleRequestClose.bind(this)}
+                    />
             </div>
         );
     }
