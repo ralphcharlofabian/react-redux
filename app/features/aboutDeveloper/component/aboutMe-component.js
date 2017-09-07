@@ -34,7 +34,7 @@ class AboutMeComponent extends React.Component {
 
   handleNext() {
     const { stepIndex } = this.state;
-    if (stepIndex < 4) {
+    if (stepIndex < 5) {
       this.setState({ stepIndex: stepIndex + 1 });
     }
   };
@@ -49,14 +49,14 @@ class AboutMeComponent extends React.Component {
   renderStepActions(step) {
     return (
       <div style={{ margin: '12px 0' }}>
-        <RaisedButton
+        {step < 5 && (<RaisedButton
           label="Next"
           disableTouchRipple={true}
           disableFocusRipple={true}
           primary={true}
           onClick={this.handleNext.bind(this)}
           style={{ marginRight: 12 }}
-        />
+        />)}
         {step > 0 && (
           <FlatButton
             label="Back"
@@ -303,6 +303,8 @@ class AboutMeComponent extends React.Component {
                     <li>Trainer/TL for lower batch at Denso (2014-2015)</li>
                     <li>Japanese Language Test passer N4 level (2014)</li>
                      <li>Undergo Cisco training on Mapua 1-4 (2011-2013)</li>
+                     <li>Elected as Project Comm in JPCS-MIT(2013)</li>
+                     <li>Elected as Sports Comm in JPCS-MIT(2012)</li>
                      <li>... working for it</li>
 
                      <p>Seminars/trainings successfully conducted</p>
