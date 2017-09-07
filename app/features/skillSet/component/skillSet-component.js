@@ -25,7 +25,9 @@ import FlatButton from 'material-ui/FlatButton';
 import Paper from 'material-ui/Paper';
 import { PieChart } from 'react-easy-chart';
 import { BarChart } from 'react-easy-chart';
+import { LineChart } from 'react-easy-chart';
 import InfiniteCalendar from 'react-infinite-calendar';
+import Snackbar from 'material-ui/Snackbar';
 //import 'react-infinite-calendar/styles.css';
 
 class SkillSetComponent extends React.Component {
@@ -34,6 +36,14 @@ class SkillSetComponent extends React.Component {
         this.state = {
             open: false,
             stepIndex: 0,
+            openSnackBarClicked:false,
+             showToolTip: false,
+            top: null,
+            left: null,
+            y: null,
+            x: null,
+            openSnackBarClickedBar:false,
+            openSnackBarClickedPie:false
         }
     }
     handleImageLoad(event) {
@@ -44,6 +54,84 @@ class SkillSetComponent extends React.Component {
     handleToggle() {
         this.setState({ open: !this.state.open });
     }
+
+    mouseOverHandler(d, e) {
+        this.setState({
+            showToolTip: true,
+            top: `${e.screenY - 10}px`,
+            left: `${e.screenX + 10}px`,
+            y: d.y,
+            x: d.x,
+             openSnackBarClicked:true
+        });
+    }
+
+    mouseMoveHandler(e) {
+        if (this.state.showToolTip) {
+            this.setState({ top: `${e.y - 10}px`, left: `${e.x + 10}px`,openSnackBarClicked:true });
+        }
+    }
+  mouseOutHandler() {
+        this.setState({ showToolTip: false,
+        openSnackBarClicked:false });
+    }
+
+mouseMoveHandlerBar(e) {
+        if (this.state.showToolTip) {
+            this.setState({ top: `${e.y - 10}px`, left: `${e.x + 10}px`,openSnackBarClickedBar:true });
+        }
+    }
+    mouseOutHandlerBar() {
+        this.setState({ showToolTip: false,
+        openSnackBarClickedBar:false });
+    }
+
+
+    mouseOverHandlerBar(d, e) {
+        this.setState({
+             openSnackBarClickedBar:true});
+    }
+
+ 
+mouseMoveHandlerPie(e) {
+        if (this.state.showToolTip) {
+            this.setState({ top: `${e.y - 10}px`, left: `${e.x + 10}px`,openSnackBarClickedPie:true });
+        }
+    }
+    mouseOutHandlerPie() {
+        this.setState({ showToolTip: false,
+        openSnackBarClickedPie:false });
+    }
+
+
+    mouseOverHandlerPie(d, e) {
+        this.setState({
+             openSnackBarClickedPie:true});
+    } 
+
+    
+handleRequestClose() {
+    this.setState({
+      openSnackBarClicked: false,
+      openSnackBarMouseHoverBar:false
+    });
+  };
+    createTooltip() {
+        if (this.state.showToolTip) {
+            return (
+                <ToolTip
+                    top={this.state.top}
+                    left={this.state.left}
+                >
+                    The x value is {this.state.x} and the y value is {this.state.y}
+                </ToolTip>
+            );
+        }
+        return false;
+    }
+
+
+
     render() {
         var today = new Date();
         var lastWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 7);
@@ -100,21 +188,21 @@ class SkillSetComponent extends React.Component {
             <div >
                 <div>
                     <AppBar title={<div>
-                        <FlatButton onClick={this.handleToggle.bind(this)} style={{marginRight:'2%'}}>
-                             <Link to={'/developersBackground'} style={{ textDecoration: 'none',fontSize: '20px',color: '#ECEFF1'  }}>Work Experience</Link>
+                        <FlatButton onClick={this.handleToggle.bind(this)} style={{ marginRight: '2%' }}>
+                            <Link to={'/developersBackground'} style={{ textDecoration: 'none', fontSize: '20px', color: '#ECEFF1' }}>Work Experience</Link>
                         </FlatButton>
                         <FlatButton onClick={this.handleToggle.bind(this)} >
-                            <Link to={'/userList'} style={{ textDecoration: 'none',fontSize: '20px',color: '#ECEFF1'  }}>CRUD Application</Link>
+                            <Link to={'/userList'} style={{ textDecoration: 'none', fontSize: '20px', color: '#ECEFF1' }}>CRUD Application</Link>
                         </FlatButton>
                     </div>}
-                        onLeftIconButtonTouchTap={this.handleToggle.bind(this)} 
-                        style={{backgroundColor: '#00B0FF'}}/>
+                        onLeftIconButtonTouchTap={this.handleToggle.bind(this)}
+                        style={{ backgroundColor: '#00B0FF' }} />
                 </div>
-                <Card style={{backgroundColor:'#ECEFF1'}}>
+                <Card style={{ backgroundColor: '#ECEFF1' }}>
                     <Drawer open={this.state.open}>
                         <Avatar src={'https://scontent.cdninstagram.com/t51.2885-19/s150x150/18013186_1884415471815544_5035331559461224448_a.jpg'} size={210} style={{ margin: 20 }} />
                         <Divider style={{ marginTop: 10 }} />
-                        <Card style={{ textDecoration: 'none',color: '#424242'  }}>
+                        <Card style={{ textDecoration: 'none', color: '#424242' }}>
                             <CardText>
                                 <center>
 
@@ -132,13 +220,13 @@ class SkillSetComponent extends React.Component {
                         <Divider style={{ marginTop: 10 }} />
                         <List>
                             <ListItem onClick={this.handleToggle.bind(this)} >
-                                <Link to={'/developersBackground'} style={{ textDecoration: 'none',color: '#424242'  }}>Work Experience</Link>
+                                <Link to={'/developersBackground'} style={{ textDecoration: 'none', color: '#424242' }}>Work Experience</Link>
                             </ListItem>
 
                             <ListItem onClick={this.handleToggle.bind(this)} >
-                                <Link to={'/userList'} style={{ textDecoration: 'none',color: '#424242'  }}>CRUD Application</Link>
+                                <Link to={'/userList'} style={{ textDecoration: 'none', color: '#424242' }}>CRUD Application</Link>
                             </ListItem>
-                            <ListItem onClick={this.handleToggle.bind(this)} style={{ textDecoration: 'none',color: '#424242'  }}>Close</ListItem>
+                            <ListItem onClick={this.handleToggle.bind(this)} style={{ textDecoration: 'none', color: '#424242' }}>Close</ListItem>
                         </List>
 
                     </Drawer >
@@ -149,7 +237,7 @@ class SkillSetComponent extends React.Component {
                         <center>
 
                             <Paper style={paperAvatar} zDepth={1} rounded={false} >
-                                 <Avatar src={'https://scontent.cdninstagram.com/t51.2885-19/s150x150/18013186_1884415471815544_5035331559461224448_a.jpg'} size={'60%'} style={{ margin: '5%' }} /> 
+                                <Avatar src={'https://scontent.cdninstagram.com/t51.2885-19/s150x150/18013186_1884415471815544_5035331559461224448_a.jpg'} size={'60%'} style={{ margin: '5%' }} />
                                 <CardText>
                                     <center>
                                         <p>Hi My Name is RC! I am a Full stack web developer and also a UI/UX designer (full stack designer).
@@ -158,10 +246,10 @@ class SkillSetComponent extends React.Component {
                                             Help me to achieve all of them by showcasing my skills and discover new adventure!
 
                                         </p>
-                                        
-                                        </center>
-                                        
-                                    
+
+                                    </center>
+
+
                                 </CardText>
                             </Paper>
                             <Paper style={paperSkills} zDepth={1} rounded={false} >
@@ -203,6 +291,9 @@ class SkillSetComponent extends React.Component {
                                     }}
                                     innerHoleSize={80}
                                     size={300}
+                                     mouseOverHandler={this.mouseOverHandlerPie.bind(this)}
+                                    mouseOutHandler={this.mouseOutHandlerPie.bind(this)}
+                                    mouseMoveHandler={this.mouseMoveHandlerPie.bind(this)}
                                 />
                             </Paper>
                             <Paper style={paperBar} zDepth={1} rounded={false}>
@@ -226,14 +317,78 @@ class SkillSetComponent extends React.Component {
                                         { x: 'Ionic.js', y: 55, color: '#4DB6AC' }
                                     ]}
                                     margin={{ top: 20, right: 0, bottom: 30, left: 50 }}
+                                    mouseOverHandler={this.mouseOverHandlerBar.bind(this)}
+                                    mouseOutHandler={this.mouseOutHandlerBar.bind(this)}
+                                    mouseMoveHandler={this.mouseMoveHandlerBar.bind(this)}
                                 />
                             </Paper>
+                            <Paper style={paperBar} zDepth={1} rounded={false}>
+                                <ListItem>
+                                     I can do line chart example too! 
+                            </ListItem>
 
+                                <LineChart
+                                    axes
+                                    dataPoints = {true}
+                                    grid ={false}
+                                    xDomainRange={[0, 60]}
+                                    yDomainRange={[0, 60]}
+                                    mouseOverHandler={this.mouseOverHandler.bind(this)}
+                                    mouseOutHandler={this.mouseOutHandler.bind(this)}
+                                    mouseMoveHandler={this.mouseMoveHandler.bind(this)}
+                                    width={700}
+                                    height={350}
+                                    interpolate={'cardinal'}
+                                    data={[
+                                        [
+                                            { x: 10, y: 25 },
+                                            { x: 20, y: 10 },
+                                            { x: 30, y: 25 },
+                                            { x: 40, y: 10 },
+                                            { x: 50, y: 12 },
+                                            { x: 60, y: 25 }
+                                        ], [
+                                            { x: 10, y: 40 },
+                                            { x: 20, y: 30 },
+                                            { x: 30, y: 25 },
+                                            { x: 40, y: 60 },
+                                            { x: 50, y: 22 },
+                                            { x: 60, y: 9 }
+                                        ],
+                                         [
+                                            { x: 5, y: 20 },
+                                            { x: 15, y: 30 },
+                                            { x: 25, y: 25 },
+                                            { x: 35, y: 43 },
+                                            { x: 45, y: 50 },
+                                            { x: 60, y: 60 }
+                                        ]
+                                    ]}
+                                    axisLabels={{x: 'Time', y: 'My Mind'}}
+                                />
+                            </Paper>
 
                         </center>
                     </div>
                 </Card>
-
+                    <Snackbar
+                    open={this.state.openSnackBarClicked}
+                    message="You Ticle me :)"
+                    autoHideDuration={4000}
+                    onRequestClose={this.handleRequestClose.bind(this)}
+                    />
+                     <Snackbar
+                    open={this.state.openSnackBarClickedBar}
+                    message="You ticle the Bar...sshhhhhh its still sleeping"
+                    autoHideDuration={4000}
+                    onRequestClose={this.handleRequestClose.bind(this)}
+                    />
+                    <Snackbar
+                    open={this.state.openSnackBarClickedPie}
+                    message="You're interested to ME don't YOU :)"
+                    autoHideDuration={4000}
+                    onRequestClose={this.handleRequestClose.bind(this)}
+                    />
             </div>
         );
     }
