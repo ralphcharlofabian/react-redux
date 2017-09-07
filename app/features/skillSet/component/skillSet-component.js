@@ -66,7 +66,7 @@ class SkillSetComponent extends React.Component {
             margin: 20,
             textAlign: 'center',
             display: 'inline-block',
-            backgroundColor: '#d1ebff'
+            backgroundColor: '#F5F5F5'
         };
         const paperAvatar = {
             height: '20%',
@@ -74,7 +74,7 @@ class SkillSetComponent extends React.Component {
             margin: 20,
             textAlign: 'center',
             display: 'inline-block',
-            backgroundColor: '#d1ebff'
+            backgroundColor: '#F5F5F5'
         };
         const paperChart = {
             height: '20%',
@@ -82,7 +82,7 @@ class SkillSetComponent extends React.Component {
             margin: 20,
             textAlign: 'center',
             display: 'inline-block',
-            backgroundColor: '#d1ebff'
+            backgroundColor: '#F5F5F5'
         };
 
         const paperBar = {
@@ -91,22 +91,30 @@ class SkillSetComponent extends React.Component {
             margin: 20,
             textAlign: 'center',
             display: 'inline-block',
-            backgroundColor: '#d1ebff'
+            backgroundColor: '#F5F5F5'
         };
 
 
         const imageSize = { padding: '2%', width: '30%', height: '20%', display: 'inline-block' };
         return (
-            <div style={{ paddingLeft: '10%', paddingRight: '10%' }}>
+            <div >
                 <div>
-                    <AppBar title="My Skill Set"
-                        onLeftIconButtonTouchTap={this.handleToggle.bind(this)} />
+                    <AppBar title={<div>
+                        <FlatButton onClick={this.handleToggle.bind(this)} style={{marginRight:'2%'}}>
+                             <Link to={'/developersBackground'} style={{ textDecoration: 'none',fontSize: '20px',color: '#ECEFF1'  }}>Work Experience</Link>
+                        </FlatButton>
+                        <FlatButton onClick={this.handleToggle.bind(this)} >
+                            <Link to={'/userList'} style={{ textDecoration: 'none',fontSize: '20px',color: '#ECEFF1'  }}>CRUD Application</Link>
+                        </FlatButton>
+                    </div>}
+                        onLeftIconButtonTouchTap={this.handleToggle.bind(this)} 
+                        style={{backgroundColor: '#00B0FF'}}/>
                 </div>
-                <Card>
+                <Card style={{backgroundColor:'#ECEFF1'}}>
                     <Drawer open={this.state.open}>
                         <Avatar src={'https://scontent.cdninstagram.com/t51.2885-19/s150x150/18013186_1884415471815544_5035331559461224448_a.jpg'} size={210} style={{ margin: 20 }} />
                         <Divider style={{ marginTop: 10 }} />
-                        <Card>
+                        <Card style={{ textDecoration: 'none',color: '#424242'  }}>
                             <CardText>
                                 <center>
 
@@ -124,13 +132,13 @@ class SkillSetComponent extends React.Component {
                         <Divider style={{ marginTop: 10 }} />
                         <List>
                             <ListItem onClick={this.handleToggle.bind(this)} >
-                                <Link to={'/developersBackground'} style={{ textDecoration: 'none' }}>Developers Backgroud</Link>
+                                <Link to={'/developersBackground'} style={{ textDecoration: 'none',color: '#424242'  }}>Work Experience</Link>
                             </ListItem>
 
                             <ListItem onClick={this.handleToggle.bind(this)} >
-                                <Link to={'/userList'} style={{ textDecoration: 'none' }}>CRUD Application</Link>
+                                <Link to={'/userList'} style={{ textDecoration: 'none',color: '#424242'  }}>CRUD Application</Link>
                             </ListItem>
-                            <ListItem onClick={this.handleToggle.bind(this)} >Close</ListItem>
+                            <ListItem onClick={this.handleToggle.bind(this)} style={{ textDecoration: 'none',color: '#424242'  }}>Close</ListItem>
                         </List>
 
                     </Drawer >
@@ -141,7 +149,7 @@ class SkillSetComponent extends React.Component {
                         <center>
 
                             <Paper style={paperAvatar} zDepth={1} rounded={false} >
-                                <Avatar src={'https://scontent.cdninstagram.com/t51.2885-19/s150x150/18013186_1884415471815544_5035331559461224448_a.jpg'} size={'60%'} style={{ margin: '5%' }} />
+                                 <Avatar src={'https://scontent.cdninstagram.com/t51.2885-19/s150x150/18013186_1884415471815544_5035331559461224448_a.jpg'} size={'60%'} style={{ margin: '5%' }} /> 
                                 <CardText>
                                     <center>
                                         <p>Hi My Name is RC! I am a Full stack web developer and also a UI/UX designer (full stack designer).
@@ -181,11 +189,10 @@ class SkillSetComponent extends React.Component {
                                 <PieChart
                                     labels
                                     data={[
-                                        { key: 'UI/UX Design', value: 600, color: '#17c5e8' },
-                                        { key: 'Front End', value: 700, color: '#ff8800' },
-                                        { key: 'Back End', value: 500, color: '#7c37c6' },
-                                        { key: 'Testing', value: 400, color: '#e21f36' },
-                                        { key: 'Wittiness', value: 300, color: '#e1f92c' }
+                                        { key: 'UI/UX Design', value: 600, color: '#009bcc' },
+                                        { key: 'Front End', value: 700, color: '#f58b1f' },
+                                        { key: 'Back End', value: 500, color: '#005a9e' },
+                                        { key: 'Testing', value: 400, color: '#e21f36' }
 
                                     ]}
                                     styles={{
@@ -209,13 +216,14 @@ class SkillSetComponent extends React.Component {
                                     width={650}
                                     axes
                                     data={[
-                                        { x: 'CSS3', y: 80, color: '#4286f4' },
+                                        { x: 'CSS3', y: 80, color: '#009bcc' },
                                         { x: 'Javascript', y: 100, color: '#e1f92c' },
-                                        { x: 'HTML5', y: 120, color: '#ff8800' },
-                                        { x: 'C#', y: 99, color: '#5957f1' },
+                                        { x: 'HTML5', y: 120, color: '#f58b1f' },
+                                        { x: 'C#', y: 99, color: '#005a9e' },
                                         { x: 'Others', y: 50, color: '#e3a51a' },
                                         { x: 'React.js', y: 70, color: '#17c5e8' },
-                                        { x: 'Angular.js', y: 115, color: '#e21f36' }
+                                        { x: 'Angular.js', y: 115, color: '#ea3027' },
+                                        { x: 'Ionic.js', y: 55, color: '#4DB6AC' }
                                     ]}
                                     margin={{ top: 20, right: 0, bottom: 30, left: 50 }}
                                 />

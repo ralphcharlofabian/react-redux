@@ -90,12 +90,20 @@ class AboutMeComponent extends React.Component {
         };
         const { listOfCompany } = this.props;
         return (
-            <div style={{paddingLeft:'10%',paddingRight:'10%'}}>
+            <div>
                 <div>
-                    <AppBar title="Developer's Background"
+                  
+                    <AppBar title={<div>
+                        <FlatButton onClick={this.handleToggle.bind(this)} style={{marginRight:'2%'}}>
+                            <Link to={'/'} style={{ textDecoration: 'none', fontSize: '20px',color: '#ECEFF1' }}>Skill Set</Link>
+                        </FlatButton>
+                        <FlatButton onClick={this.handleToggle.bind(this)} >
+                            <Link to={'/userList'} style={{ textDecoration: 'none', fontSize: '20px',color: '#ECEFF1' }}>CRUD Application</Link>
+                        </FlatButton>
+                    </div>}
                         onLeftIconButtonTouchTap={this.handleToggle.bind(this)} />
                 </div>
-                <Card>
+                <Card style={{backgroundColor:'#ECEFF1'}}>
                     <CardText>
                         Some of Experience and skill learned as I walk to the path of greatness.
                         Learning's was Everything and I want to explore the world, Fuse my passion and my skills as one.
@@ -106,7 +114,7 @@ class AboutMeComponent extends React.Component {
                     <Drawer open={this.state.open}>
                         <Avatar src={'https://scontent.cdninstagram.com/t51.2885-19/s150x150/18013186_1884415471815544_5035331559461224448_a.jpg'} size={210} style={{ margin: 20 }} />
                         <Divider style={{ marginTop: 10 }} />
-                        <Card>
+                        <Card style={{ textDecoration: 'none',color: '#424242'  }}>
                           <CardText>
                                <center>
                                
@@ -125,12 +133,12 @@ class AboutMeComponent extends React.Component {
                         <List>
                            
                            <ListItem onClick={this.handleToggle.bind(this)} >
-                        <Link to={'/'} style={{ textDecoration: 'none' }}>My Skill Set</Link>
+                        <Link to={'/'} style={{ textDecoration: 'none',color: '#424242'  }}>My Skill Set</Link>
                         </ListItem>
                         <ListItem onClick={this.handleToggle.bind(this)} >
-                        <Link to={'/userList'} style={{ textDecoration: 'none' }}>CRUD Application</Link>
+                        <Link to={'/userList'} style={{ textDecoration: 'none',color: '#424242'  }}>CRUD Application</Link>
                         </ListItem>
-                        <ListItem onClick={this.handleToggle.bind(this)} >Close</ListItem>
+                        <ListItem onClick={this.handleToggle.bind(this)} style={{ textDecoration: 'none',color: '#424242'  }}>Close</ListItem>
                         </List>
                         
                     </Drawer >
@@ -175,7 +183,7 @@ class AboutMeComponent extends React.Component {
                <CardHeader
                     title="Denso Techno PHilippines Inc."
                     subtitle="Software Engineer | Oct 2012 – Apr 2015"
-                    avatar="https://www.brandsoftheworld.com/sites/default/files/styles/logo-thumbnail/public/0008/8342/brand.gif?itok=r5MKCvTg"
+                    avatar="http://www.jobhero.ph/media/emp/emp_4228.jpg"
                     />
             </StepButton>
             <StepContent>

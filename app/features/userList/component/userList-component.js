@@ -11,6 +11,7 @@ import ContentAdd from 'material-ui/svg-icons/content/add';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'material-ui/FlatButton';
 import NavigationClose from 'material-ui/svg-icons/navigation/close';
 
 class UserListComponent extends React.Component {
@@ -47,16 +48,25 @@ class UserListComponent extends React.Component {
     }
     render() {
         const style = {
-            marginRight: 20,
+            marginRight: 0,
         };
 
         return (
-            <div style={{ paddingLeft: '10%', paddingRight: '10%' }}>
+            <div >
                 <div>
-                    <AppBar title="User List"
-                        onLeftIconButtonTouchTap={this.handleToggle.bind(this)} />
+                    <AppBar title={<div>
+                        <FlatButton onClick={this.handleToggle.bind(this)} style={{marginRight:'2%'}}>
+                            <Link to={'/'} style={{ textDecoration: 'none', fontSize: '20px',color: '#ECEFF1' }}>My Skill Set</Link>
+                        </FlatButton>
+                        <FlatButton onClick={this.handleToggle.bind(this)} >
+                            <Link to={'/developersBackground'} style={{ textDecoration: 'none', fontSize: '20px',color: '#ECEFF1'  }}>Work Experience</Link>
+                        </FlatButton>
+                    </div>}
+                        onLeftIconButtonTouchTap={this.handleToggle.bind(this)}
+                        style={{ backgroundColor: '#B39DDB' }} />
                 </div>
-                <Card>
+
+                <Card style={{ backgroundColor: '#ECEFF1' }}>
                     <CardText>
                         Here are one of an example of CRUD (Create, Read , Update, Delete),
                         Where in there are given list of user (4 user sample) which you can create their task,
@@ -70,30 +80,30 @@ class UserListComponent extends React.Component {
                     <Drawer open={this.state.open}>
                         <Avatar src={'https://scontent.cdninstagram.com/t51.2885-19/s150x150/18013186_1884415471815544_5035331559461224448_a.jpg'} size={210} style={{ margin: 20 }} />
                         <Divider style={{ marginTop: 10 }} />
-                        <Card>
-                           <CardText>
-                               <center>
-                               
+                        <Card style={{ textDecoration: 'none',color: '#424242'  }}>
+                            <CardText>
+                                <center>
+
                                     <h3>Hi My Name is RC !</h3>
-                                
-                                <p> I think We can be friends :)</p>
-                                <p>
-                                    Full-stack Web Developer | UI/UX Designer | Motivational Speaker 
-                                        
+
+                                    <p> I think We can be friends :)</p>
+                                    <p>
+                                        Full-stack Web Developer | UI/UX Designer | Motivational Speaker
+
                                 </p>
-                                <p>Please visit my anotherw website: rcfabian-static-portfolio.surge.sh</p>
+                                    <p>Please visit my anotherw website: rcfabian-static-portfolio.surge.sh</p>
                                 </center>
                             </CardText>
                         </Card>
                         <Divider style={{ marginTop: 10 }} />
 
                         <MenuItem onClick={this.handleToggle.bind(this)}>
-                            <Link to={'/'} style={{ textDecoration: 'none' }}>My Skill Set</Link>
+                            <Link to={'/'} style={{ textDecoration: 'none',color: '#424242'  }}>My Skill Set</Link>
                         </MenuItem>
                         <MenuItem onClick={this.handleToggle.bind(this)} >
-                            <Link to={'/developersBackground'} style={{ textDecoration: 'none' }}>Developers Backgroud</Link>
+                            <Link to={'/developersBackground'} style={{ textDecoration: 'none',color: '#424242'  }}>Work Experience</Link>
                         </MenuItem>
-                        <MenuItem onClick={this.handleToggle.bind(this)}>Close </MenuItem>
+                        <MenuItem onClick={this.handleToggle.bind(this)} style={{ textDecoration: 'none',color: '#424242'  }}>Close </MenuItem>
                     </Drawer >
                     <Divider />
                     <CardMedia >

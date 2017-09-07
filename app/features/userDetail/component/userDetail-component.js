@@ -235,8 +235,9 @@ handleRequestClose() {
         };
         return (
 
-            <div style={{paddingLeft:'10%',paddingRight:'10%'}}>
-                <Card>
+            <div style={{backgroundColor:'#B39DDB'}}>
+                
+                <Card style={{backgroundColor:'#ECEFF1'}}>
                     <CardTitle title="List to do" >
 
                     </CardTitle >
@@ -278,7 +279,7 @@ handleRequestClose() {
                 </Card>
                 <RaisedButton
                 style={style}
-                    label={<Link to={"/userList"}>Back to User List</Link>}
+                    label={<Link to={"/userList"} style={{ textDecoration: 'none', fontSize: '20px',color: '#424242'  }}>Back to User List</Link>}
                     labelPosition="after"
                     >
                 </RaisedButton>
