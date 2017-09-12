@@ -45,17 +45,34 @@ class SkillSetComponent extends React.Component {
             openSnackBarClickedBar:false,
             openSnackBarClickedPie:false,
             openDialogBox:false,
-            setTimeOutStateDone :false
+            setTimeOutStateDoneBar :false,
+            setTimeOutStateDonePie :false,
+            setTimeoutStateDoneLine:false
         }
     }
 
 componentDidMount() {
     setTimeout(
-      () =>  this.setState({ setTimeOutStateDone: true }),
+      () =>  this.setState({ setTimeOutStateDoneBar: true,
+        setTimeOutStateDonePie : true,
+    setTimeoutStateDoneLine:true }),
       500
     );
   }
-    
+    pieClickAnimation() {
+    this.setState({setTimeOutStateDonePie: false});
+    setTimeout(
+      () =>  this.setState({setTimeOutStateDonePie : true }),
+      500
+    );
+  }
+ barClickAnimation() {
+    this.setState({setTimeOutStateDoneBar: false});
+    setTimeout(
+      () =>  this.setState({setTimeOutStateDoneBar : true }),
+      500
+    );
+  }
     handleDialogBox(event) {
         this.setState({ openDialogBox: true });
     }
@@ -196,7 +213,7 @@ handleRequestClose() {
 
 
         const imageSize = { padding: '2%', width: '30%', height: '20%', display: 'inline-block' };
-        const{barGraph,initialBarGraph}=this.props;
+        const{barGraph,initialBarGraph,pieChart,initialPieChart,lineChart,initialLineChart}=this.props;
         return (
             <div >
                 <div>
@@ -276,8 +293,6 @@ handleRequestClose() {
                                 <img src='https://cdn.worldvectorlogo.com/logos/angular-3.svg' alt="Mountain View" style={imageSize} />
                                 <img src='https://prepros.io/img/less-logo.png' alt="Mountain View" style={imageSize} />
                                 <img src='https://knowellg.github.io/assets/img/icons/redux-logo.png' alt="Mountain View" style={imageSize} />
-
-
                                 <img src='https://cdn.worldvectorlogo.com/logos/react.svg' alt="Mountain View" style={imageSize} />
                                 <img src='https://cdn.worldvectorlogo.com/logos/material-ui.svg' alt="Mountain View" style={imageSize} />
                                 <img src='https://v4-alpha.getbootstrap.com/assets/brand/bootstrap-solid.svg' alt="Mountain View" style={imageSize} />
@@ -289,13 +304,7 @@ handleRequestClose() {
                             </ListItem>
                                 <PieChart
                                     labels
-                                    data={[
-                                        { key: 'UI/UX Design', value: 600, color: '#009bcc' },
-                                        { key: 'Front End', value: 700, color: '#f58b1f' },
-                                        { key: 'Back End', value: 500, color: '#005a9e' },
-                                        { key: 'Testing', value: 400, color: '#e21f36' }
-
-                                    ]}
+                                    data={this.state.setTimeOutStateDonePie ? pieChart : initialPieChart}
                                     styles={{
                                         '.chart_text': {
                                             fontSize: '2em',
@@ -307,6 +316,7 @@ handleRequestClose() {
                                      mouseOverHandler={this.mouseOverHandlerPie.bind(this)}
                                     mouseOutHandler={this.mouseOutHandlerPie.bind(this)}
                                     mouseMoveHandler={this.mouseMoveHandlerPie.bind(this)}
+                                     clickHandler = {this.pieClickAnimation.bind(this)}
                                 />
                             </Paper>
                             <Paper style={paperBar} zDepth={1} rounded={false}>
@@ -319,12 +329,12 @@ handleRequestClose() {
                                     height={300}
                                     width={650}
                                     axes
-                                    data={this.state.setTimeOutStateDone ? barGraph : initialBarGraph}
+                                    data={this.state.setTimeOutStateDoneBar ? barGraph : initialBarGraph}
                                     margin={{ top: 20, right: 0, bottom: 30, left: 50 }}
                                     mouseOverHandler={this.mouseOverHandlerBar.bind(this)}
                                     mouseOutHandler={this.mouseOutHandlerBar.bind(this)}
                                     mouseMoveHandler={this.mouseMoveHandlerBar.bind(this)}
-                                    clickHandler = {this.handleDialogBox.bind(this)}
+                                    clickHandler = {this.barClickAnimation.bind(this)}
 
                                 />
                             </Paper>
@@ -345,31 +355,7 @@ handleRequestClose() {
                                     width={700}
                                     height={350}
                                     interpolate={'cardinal'}
-                                    data={[
-                                        [
-                                            { x: 10, y: 25 },
-                                            { x: 20, y: 10 },
-                                            { x: 30, y: 25 },
-                                            { x: 40, y: 10 },
-                                            { x: 50, y: 12 },
-                                            { x: 60, y: 25 }
-                                        ], [
-                                            { x: 10, y: 40 },
-                                            { x: 20, y: 30 },
-                                            { x: 30, y: 25 },
-                                            { x: 40, y: 60 },
-                                            { x: 50, y: 22 },
-                                            { x: 60, y: 9 }
-                                        ],
-                                         [
-                                            { x: 5, y: 20 },
-                                            { x: 15, y: 30 },
-                                            { x: 25, y: 25 },
-                                            { x: 35, y: 43 },
-                                            { x: 45, y: 50 },
-                                            { x: 60, y: 60 }
-                                        ]
-                                    ]}
+                                    data={this.state.setTimeoutStateDoneLine ? lineChart : initialLineChart}
                                     axisLabels={{x: 'Time', y: 'My Mind'}}
                                 />
                             </Paper>

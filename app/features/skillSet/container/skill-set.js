@@ -7,13 +7,17 @@ import * as duck from '../duck';
 class SkillSet extends Component {
 
     render() {
-           const { barGraph,initialBarGraph } = this.props;
+           const { barGraph,initialBarGraph,pieChart, initialPieChart,lineChart,initialLineChart} = this.props;
         return (
            
             <div>
                  <SkillSetComponent
                  barGraph ={barGraph}
-                 initialBarGraph={initialBarGraph}/>
+                 initialBarGraph={initialBarGraph}
+                 initialPieChart={initialPieChart}
+                 pieChart={pieChart}
+                 lineChart={lineChart}
+                 initialLineChart={initialLineChart}/>
                 
             </div>
 
@@ -30,10 +34,14 @@ class SkillSet extends Component {
 
 
 function mapStateToProps(state) {
-    console.log(state.barGraph,'xxxxxx')
+    console.log(state,'mapStateToProps')
     return {
         barGraph: state.barGraph,
-        initialBarGraph:state.initialBarGraph
+        initialBarGraph:state.initialBarGraph,
+        initialPieChart:state.initialPieChart,
+    pieChart:state.pieChart,
+    lineChart:state.lineChart,
+    initialLineChart:state.initialLineChart
     };
 }
 
