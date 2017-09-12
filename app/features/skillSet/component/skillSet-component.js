@@ -36,45 +36,47 @@ class SkillSetComponent extends React.Component {
         this.state = {
             open: false,
             stepIndex: 0,
-            openSnackBarClicked:false,
-             showToolTip: false,
+            openSnackBarClicked: false,
+            showToolTip: false,
             top: null,
             left: null,
             y: null,
             x: null,
-            openSnackBarClickedBar:false,
-            openSnackBarClickedPie:false,
-            openDialogBox:false,
-            setTimeOutStateDoneBar :false,
-            setTimeOutStateDonePie :false,
-            setTimeoutStateDoneLine:false
+            openSnackBarClickedBar: false,
+            openSnackBarClickedPie: false,
+            openDialogBoxPic: false,
+            setTimeOutStateDoneBar: false,
+            setTimeOutStateDonePie: false,
+            setTimeoutStateDoneLine: false
         }
     }
 
-componentDidMount() {
-    setTimeout(
-      () =>  this.setState({ setTimeOutStateDoneBar: true,
-        setTimeOutStateDonePie : true,
-    setTimeoutStateDoneLine:true }),
-      200
-    );
-  }
+    componentDidMount() {
+        setTimeout(
+            () => this.setState({
+                setTimeOutStateDoneBar: true,
+                setTimeOutStateDonePie: true,
+                setTimeoutStateDoneLine: true
+            }),
+            200
+        );
+    }
     pieClickAnimation() {
-    this.setState({setTimeOutStateDonePie: false});
-    setTimeout(
-      () =>  this.setState({setTimeOutStateDonePie : true }),
-      1000
-    );
-  }
- barClickAnimation() {
-    this.setState({setTimeOutStateDoneBar: false});
-    setTimeout(
-      () =>  this.setState({setTimeOutStateDoneBar : true }),
-      800
-    );
-  }
-    handleDialogBox(event) {
-        this.setState({ openDialogBox: true });
+        this.setState({ setTimeOutStateDonePie: false });
+        setTimeout(
+            () => this.setState({ setTimeOutStateDonePie: true }),
+            500
+        );
+    }
+    barClickAnimation() {
+        this.setState({ setTimeOutStateDoneBar: false });
+        setTimeout(
+            () => this.setState({ setTimeOutStateDoneBar: true }),
+            500
+        );
+    }
+    handleDialogBoxPic(event) {
+        this.setState({ openDialogBoxPic: true });
     }
 
 
@@ -89,62 +91,70 @@ componentDidMount() {
             left: `${e.screenX + 10}px`,
             y: d.y,
             x: d.x,
-             openSnackBarClicked:true
+            openSnackBarClicked: true
         });
     }
 
     mouseMoveHandler(e) {
         if (this.state.showToolTip) {
-            this.setState({ top: `${e.y - 10}px`, left: `${e.x + 10}px`,openSnackBarClicked:true });
+            this.setState({ top: `${e.y - 10}px`, left: `${e.x + 10}px`, openSnackBarClicked: true });
         }
     }
-  mouseOutHandler() {
-        this.setState({ showToolTip: false,
-        openSnackBarClicked:false });
+    mouseOutHandler() {
+        this.setState({
+            showToolTip: false,
+            openSnackBarClicked: false
+        });
     }
 
-mouseMoveHandlerBar(e) {
+    mouseMoveHandlerBar(e) {
         if (this.state.showToolTip) {
-            this.setState({ top: `${e.y - 10}px`, left: `${e.x + 10}px`,openSnackBarClickedBar:true });
+            this.setState({ top: `${e.y - 10}px`, left: `${e.x + 10}px`, openSnackBarClickedBar: true });
         }
     }
     mouseOutHandlerBar() {
-        this.setState({ showToolTip: false,
-        openSnackBarClickedBar:false });
+        this.setState({
+            showToolTip: false,
+            openSnackBarClickedBar: false
+        });
     }
 
-handleClose(){
-    this.setState({openDialogBox: false});
-  };
+    handleClose() {
+        this.setState({ openDialogBoxPic: false });
+    };
     mouseOverHandlerBar(d, e) {
         this.setState({
-             openSnackBarClickedBar:true});
+            openSnackBarClickedBar: true
+        });
     }
 
- 
-mouseMoveHandlerPie(e) {
+
+    mouseMoveHandlerPie(e) {
         if (this.state.showToolTip) {
-            this.setState({ top: `${e.y - 10}px`, left: `${e.x + 10}px`,openSnackBarClickedPie:true });
+            this.setState({ top: `${e.y - 10}px`, left: `${e.x + 10}px`, openSnackBarClickedPie: true });
         }
     }
     mouseOutHandlerPie() {
-        this.setState({ showToolTip: false,
-        openSnackBarClickedPie:false });
+        this.setState({
+            showToolTip: false,
+            openSnackBarClickedPie: false
+        });
     }
 
 
     mouseOverHandlerPie(d, e) {
         this.setState({
-             openSnackBarClickedPie:true});
-    } 
+            openSnackBarClickedPie: true
+        });
+    }
 
-    
-handleRequestClose() {
-    this.setState({
-      openSnackBarClicked: false,
-      openSnackBarMouseHoverBar:false
-    });
-  };
+
+    handleRequestClose() {
+        this.setState({
+            openSnackBarClicked: false,
+            openSnackBarMouseHoverBar: false
+        });
+    };
     createTooltip() {
         if (this.state.showToolTip) {
             return (
@@ -179,7 +189,7 @@ handleRequestClose() {
         };
         const paperSkills = {
             height: '20%',
-            width: '20%',
+            width: window.innerWidth > 400 ? '15%' : '80%',
             margin: 20,
             textAlign: 'center',
             display: 'inline-block',
@@ -187,7 +197,7 @@ handleRequestClose() {
         };
         const paperAvatar = {
             height: '20%',
-            width: '30%',
+            width: window.innerWidth > 400 ? '30%' : '80%',
             margin: 20,
             textAlign: 'center',
             display: 'inline-block',
@@ -195,7 +205,7 @@ handleRequestClose() {
         };
         const paperChart = {
             height: '20%',
-            width: '30%',
+            width: window.innerWidth > 400 ? '30%' : '80%',
             margin: 20,
             textAlign: 'center',
             display: 'inline-block',
@@ -213,7 +223,7 @@ handleRequestClose() {
 
 
         const imageSize = { padding: '2%', width: '30%', height: '20%', display: 'inline-block' };
-        const{barGraph,initialBarGraph,pieChart,initialPieChart,lineChart,initialLineChart}=this.props;
+        const { barGraph, initialBarGraph, pieChart, initialPieChart, lineChart, initialLineChart } = this.props;
         return (
             <div >
                 <div>
@@ -228,8 +238,8 @@ handleRequestClose() {
                         onLeftIconButtonTouchTap={this.handleToggle.bind(this)}
                         style={{ backgroundColor: '#00B0FF' }} />
                 </div>
-                <Card style={{flex: 1, flexDirection: 'row',flexWrap :'wrap'}}>
-                <Card style={{ backgroundColor: '#ECEFF1'}}>
+
+                <Card style={{ backgroundColor: '#ECEFF1' }}>
                     <Drawer open={this.state.open}>
                         <Avatar src={'https://scontent.cdninstagram.com/t51.2885-19/s150x150/18013186_1884415471815544_5035331559461224448_a.jpg'} size={210} style={{ margin: 20 }} />
                         <Divider style={{ marginTop: 10 }} />
@@ -263,11 +273,11 @@ handleRequestClose() {
                     </Drawer >
                     <Divider />
                 </Card>
-                <Card>
-                    <div style={{ alignSelf: 'flexStart' }}>
+                <Card style={{ flex: 1, flexDirection: 'row', flexWrap: 'wrap' }}>
+                    <div >
                         <center>
 
-                            <Paper style={paperAvatar} zDepth={1} rounded={false} >
+                            <Paper style={paperAvatar} zDepth={1} rounded={false} onClick={this.handleDialogBoxPic.bind(this)}>
                                 <Avatar src={'https://scontent.cdninstagram.com/t51.2885-19/s150x150/18013186_1884415471815544_5035331559461224448_a.jpg'} size={'60%'} style={{ margin: '5%' }} />
                                 <CardText>
                                     <center>
@@ -304,7 +314,7 @@ handleRequestClose() {
                                     May I know how can I help you base on my overall assesment in website?
                             </ListItem>
                                 <PieChart
-                                    labels
+                                    labels={window.innerWidth > 400 ? true : false}
                                     data={this.state.setTimeOutStateDonePie ? pieChart : initialPieChart}
                                     styles={{
                                         '.chart_text': {
@@ -312,12 +322,12 @@ handleRequestClose() {
                                             fill: '#fff'
                                         }
                                     }}
-                                    innerHoleSize={window.innerWidth/10}
-                                    size={window.innerWidth/4}
-                                     mouseOverHandler={this.mouseOverHandlerPie.bind(this)}
+                                    innerHoleSize={window.innerWidth / 10}
+                                    size={window.innerWidth / 4}
+                                    mouseOverHandler={this.mouseOverHandlerPie.bind(this)}
                                     mouseOutHandler={this.mouseOutHandlerPie.bind(this)}
                                     mouseMoveHandler={this.mouseMoveHandlerPie.bind(this)}
-                                     clickHandler = {this.pieClickAnimation.bind(this)}
+                                    clickHandler={this.pieClickAnimation.bind(this)}
                                 />
                             </Paper>
                             <Paper style={paperBar} zDepth={1} rounded={false}>
@@ -327,70 +337,78 @@ handleRequestClose() {
 
                                 <BarChart
                                     colorBars
-                                    height={window.innerHeight/2}
-                                    width={window.innerWidth/2}
-                                    axes
+                                    height={window.innerWidth > 400 ? window.innerHeight / 2 : window.innerHeight / 4}
+                                    width={window.innerWidth / 2}
+                                    axes={window.innerWidth > 400 ? true : false}
                                     data={this.state.setTimeOutStateDoneBar ? barGraph : initialBarGraph}
-                                    margin={{ top: 20, right: 0, bottom: 30, left: 50 }}
+                                    margin={window.innerWidth > 400 ? { top: 20, right: 0, bottom: 30, left: 50 } : { top: 20, right: 0, bottom: 30, left: 0 }}
                                     mouseOverHandler={this.mouseOverHandlerBar.bind(this)}
                                     mouseOutHandler={this.mouseOutHandlerBar.bind(this)}
                                     mouseMoveHandler={this.mouseMoveHandlerBar.bind(this)}
-                                    clickHandler = {this.barClickAnimation.bind(this)}
+                                    clickHandler={this.barClickAnimation.bind(this)}
 
                                 />
                             </Paper>
                             <Paper style={paperBar} zDepth={1} rounded={false}>
                                 <ListItem>
-                                     I can do line chart example too! 
+                                    I can do line chart example too!
                             </ListItem>
 
                                 <LineChart
-                                    axes
-                                    dataPoints = {true}
-                                    grid ={false}
+                                    axes={window.innerWidth > 400 ? true : false}
+                                    dataPoints={window.innerWidth > 400 ? true : false}
+                                    grid={false}
                                     xDomainRange={[0, 60]}
                                     yDomainRange={[0, 60]}
                                     mouseOverHandler={this.mouseOverHandler.bind(this)}
                                     mouseOutHandler={this.mouseOutHandler.bind(this)}
                                     mouseMoveHandler={this.mouseMoveHandler.bind(this)}
-                                    height={window.innerHeight/2}
-                                    width={window.innerWidth/2}
+                                    height={window.innerWidth > 400 ? window.innerHeight / 2 : window.innerHeight / 4}
+                                    width={window.innerWidth / 2}
                                     interpolate={'cardinal'}
                                     data={this.state.setTimeoutStateDoneLine ? lineChart : initialLineChart}
-                                    axisLabels={{x: 'Time', y: 'My Mind'}}
+                                    axisLabels={{ x: 'Time', y: 'My Mind' }}
                                 />
                             </Paper>
 
                         </center>
                     </div>
                 </Card>
-                </Card>
-                    <Snackbar
+
+                <Snackbar
                     open={this.state.openSnackBarClicked}
                     message="You Ticle me :)"
                     autoHideDuration={4000}
                     onRequestClose={this.handleRequestClose.bind(this)}
-                    />
-                     <Snackbar
+                />
+                <Snackbar
                     open={this.state.openSnackBarClickedBar}
                     message="You ticle the Bar...sshhhhhh its still sleeping"
                     autoHideDuration={4000}
                     onRequestClose={this.handleRequestClose.bind(this)}
-                    />
-                    <Snackbar
+                />
+                <Snackbar
                     open={this.state.openSnackBarClickedPie}
                     message="You're interested to ME don't YOU :)"
                     autoHideDuration={4000}
                     onRequestClose={this.handleRequestClose.bind(this)}
-                    />
-                     <Dialog
-          title="Dialog With Actions"
-          
-          modal={false}
-          open={this.state.openDialogBox}
-          onRequestClose={this.handleClose.bind(this)}
-        >
-          The actions in this window were passed in as an array of React objects.
+                />
+                <Dialog
+                    title="Hi! Want to know more about me?"
+                    modal={false}
+                    open={this.state.openDialogBoxPic}
+                    onRequestClose={this.handleClose.bind(this)}
+                >
+                    <h4>Contact me at:</h4>
+                    <li>(+63) 995 405 7249</li>
+          <li>ralphcharlofabian@yahoo.com</li>
+<li>https://github.com/ralphcharlofabian</li>
+<li>https://www.linkedin.com/in/ralph-charlo-fabian-83531aab</li>
+
+<p>Online Portfolio:</p>
+<li>http://rcfabian-static-portfolio.surge.sh</li>
+<li>http://rcfabian-dynamic-portfolio.surge.sh</li>
+
         </Dialog>
             </div>
         );
