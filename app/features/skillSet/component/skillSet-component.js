@@ -56,21 +56,21 @@ componentDidMount() {
       () =>  this.setState({ setTimeOutStateDoneBar: true,
         setTimeOutStateDonePie : true,
     setTimeoutStateDoneLine:true }),
-      500
+      200
     );
   }
     pieClickAnimation() {
     this.setState({setTimeOutStateDonePie: false});
     setTimeout(
       () =>  this.setState({setTimeOutStateDonePie : true }),
-      500
+      1000
     );
   }
  barClickAnimation() {
     this.setState({setTimeOutStateDoneBar: false});
     setTimeout(
       () =>  this.setState({setTimeOutStateDoneBar : true }),
-      500
+      800
     );
   }
     handleDialogBox(event) {
@@ -228,7 +228,8 @@ handleRequestClose() {
                         onLeftIconButtonTouchTap={this.handleToggle.bind(this)}
                         style={{ backgroundColor: '#00B0FF' }} />
                 </div>
-                <Card style={{ backgroundColor: '#ECEFF1' }}>
+                <Card style={{flex: 1, flexDirection: 'row',flexWrap :'wrap'}}>
+                <Card style={{ backgroundColor: '#ECEFF1'}}>
                     <Drawer open={this.state.open}>
                         <Avatar src={'https://scontent.cdninstagram.com/t51.2885-19/s150x150/18013186_1884415471815544_5035331559461224448_a.jpg'} size={210} style={{ margin: 20 }} />
                         <Divider style={{ marginTop: 10 }} />
@@ -311,7 +312,7 @@ handleRequestClose() {
                                             fill: '#fff'
                                         }
                                     }}
-                                    innerHoleSize={80}
+                                    innerHoleSize={window.innerWidth/10}
                                     size={window.innerWidth/4}
                                      mouseOverHandler={this.mouseOverHandlerPie.bind(this)}
                                     mouseOutHandler={this.mouseOutHandlerPie.bind(this)}
@@ -326,8 +327,8 @@ handleRequestClose() {
 
                                 <BarChart
                                     colorBars
-                                    height={300}
-                                    width={650}
+                                    height={window.innerHeight/2}
+                                    width={window.innerWidth/2}
                                     axes
                                     data={this.state.setTimeOutStateDoneBar ? barGraph : initialBarGraph}
                                     margin={{ top: 20, right: 0, bottom: 30, left: 50 }}
@@ -352,8 +353,8 @@ handleRequestClose() {
                                     mouseOverHandler={this.mouseOverHandler.bind(this)}
                                     mouseOutHandler={this.mouseOutHandler.bind(this)}
                                     mouseMoveHandler={this.mouseMoveHandler.bind(this)}
-                                    width={700}
-                                    height={350}
+                                    height={window.innerHeight/2}
+                                    width={window.innerWidth/2}
                                     interpolate={'cardinal'}
                                     data={this.state.setTimeoutStateDoneLine ? lineChart : initialLineChart}
                                     axisLabels={{x: 'Time', y: 'My Mind'}}
@@ -362,6 +363,7 @@ handleRequestClose() {
 
                         </center>
                     </div>
+                </Card>
                 </Card>
                     <Snackbar
                     open={this.state.openSnackBarClicked}
