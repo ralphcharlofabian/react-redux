@@ -29,7 +29,7 @@ import { LineChart } from 'react-easy-chart';
 import InfiniteCalendar from 'react-infinite-calendar';
 import Snackbar from 'material-ui/Snackbar';
 //import 'react-infinite-calendar/styles.css';
-
+import Dialog from 'material-ui/Dialog';
 class SkillSetComponent extends React.Component {
     constructor(props) {
         super(props);
@@ -43,11 +43,21 @@ class SkillSetComponent extends React.Component {
             y: null,
             x: null,
             openSnackBarClickedBar:false,
-            openSnackBarClickedPie:false
+            openSnackBarClickedPie:false,
+            openDialogBox:false,
+            setTimeOutStateDone :false
         }
     }
-    handleImageLoad(event) {
-        console.log('Image loaded ', event.target)
+
+componentDidMount() {
+    setTimeout(
+      () =>  this.setState({ setTimeOutStateDone: true }),
+      500
+    );
+  }
+    
+    handleDialogBox(event) {
+        this.setState({ openDialogBox: true });
     }
 
 
@@ -86,7 +96,9 @@ mouseMoveHandlerBar(e) {
         openSnackBarClickedBar:false });
     }
 
-
+handleClose(){
+    this.setState({openDialogBox: false});
+  };
     mouseOverHandlerBar(d, e) {
         this.setState({
              openSnackBarClickedBar:true});
@@ -184,6 +196,7 @@ handleRequestClose() {
 
 
         const imageSize = { padding: '2%', width: '30%', height: '20%', display: 'inline-block' };
+        const{barGraph,initialBarGraph}=this.props;
         return (
             <div >
                 <div>
@@ -290,7 +303,7 @@ handleRequestClose() {
                                         }
                                     }}
                                     innerHoleSize={80}
-                                    size={300}
+                                    size={window.innerWidth/4}
                                      mouseOverHandler={this.mouseOverHandlerPie.bind(this)}
                                     mouseOutHandler={this.mouseOutHandlerPie.bind(this)}
                                     mouseMoveHandler={this.mouseMoveHandlerPie.bind(this)}
@@ -306,20 +319,13 @@ handleRequestClose() {
                                     height={300}
                                     width={650}
                                     axes
-                                    data={[
-                                        { x: 'CSS3', y: 80, color: '#009bcc' },
-                                        { x: 'Javascript', y: 100, color: '#e1f92c' },
-                                        { x: 'HTML5', y: 120, color: '#f58b1f' },
-                                        { x: 'C#', y: 99, color: '#005a9e' },
-                                        { x: 'Others', y: 50, color: '#e3a51a' },
-                                        { x: 'React.js', y: 70, color: '#17c5e8' },
-                                        { x: 'Angular.js', y: 115, color: '#ea3027' },
-                                        { x: 'Ionic.js', y: 55, color: '#4DB6AC' }
-                                    ]}
+                                    data={this.state.setTimeOutStateDone ? barGraph : initialBarGraph}
                                     margin={{ top: 20, right: 0, bottom: 30, left: 50 }}
                                     mouseOverHandler={this.mouseOverHandlerBar.bind(this)}
                                     mouseOutHandler={this.mouseOutHandlerBar.bind(this)}
                                     mouseMoveHandler={this.mouseMoveHandlerBar.bind(this)}
+                                    clickHandler = {this.handleDialogBox.bind(this)}
+
                                 />
                             </Paper>
                             <Paper style={paperBar} zDepth={1} rounded={false}>
@@ -389,6 +395,15 @@ handleRequestClose() {
                     autoHideDuration={4000}
                     onRequestClose={this.handleRequestClose.bind(this)}
                     />
+                     <Dialog
+          title="Dialog With Actions"
+          
+          modal={false}
+          open={this.state.openDialogBox}
+          onRequestClose={this.handleClose.bind(this)}
+        >
+          The actions in this window were passed in as an array of React objects.
+        </Dialog>
             </div>
         );
     }

@@ -7,13 +7,13 @@ import * as duck from '../duck';
 class SkillSet extends Component {
 
     render() {
-           const { imageData } = this.props;
-       
+           const { barGraph,initialBarGraph } = this.props;
         return (
            
             <div>
-                {console.log(imageData,'inside')}
-                 <SkillSetComponent/>
+                 <SkillSetComponent
+                 barGraph ={barGraph}
+                 initialBarGraph={initialBarGraph}/>
                 
             </div>
 
@@ -23,15 +23,18 @@ class SkillSet extends Component {
 
     }
 }
-function matchDispatchToProps(dispatch) {
-    return bindActionCreators(duck, dispatch)
-}
+// function matchDispatchToProps(dispatch) {
+//     console.log(duck,'duck')
+//     return bindActionCreators(duck, dispatch)
+// }
 
 
 function mapStateToProps(state) {
+    console.log(state.barGraph,'xxxxxx')
     return {
-        imageData: state.imageData
+        barGraph: state.barGraph,
+        initialBarGraph:state.initialBarGraph
     };
 }
 
-export default connect(mapStateToProps, matchDispatchToProps) (SkillSet);
+export default connect(mapStateToProps) (SkillSet);
