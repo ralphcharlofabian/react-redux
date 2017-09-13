@@ -33,6 +33,8 @@ import Dialog from 'material-ui/Dialog';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import IconMenu from 'material-ui/IconMenu';
 import { grey400, darkBlack, lightBlack } from 'material-ui/styles/colors';
+import Checkbox from 'material-ui/Checkbox';
+import Toggle from 'material-ui/Toggle';
 class SkillSetComponent extends React.Component {
     constructor(props) {
         super(props);
@@ -219,11 +221,11 @@ class SkillSetComponent extends React.Component {
             backgroundColor: '#F5F5F5',
             fontSize: (window.innerWidth > 400 ? 12 : 8)
         };
- const paperMessages = {
+        const paperMessages = {
             height: '20%',
             width: window.innerWidth > 400 ? '30%' : '80%',
             margin: 20,
-            textAlign: 'center',
+
             display: 'inline-block',
             backgroundColor: '#F5F5F5',
             fontSize: (window.innerWidth > 400 ? 12 : 8)
@@ -387,129 +389,10 @@ class SkillSetComponent extends React.Component {
 
                                     />
                                 </Paper>
-                                <Paper style={paperMessages} zDepth={1} rounded={false}>
-                                    <List>
-                                        <Subheader>Messages</Subheader>
-                                        <ListItem
-                                            leftAvatar={<Avatar src="https://cdn1.iconfinder.com/data/icons/user-pictures/100/female1-512.png" />}
-                                            rightIconButton={<IconMenu iconButtonElement={<IconButton
-                                                touch={true}
-                                                tooltip="more"
-                                                tooltipPosition="bottom-left"
-                                            >
-                                                <MoreVertIcon color={grey400} />
-                                            </IconButton>}>
-                                                <MenuItem>Reply</MenuItem>
-                                                <MenuItem>Forward</MenuItem>
-                                                <MenuItem>Delete</MenuItem>
-                                            </IconMenu>}
-                                            primaryText="Brendan Lim"
-                                            secondaryText={
-                                                <p>
-                                                    <span style={{ color: darkBlack }}>Brunch this weekend?</span><br />
-                                                    I&apos;ll be in your neighborhood doing errands this weekend. Do you want to grab brunch?
-            </p>
-                                            }
-                                            secondaryTextLines={2}
-                                        />
-                                        <Divider inset={true} />
-                                        <ListItem
-                                            leftAvatar={<Avatar src="http://www.noviasalcedo.es/wp-content/uploads/2016/05/person-girl-flat.png" />}
-                                            rightIconButton={<IconMenu iconButtonElement={<IconButton
-                                                touch={true}
-                                                tooltip="more"
-                                                tooltipPosition="bottom-left"
-                                            >
-                                                <MoreVertIcon color={grey400} />
-                                            </IconButton>}>
-                                                <MenuItem>Reply</MenuItem>
-                                                <MenuItem>Forward</MenuItem>
-                                                <MenuItem>Delete</MenuItem>
-                                            </IconMenu>}
-                                            primaryText="me, Scott, Jennifer"
-                                            secondaryText={
-                                                <p>
-                                                    <span style={{ color: darkBlack }}>Summer BBQ</span><br />
-                                                    Wish I could come, but I&apos;m out of town this weekend.
-            </p>
-                                            }
-                                            secondaryTextLines={2}
-                                        />
-                                        <Divider inset={true} />
-                                        <ListItem
-                                            leftAvatar={<Avatar src="https://cdn.vectorstock.com/i/thumb-large/04/40/4340440.jpg" />}
-                                            rightIconButton={<IconMenu iconButtonElement={<IconButton
-                                                touch={true}
-                                                tooltip="more"
-                                                tooltipPosition="bottom-left"
-                                            >
-                                                <MoreVertIcon color={grey400} />
-                                            </IconButton>}>
-                                                <MenuItem>Reply</MenuItem>
-                                                <MenuItem>Forward</MenuItem>
-                                                <MenuItem>Delete</MenuItem>
-                                            </IconMenu>}
-                                            primaryText="Grace Ng"
-                                            secondaryText={
-                                                <p>
-                                                    <span style={{ color: darkBlack }}>Oui oui</span><br />
-                                                    Do you have any Paris recs? Have you ever been?
-            </p>
-                                            }
-                                            secondaryTextLines={2}
-                                        />
-                                        <Divider inset={true} />
-                                        <ListItem
-                                            leftAvatar={<Avatar src="https://bitcoinify.io/static/img/icons/user1.svg" />}
-                                            rightIconButton={<IconMenu iconButtonElement={<IconButton
-                                                touch={true}
-                                                tooltip="more"
-                                                tooltipPosition="bottom-left"
-                                            >
-                                                <MoreVertIcon color={grey400} />
-                                            </IconButton>}>
-                                                <MenuItem>Reply</MenuItem>
-                                                <MenuItem>Forward</MenuItem>
-                                                <MenuItem>Delete</MenuItem>
-                                            </IconMenu>}
-                                            primaryText="Kerem Suer"
-                                            secondaryText={
-                                                <p>
-                                                    <span style={{ color: darkBlack }}>Birthday gift</span><br />
-                                                    Do you have any ideas what we can get Heidi for her birthday? How about a pony?
-            </p>
-                                            }
-                                            secondaryTextLines={2}
-                                        />
-                                        <Divider inset={true} />
-                                        <ListItem
-                                            leftAvatar={<Avatar src="https://cdn1.iconfinder.com/data/icons/user-pictures/100/male3-512.png" />}
-                                            rightIconButton={<IconMenu iconButtonElement={<IconButton
-                                                touch={true}
-                                                tooltip="more"
-                                                tooltipPosition="bottom-left"
-                                            >
-                                                <MoreVertIcon color={grey400} />
-                                            </IconButton>}>
-                                                <MenuItem>Reply</MenuItem>
-                                                <MenuItem>Forward</MenuItem>
-                                                <MenuItem>Delete</MenuItem>
-                                            </IconMenu>}
-                                            primaryText="Raquel Parrado"
-                                            secondaryText={
-                                                <p>
-                                                    <span style={{ color: darkBlack }}>Recipe to try</span><br />
-                                                    We should eat this: grated squash. Corn and tomatillo tacos.
-            </p>
-                                            }
-                                            secondaryTextLines={2}
-                                        />
-                                    </List>
+                            </center>
 
-
-                                </Paper>
-                                <Paper style={paperMessages} zDepth={1} rounded={false}>
-                                    <List>
+ <Paper style={paperMessages} zDepth={1} rounded={false}>
+     <List>
                                         <Subheader>Scheduled Stuffs </Subheader>
                                         <ListItem
                                             leftAvatar={<Avatar src="http://www.dippindots.com.au/media/franchise-icon.svg" />}
@@ -626,10 +509,174 @@ class SkillSetComponent extends React.Component {
                                             secondaryTextLines={2}
                                         />
                                     </List>
+</Paper>
+
+                            <Paper style={paperMessages} zDepth={1} rounded={false}>
+                                <List>
+                                    <Subheader>Messages</Subheader>
+                                    <Divider />
+                                    <ListItem
+                                        leftAvatar={<Avatar src="https://cdn1.iconfinder.com/data/icons/user-pictures/100/female1-512.png" />}
+                                        rightIconButton={<IconMenu iconButtonElement={<IconButton
+                                            touch={true}
+                                            tooltip="more"
+                                            tooltipPosition="bottom-left"
+                                        >
+                                            <MoreVertIcon color={grey400} />
+                                        </IconButton>}>
+                                            <MenuItem>Reply</MenuItem>
+                                            <MenuItem>Forward</MenuItem>
+                                            <MenuItem>Delete</MenuItem>
+                                        </IconMenu>}
+                                        primaryText="Brendan Lim"
+                                        secondaryText={
+                                            <p>
+                                                <span style={{ color: darkBlack }}>Brunch this weekend?</span><br />
+                                                I&apos;ll be in your neighborhood doing errands this weekend. Do you want to grab brunch?
+            </p>
+                                        }
+                                        secondaryTextLines={2}
+                                    />
+                                    <Divider inset={true} />
+                                    <ListItem
+                                        leftAvatar={<Avatar src="http://www.noviasalcedo.es/wp-content/uploads/2016/05/person-girl-flat.png" />}
+                                        rightIconButton={<IconMenu iconButtonElement={<IconButton
+                                            touch={true}
+                                            tooltip="more"
+                                            tooltipPosition="bottom-left"
+                                        >
+                                            <MoreVertIcon color={grey400} />
+                                        </IconButton>}>
+                                            <MenuItem>Reply</MenuItem>
+                                            <MenuItem>Forward</MenuItem>
+                                            <MenuItem>Delete</MenuItem>
+                                        </IconMenu>}
+                                        primaryText="me, Scott, Jennifer"
+                                        secondaryText={
+                                            <p>
+                                                <span style={{ color: darkBlack }}>Summer BBQ</span><br />
+                                                Wish I could come, but I&apos;m out of town this weekend.
+            </p>
+                                        }
+                                        secondaryTextLines={2}
+                                    />
+                                    <Divider inset={true} />
+                                    <ListItem
+                                        leftAvatar={<Avatar src="https://cdn.vectorstock.com/i/thumb-large/04/40/4340440.jpg" />}
+                                        rightIconButton={<IconMenu iconButtonElement={<IconButton
+                                            touch={true}
+                                            tooltip="more"
+                                            tooltipPosition="bottom-left"
+                                        >
+                                            <MoreVertIcon color={grey400} />
+                                        </IconButton>}>
+                                            <MenuItem>Reply</MenuItem>
+                                            <MenuItem>Forward</MenuItem>
+                                            <MenuItem>Delete</MenuItem>
+                                        </IconMenu>}
+                                        primaryText="Grace Ng"
+                                        secondaryText={
+                                            <p>
+                                                <span style={{ color: darkBlack }}>Oui oui</span><br />
+                                                Do you have any Paris recs? Have you ever been?
+            </p>
+                                        }
+                                        secondaryTextLines={2}
+                                    />
+                                    <Divider inset={true} />
+                                    <ListItem
+                                        leftAvatar={<Avatar src="https://bitcoinify.io/static/img/icons/user1.svg" />}
+                                        rightIconButton={<IconMenu iconButtonElement={<IconButton
+                                            touch={true}
+                                            tooltip="more"
+                                            tooltipPosition="bottom-left"
+                                        >
+                                            <MoreVertIcon color={grey400} />
+                                        </IconButton>}>
+                                            <MenuItem>Reply</MenuItem>
+                                            <MenuItem>Forward</MenuItem>
+                                            <MenuItem>Delete</MenuItem>
+                                        </IconMenu>}
+                                        primaryText="Kerem Suer"
+                                        secondaryText={
+                                            <p>
+                                                <span style={{ color: darkBlack }}>Birthday gift</span><br />
+                                                Do you have any ideas what we can get Heidi for her birthday? How about a pony?
+            </p>
+                                        }
+                                        secondaryTextLines={2}
+                                    />
+                                    <Divider inset={true} />
+                                    <ListItem
+                                        leftAvatar={<Avatar src="https://cdn1.iconfinder.com/data/icons/user-pictures/100/male3-512.png" />}
+                                        rightIconButton={<IconMenu iconButtonElement={<IconButton
+                                            touch={true}
+                                            tooltip="more"
+                                            tooltipPosition="bottom-left"
+                                        >
+                                            <MoreVertIcon color={grey400} />
+                                        </IconButton>}>
+                                            <MenuItem>Reply</MenuItem>
+                                            <MenuItem>Forward</MenuItem>
+                                            <MenuItem>Delete</MenuItem>
+                                        </IconMenu>}
+                                        primaryText="Raquel Parrado"
+                                        secondaryText={
+                                            <p>
+                                                <span style={{ color: darkBlack }}>Recipe to try</span><br />
+                                                We should eat this: grated squash. Corn and tomatillo tacos.
+            </p>
+                                        }
+                                        secondaryTextLines={2}
+                                    />
+                                </List>
 
 
-                                </Paper>
-                            </center>
+                            </Paper>
+                            <Paper style={paperMessages} zDepth={1} rounded={false}>
+                                {/*  */}
+                                
+                                    {/* <Subheader>General</Subheader>
+                                    {/* <ListItem
+                                        primaryText="Profile photo"
+                                        secondaryText="Change your Google+ profile photo"
+                                    />
+                                    <ListItem
+                                        primaryText="Show your status"
+                                        secondaryText="Your status is visible to everyone you use with"
+                                    /> */} 
+                                
+                                    
+                                    <Subheader>Priority Interruptions</Subheader>
+
+                                    <ListItem primaryText="Events and reminders" rightToggle={<Toggle />} />
+                                    <ListItem primaryText="Calls" rightToggle={<Toggle />} />
+                                    <ListItem primaryText="Messages" rightToggle={<Toggle />} />
+                                    <ListItem primaryText="Others" rightToggle={<Toggle />} />
+                                
+                                <Divider />
+                                
+                                    <Subheader>Hangout Notifications</Subheader>
+                                    <ListItem
+                                        leftCheckbox={<Checkbox />}
+                                        primaryText="Notifications"
+                                        secondaryText="Allow notifications"
+                                    />
+                                    <ListItem
+                                        leftCheckbox={<Checkbox />}
+                                        primaryText="Sounds"
+                                        secondaryText="Hangouts message"
+                                    />
+                                    <ListItem
+                                        leftCheckbox={<Checkbox />}
+                                        primaryText="Video sounds"
+                                        secondaryText="Hangouts video call"
+                                    />
+                               
+                                
+                               
+                            </Paper>
+
                         </div>
                     </Card>
                 </div>
