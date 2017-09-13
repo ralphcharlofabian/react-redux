@@ -388,7 +388,7 @@ class SkillSetComponent extends React.Component {
                                     />
                                 </Paper>
                                 <Paper style={paperMessages} zDepth={1} rounded={false}>
-                                    <List onClick={this.handleDialogBoxPic.bind(this)}>
+                                    <List>
                                         <Subheader>Messages</Subheader>
                                         <ListItem
                                             leftAvatar={<Avatar src="https://cdn1.iconfinder.com/data/icons/user-pictures/100/female1-512.png" />}
@@ -509,8 +509,8 @@ class SkillSetComponent extends React.Component {
 
                                 </Paper>
                                 <Paper style={paperMessages} zDepth={1} rounded={false}>
-                                    <List onClick={this.handleDialogBoxPic.bind(this)}>
-                                        <Subheader>Scheduled Events | Foods | Stuffs </Subheader>
+                                    <List>
+                                        <Subheader>Scheduled Stuffs </Subheader>
                                         <ListItem
                                             leftAvatar={<Avatar src="http://www.dippindots.com.au/media/franchise-icon.svg" />}
                                             rightIconButton={<IconMenu iconButtonElement={<IconButton
@@ -524,10 +524,10 @@ class SkillSetComponent extends React.Component {
                                                 <MenuItem>Forward</MenuItem>
                                                 <MenuItem>Delete</MenuItem>
                                             </IconMenu>}
-                                            primaryText="Brendan Lim"
+                                            primaryText="Dippin Dots"
                                             secondaryText={
                                                 <p>
-                                                    <span style={{ color: darkBlack }}>Dippin Dots</span><br />
+                                                    <span style={{ color: darkBlack }}>Best Steak!</span><br />
                                                     I&apos;I think food in here was great!
             </p>
                                             }
@@ -547,10 +547,10 @@ class SkillSetComponent extends React.Component {
                                                 <MenuItem>Forward</MenuItem>
                                                 <MenuItem>Delete</MenuItem>
                                             </IconMenu>}
-                                            primaryText="me, Scott, Jennifer"
+                                            primaryText="EDCO Building"
                                             secondaryText={
                                                 <p>
-                                                    <span style={{ color: darkBlack }}>EDCO Building</span><br />
+                                                    <span style={{ color: darkBlack }}>UI/UX Design</span><br />
                                                     Remember the agreement on the UI?UX design? Meeting is urgent!
             </p>
                                             }
@@ -570,11 +570,11 @@ class SkillSetComponent extends React.Component {
                                                 <MenuItem>Forward</MenuItem>
                                                 <MenuItem>Delete</MenuItem>
                                             </IconMenu>}
-                                            primaryText="Grace Ng"
+                                            primaryText="Eco Park"
                                             secondaryText={
                                                 <p>
-                                                    <span style={{ color: darkBlack }}>Stress-free Park</span><br />
-                                                    Unwind and Dowhat makes you happy, chill and enjoy the view here
+                                                    <span style={{ color: darkBlack }}>Bicycle riding</span><br />
+                                                    Unwind and do what makes you happy, chill and enjoy the view here
             </p>
                                             }
                                             secondaryTextLines={2}
@@ -593,7 +593,7 @@ class SkillSetComponent extends React.Component {
                                                 <MenuItem>Forward</MenuItem>
                                                 <MenuItem>Delete</MenuItem>
                                             </IconMenu>}
-                                            primaryText="Kerem Suer"
+                                            primaryText="Via Birung"
                                             secondaryText={
                                                 <p>
                                                     <span style={{ color: darkBlack }}>Birthday gift</span><br />
@@ -616,10 +616,10 @@ class SkillSetComponent extends React.Component {
                                                 <MenuItem>Forward</MenuItem>
                                                 <MenuItem>Delete</MenuItem>
                                             </IconMenu>}
-                                            primaryText="Raquel Parrado"
+                                            primaryText="Photo Session"
                                             secondaryText={
                                                 <p>
-                                                    <span style={{ color: darkBlack }}>Photo Session</span><br />
+                                                    <span style={{ color: darkBlack }}>Cosplay Themed</span><br />
                                                     Photoshoot at Eco Park with friends! Cosplay Photshooting!
             </p>
                                             }
