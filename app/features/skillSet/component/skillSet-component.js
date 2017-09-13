@@ -284,23 +284,22 @@ class SkillSetComponent extends React.Component {
                         <center>
 
                             <Paper style={paperAvatar} zDepth={1} rounded={false} onClick={this.handleDialogBoxPic.bind(this)}>
+                                <ListItem >
                                 <Avatar src={'https://scontent.cdninstagram.com/t51.2885-19/s150x150/18013186_1884415471815544_5035331559461224448_a.jpg'} size={'60%'} style={{ margin: '5%' }} />
-                                <CardText>
-                                    <center>
+                                <CardText> 
+                                     <center>
                                         <p>Hi My Name is RC! I am a Full stack web developer and also a UI/UX designer (full stack designer).
                                              I also do motivational talks to some students and companies,
                                               for I believe I have a big part to change this world to a better one ;)
                                             Help me to achieve all of them by showcasing my skills and discover new adventure!
 
                                         </p>
-
                                     </center>
-
-
                                 </CardText>
+                                </ListItem>
                             </Paper>
                             <Paper style={paperSkills} zDepth={1} rounded={false} >
-                                <ListItem >
+                                <ListItem onClick={this.handleDialogBoxPic.bind(this)}>
                                     Code | Language | stuffs
                             </ListItem>
                                 <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/HTML5_Badge.svg/600px-HTML5_Badge.svg.png' alt="Mountain View" style={imageSize} />
@@ -316,7 +315,7 @@ class SkillSetComponent extends React.Component {
 
                             </Paper>
                             <Paper style={paperChart} zDepth={1} rounded={false}>
-                                <ListItem >
+                                <ListItem onClick={this.handleDialogBoxPic.bind(this)}>
                                     May I know how can I help you base on my overall assesment in website?
                             </ListItem>
                                 <PieChart
@@ -337,7 +336,7 @@ class SkillSetComponent extends React.Component {
                                 />
                             </Paper>
                             <Paper style={paperBar} zDepth={1} rounded={false}>
-                                <ListItem>
+                                <ListItem onClick={this.handleDialogBoxPic.bind(this)}>
                                     Skills I used to create awesome websites!
                             </ListItem>
 
@@ -356,7 +355,7 @@ class SkillSetComponent extends React.Component {
                                 />
                             </Paper>
                             <Paper style={paperBar} zDepth={1} rounded={false}>
-                                <ListItem>
+                                <ListItem onClick={this.handleDialogBoxPic.bind(this)}>
                                     I can do line chart example too!
                             </ListItem>
 
@@ -401,11 +400,13 @@ class SkillSetComponent extends React.Component {
                     onRequestClose={this.handleRequestClose.bind(this)}
                 />
                 <Dialog
-                    title="Hi! Want to know more about me?"
+                    title={window.innerWidth > 400 ? "Hi! Want to know more about me?" :"Hello There !"}
                     modal={false}
                     open={this.state.openDialogBoxPic}
                     onRequestClose={this.handleClose.bind(this)}
+                    autoScrollBodyContent={true}
                 >
+                <div style={{fontSize: window.innerWidth > 400 ? 15 :10}}>
                     <h4>Contact me at:</h4>
                     <li>(+63) 995 405 7249</li>
           <li>ralphcharlofabian@yahoo.com</li>
@@ -415,7 +416,7 @@ class SkillSetComponent extends React.Component {
 <p>Online Portfolio:</p>
 <li>http://rcfabian-static-portfolio.surge.sh</li>
 <li>http://rcfabian-dynamic-portfolio.surge.sh</li>
-
+</div>
         </Dialog>
             </div>
         );
