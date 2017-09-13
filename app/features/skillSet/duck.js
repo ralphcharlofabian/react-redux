@@ -51,14 +51,14 @@ export function initialPieChart() {
 export function lineChart() {
     return [
         [
-            { x: 10, y: 25 },
+            { x: 0, y: 25 },
             { x: 20, y: 10 },
             { x: 30, y: 25 },
             { x: 40, y: 10 },
             { x: 50, y: 12 },
             { x: 60, y: 25 }
         ], [
-            { x: 10, y: 40 },
+            { x: 5, y: 40 },
             { x: 20, y: 30 },
             { x: 30, y: 25 },
             { x: 40, y: 60 },
@@ -66,7 +66,7 @@ export function lineChart() {
             { x: 60, y: 9 }
         ],
         [
-            { x: 5, y: 20 },
+            { x: 0, y: 20 },
             { x: 15, y: 30 },
             { x: 25, y: 25 },
             { x: 35, y: 43 },

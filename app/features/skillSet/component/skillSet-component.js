@@ -47,7 +47,8 @@ class SkillSetComponent extends React.Component {
             openDialogBoxPic: false,
             setTimeOutStateDoneBar: false,
             setTimeOutStateDonePie: false,
-            setTimeoutStateDoneLine: false
+            setTimeoutStateDoneLine: false,
+            opacity:0
         }
     }
 
@@ -56,7 +57,8 @@ class SkillSetComponent extends React.Component {
             () => this.setState({
                 setTimeOutStateDoneBar: true,
                 setTimeOutStateDonePie: true,
-                setTimeoutStateDoneLine: true
+                setTimeoutStateDoneLine: true,
+                opacity:1
             }),
             200
         );
@@ -193,7 +195,8 @@ class SkillSetComponent extends React.Component {
             margin: 20,
             textAlign: 'center',
             display: 'inline-block',
-            backgroundColor: '#F5F5F5'
+            backgroundColor: '#F5F5F5',
+            fontSize:(window.innerWidth > 400 ? 12 : 8)
         };
         const paperAvatar = {
             height: '20%',
@@ -201,7 +204,8 @@ class SkillSetComponent extends React.Component {
             margin: 20,
             textAlign: 'center',
             display: 'inline-block',
-            backgroundColor: '#F5F5F5'
+            backgroundColor: '#F5F5F5',
+            fontSize:(window.innerWidth > 400 ? 12 : 8)
         };
         const paperChart = {
             height: '20%',
@@ -209,7 +213,8 @@ class SkillSetComponent extends React.Component {
             margin: 20,
             textAlign: 'center',
             display: 'inline-block',
-            backgroundColor: '#F5F5F5'
+            backgroundColor: '#F5F5F5',
+            fontSize:(window.innerWidth > 400 ? 12 : 8)
         };
 
         const paperBar = {
@@ -218,7 +223,8 @@ class SkillSetComponent extends React.Component {
             margin: 20,
             textAlign: 'center',
             display: 'inline-block',
-            backgroundColor: '#F5F5F5'
+            backgroundColor: '#F5F5F5',
+            fontSize:(window.innerWidth > 400 ? 12 : 8)
         };
 
 
@@ -229,16 +235,16 @@ class SkillSetComponent extends React.Component {
                 <div>
                     <AppBar title={<div>
                         <FlatButton onClick={this.handleToggle.bind(this)} style={{ marginRight: '2%' }}>
-                            <Link to={'/developersBackground'} style={{ textDecoration: 'none', fontSize: '20px', color: '#ECEFF1' }}>Work Experience</Link>
+                            <Link to={'/developersBackground'} style={{ textDecoration: 'none', fontSize: window.innerWidth > 400 ? 20 : 12, color: '#ECEFF1',marginRight:5 }}>Work Experience</Link>
                         </FlatButton>
                         <FlatButton onClick={this.handleToggle.bind(this)} >
-                            <Link to={'/userList'} style={{ textDecoration: 'none', fontSize: '20px', color: '#ECEFF1' }}>CRUD Application</Link>
+                            <Link to={'/userList'} style={{ textDecoration: 'none', fontSize: window.innerWidth > 400 ? 20 : 12, color: '#ECEFF1' }}>CRUD Application</Link>
                         </FlatButton>
                     </div>}
                         onLeftIconButtonTouchTap={this.handleToggle.bind(this)}
                         style={{ backgroundColor: '#00B0FF' }} />
                 </div>
-
+<div style={{opacity: this.state.opacity, transition: "opacity 1s"}}>
                 <Card style={{ backgroundColor: '#ECEFF1' }}>
                     <Drawer open={this.state.open}>
                         <Avatar src={'https://scontent.cdninstagram.com/t51.2885-19/s150x150/18013186_1884415471815544_5035331559461224448_a.jpg'} size={210} style={{ margin: 20 }} />
@@ -322,8 +328,8 @@ class SkillSetComponent extends React.Component {
                                             fill: '#fff'
                                         }
                                     }}
-                                    innerHoleSize={window.innerWidth / 10}
-                                    size={window.innerWidth / 4}
+                                    innerHoleSize={window.innerWidth > 400 ? window.innerWidth / 10 : window.innerWidth / 5 }
+                                    size={window.innerWidth > 400 ? window.innerWidth / 4 : window.innerWidth/2  }
                                     mouseOverHandler={this.mouseOverHandlerPie.bind(this)}
                                     mouseOutHandler={this.mouseOutHandlerPie.bind(this)}
                                     mouseMoveHandler={this.mouseMoveHandlerPie.bind(this)}
@@ -337,8 +343,8 @@ class SkillSetComponent extends React.Component {
 
                                 <BarChart
                                     colorBars
-                                    height={window.innerWidth > 400 ? window.innerHeight / 2 : window.innerHeight / 4}
-                                    width={window.innerWidth / 2}
+                                    height={window.innerWidth > 400 ? window.innerHeight / 2 : window.innerHeight / 2.5}
+                                    width={window.innerWidth > 400 ? window.innerWidth / 2 : window.innerWidth/2 }
                                     axes={window.innerWidth > 400 ? true : false}
                                     data={this.state.setTimeOutStateDoneBar ? barGraph : initialBarGraph}
                                     margin={window.innerWidth > 400 ? { top: 20, right: 0, bottom: 30, left: 50 } : { top: 20, right: 0, bottom: 30, left: 0 }}
@@ -363,18 +369,19 @@ class SkillSetComponent extends React.Component {
                                     mouseOverHandler={this.mouseOverHandler.bind(this)}
                                     mouseOutHandler={this.mouseOutHandler.bind(this)}
                                     mouseMoveHandler={this.mouseMoveHandler.bind(this)}
-                                    height={window.innerWidth > 400 ? window.innerHeight / 2 : window.innerHeight / 4}
+                                    height={window.innerWidth > 400 ? window.innerHeight / 2 : window.innerHeight / 3}
                                     width={window.innerWidth / 2}
                                     interpolate={'cardinal'}
                                     data={this.state.setTimeoutStateDoneLine ? lineChart : initialLineChart}
                                     axisLabels={{ x: 'Time', y: 'My Mind' }}
+                                    
                                 />
                             </Paper>
 
                         </center>
                     </div>
                 </Card>
-
+</div>
                 <Snackbar
                     open={this.state.openSnackBarClicked}
                     message="You Ticle me :)"
