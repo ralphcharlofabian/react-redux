@@ -76,7 +76,7 @@ export function lineChart() {
     ]
 }
 
-export function initialLineChart(){
+export function initialLineChart() {
     return [
         [
             { x: 0, y: 0 },
@@ -101,5 +101,94 @@ export function initialLineChart(){
             { x: 0, y: 0 },
             { x: 0, y: 0 }
         ]
+    ]
+}
+
+export function peopleFeedback() {
+    return [
+        {
+            id: 1,
+            name: 'Ron Trump',
+            imageSource: 'http://www.delta-corp.net/images/profil2.jpg',
+            feedback: 'He is a good employee who has high goal, not just in corporate but for the future',
+            company: 'Eco Company',
+            position: 'Dev Manager'
+        },
+        {
+            id: 2,
+            name: 'Mich Lu',
+            imageSource: 'http://media01.money4invest.com/2010/01/faceyourmanga-female-avatar.jpg',
+            feedback: 'Always makes a good output in work, hardworking and he is funny, always making the environment cool',
+            company: 'Telco Inc.',
+            position: 'Product Manager'
+        },
+        {
+            id: 3,
+            name: 'Ernest Vien',
+            imageSource: 'https://cdn0.iconfinder.com/data/icons/user-pictures/100/matureman1-512.png',
+            feedback: 'He is not into grades, This guy is looking beyond grades, but on what he can bring to this world and to the next generation, A respectable future prof I see..',
+            company: 'MIT',
+            position: 'Professor'
+        },
+        {
+            id: 4,
+            name: 'Luk Yu Gao',
+            imageSource: 'https://t3.ftcdn.net/jpg/00/94/45/72/500_F_94457263_BtdFoRIdMnTzLoaxAaAbDMoqgqYpedsf.jpg',
+            feedback: 'A cool future team leader!',
+            company: 'RobStick Company',
+            position: 'Team Leader'
+        },
+        {
+            id: 5,
+            name: 'Diane Fraizer',
+            imageSource: 'http://www.printeable.com/im.php?f=users/95/4/954_profile.jpg',
+            feedback: 'He is like a GEM that will be sooner be more precious than diamond,a guy full of potentials!',
+            company: 'Deviant Corp',
+            position: 'UI/UX Designer'
+        },
+        {
+            id: 6,
+            name: 'Jane Winter',
+            imageSource: 'https://i.pinimg.com/236x/50/55/19/5055196262f2bf7fba6c1e7f5ac1b0dd.jpg',
+            feedback: 'All I can say is, Jack of all trades!!! ',
+            company: 'Deviant Corp',
+            position: 'Full Stack Developer'
+        },
+    ]
+}
+
+export function scheduledStuff() {
+    return [
+        {
+            id: 1,
+            imageSource: 'http://www.dippindots.com.au/media/franchise-icon.svg',
+            place: 'Dippin Dots',
+            scheduledTask: 'Best Steak!',
+            remarks: 'I&apos;I think food in here was great!'
+        }, {
+            id: 2,
+            imageSource: 'https://www.iconexperience.com/_img/g_collection_png/standard/512x512/office_building.png',
+            place: 'EDCO Building',
+            scheduledTask: 'UI/UX Design',
+            remarks: 'Remember the agreement on the UI?UX design? Meeting is urgent!'
+        }, {
+            id: 3,
+            imageSource: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Round_Landmark_Icon_Park.svg/2000px-Round_Landmark_Icon_Park.svg.png',
+            place: 'ACO Park',
+            scheduledTask: 'Bicycle riding',
+            remarks: 'Unwind and do what makes you happy, chill and enjoy the view here'
+        }, {
+            id: 4,
+            imageSource: 'https://image.flaticon.com/icons/png/128/45/45873.png',
+            place: 'Travel Ticks',
+            scheduledTask: 'Via Birungs B-day',
+            remarks: 'Do you have any ideas what we can get Via for her birthday? How about a Tour Ticket?'
+        },  {
+            id: 5,
+            imageSource: 'http://mckenzielandscaping.ca/file/2015/01/iconmonstr-photo-camera-5-icon-256.png',
+            place: 'Street Corner Ave.',
+            scheduledTask: 'Photo Session',
+            remarks: 'Photoshoot at Eco Park with friends! Cosplay Photshooting!'
+        },
     ]
 }

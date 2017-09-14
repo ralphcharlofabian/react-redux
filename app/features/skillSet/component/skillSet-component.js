@@ -53,7 +53,8 @@ class SkillSetComponent extends React.Component {
             setTimeOutStateDoneBar: false,
             setTimeOutStateDonePie: false,
             setTimeoutStateDoneLine: false,
-            opacity: 0
+            opacity: 0,
+            sounds:false
         }
     }
 
@@ -176,7 +177,13 @@ class SkillSetComponent extends React.Component {
         return false;
     }
 
+sounds(){
 
+   
+        var audioElement = document.getElementById('beep');
+        audioElement.play();
+        console.log("stop sound 2");
+}
 
     render() {
         var today = new Date();
@@ -225,7 +232,14 @@ class SkillSetComponent extends React.Component {
             height: '20%',
             width: window.innerWidth > 400 ? '30%' : '80%',
             margin: 20,
-
+            display: 'inline-block',
+            backgroundColor: '#F5F5F5',
+            fontSize: (window.innerWidth > 400 ? 12 : 8)
+        };
+          const paperSchedStuff = {
+            height: '20%',
+            width: window.innerWidth > 400 ? '30%' : '80%',
+            margin: 20,
             display: 'inline-block',
             backgroundColor: '#F5F5F5',
             fontSize: (window.innerWidth > 400 ? 12 : 8)
@@ -242,7 +256,8 @@ class SkillSetComponent extends React.Component {
 
 
         const imageSize = { padding: '2%', width: '30%', height: '20%', display: 'inline-block' };
-        const { barGraph, initialBarGraph, pieChart, initialPieChart, lineChart, initialLineChart } = this.props;
+        const { barGraph, initialBarGraph, pieChart, initialPieChart, lineChart, initialLineChart, peopleFeedback, scheduledStuff } = this.props;
+        console.log(scheduledStuff, 'scheduled');
         return (
             <div >
                 <div>
@@ -292,7 +307,7 @@ class SkillSetComponent extends React.Component {
                         </Drawer >
                         <Divider />
                     </Card>
-                    <Card style={{ flex: 1, flexDirection: 'row', flexWrap: 'wrap' }}>
+                    <Card style={{ flex: 1, flexDirection: 'row', flexWrap: 'wrap', alignItems: 'flex-start' }}>
                         <div >
                             <center>
 
@@ -390,265 +405,64 @@ class SkillSetComponent extends React.Component {
                                     />
                                 </Paper>
                             </center>
-
-                            <Paper style={paperMessages} zDepth={1} rounded={false}>
+                            <Paper style={paperSchedStuff} zDepth={1} rounded={false}>
                                 <List>
                                     <Subheader>Scheduled Stuffs </Subheader>
                                     <Divider />
-                                    <ListItem
-                                        leftAvatar={<Avatar src="http://www.dippindots.com.au/media/franchise-icon.svg" />}
-                                        rightIconButton={<IconMenu iconButtonElement={<IconButton
-                                            touch={true}
-                                            tooltip="more"
-                                            tooltipPosition="bottom-left"
-                                        >
-                                            <MoreVertIcon color={grey400} />
-                                        </IconButton>}>
-                                            <MenuItem>Reply</MenuItem>
-                                            <MenuItem>Forward</MenuItem>
-                                            <MenuItem>Delete</MenuItem>
-                                        </IconMenu>}
-                                        primaryText="Dippin Dots"
-                                        secondaryText={
-                                            <p>
-                                                <span style={{ color: darkBlack }}>Best Steak!</span><br />
-                                                I&apos;I think food in here was great!
-                                            </p>
-                                        }
-                                        secondaryTextLines={2}
-                                    />
-                                    <Divider inset={true} />
-                                    <ListItem
-                                        leftAvatar={<Avatar src="https://www.iconexperience.com/_img/g_collection_png/standard/512x512/office_building.png" />}
-                                        rightIconButton={<IconMenu iconButtonElement={<IconButton
-                                            touch={true}
-                                            tooltip="more"
-                                            tooltipPosition="bottom-left"
-                                        >
-                                            <MoreVertIcon color={grey400} />
-                                        </IconButton>}>
-                                            <MenuItem>Reply</MenuItem>
-                                            <MenuItem>Forward</MenuItem>
-                                            <MenuItem>Delete</MenuItem>
-                                        </IconMenu>}
-                                        primaryText="EDCO Building"
-                                        secondaryText={
-                                            <p>
-                                                <span style={{ color: darkBlack }}>UI/UX Design</span><br />
-                                                Remember the agreement on the UI?UX design? Meeting is urgent!
-                                            </p>
-                                        }
-                                        secondaryTextLines={2}
-                                    />
-                                    <Divider inset={true} />
-                                    <ListItem
-                                        leftAvatar={<Avatar src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Round_Landmark_Icon_Park.svg/2000px-Round_Landmark_Icon_Park.svg.png" />}
-                                        rightIconButton={<IconMenu iconButtonElement={<IconButton
-                                            touch={true}
-                                            tooltip="more"
-                                            tooltipPosition="bottom-left"
-                                        >
-                                            <MoreVertIcon color={grey400} />
-                                        </IconButton>}>
-                                            <MenuItem>Reply</MenuItem>
-                                            <MenuItem>Forward</MenuItem>
-                                            <MenuItem>Delete</MenuItem>
-                                        </IconMenu>}
-                                        primaryText="Eco Park"
-                                        secondaryText={
-                                            <p>
-                                                <span style={{ color: darkBlack }}>Bicycle riding</span><br />
-                                                Unwind and do what makes you happy, chill and enjoy the view here
-                                            </p>
-                                        }
-                                        secondaryTextLines={2}
-                                    />
-                                    <Divider inset={true} />
-                                    <ListItem
-                                        leftAvatar={<Avatar src="https://image.flaticon.com/icons/png/128/45/45873.png" />}
-                                        rightIconButton={<IconMenu iconButtonElement={<IconButton
-                                            touch={true}
-                                            tooltip="more"
-                                            tooltipPosition="bottom-left"
-                                        >
-                                            <MoreVertIcon color={grey400} />
-                                        </IconButton>}>
-                                            <MenuItem>Reply</MenuItem>
-                                            <MenuItem>Forward</MenuItem>
-                                            <MenuItem>Delete</MenuItem>
-                                        </IconMenu>}
-                                        primaryText="Via Birung"
-                                        secondaryText={
-                                            <p>
-                                                <span style={{ color: darkBlack }}>Birthday gift</span><br />
-                                                Do you have any ideas what we can get Via for her birthday? How about a Tour Ticket?
-                                            </p>
-                                        }
-                                        secondaryTextLines={2}
-                                    />
-                                    <Divider inset={true} />
-                                    <ListItem
-                                        leftAvatar={<Avatar src="http://mckenzielandscaping.ca/file/2015/01/iconmonstr-photo-camera-5-icon-256.png" />}
-                                        rightIconButton={<IconMenu iconButtonElement={<IconButton
-                                            touch={true}
-                                            tooltip="more"
-                                            tooltipPosition="bottom-left"
-                                        >
-                                            <MoreVertIcon color={grey400} />
-                                        </IconButton>}>
-                                            <MenuItem>Reply</MenuItem>
-                                            <MenuItem>Forward</MenuItem>
-                                            <MenuItem>Delete</MenuItem>
-                                        </IconMenu>}
-                                        primaryText="Photo Session"
-                                        secondaryText={
-                                            <p>
-                                                <span style={{ color: darkBlack }}>Cosplay Themed</span><br />
-                                                Photoshoot at Eco Park with friends! Cosplay Photshooting!
-                                         </p>
-                                        }
-                                        secondaryTextLines={2}
-                                    />
+                                    {scheduledStuff.map((x, index) => {
+                                        return (
+                                            <div>
+                                                <ListItem key={index}
+                                                    leftAvatar={<Avatar src={x.imageSource} />}
+                                                    rightIconButton={<IconMenu iconButtonElement={<IconButton
+                                                        touch={true}
+                                                        tooltip="more"
+                                                        tooltipPosition="bottom-left"
+                                                    >
+                                                        <MoreVertIcon color={grey400} />
+                                                    </IconButton>}>
+                                                        <MenuItem>Reply</MenuItem>
+                                                        <MenuItem>Forward</MenuItem>
+                                                        <MenuItem>Delete</MenuItem>
+                                                    </IconMenu>}
+                                                    primaryText={x.place}
+                                                    secondaryText={
+                                                        <p>
+                                                            <span style={{ color: darkBlack }}>{x.scheduledTask}</span><br />
+                                                            {x.remarks}
+                                                        </p> }
+                                                    secondaryTextLines={2}
+                                                />
+                                                <Divider inset={true} />
+                                            </div>
+                                        )})}
                                 </List>
                             </Paper>
-
                             <Paper style={paperMessages} zDepth={1} rounded={false}>
                                 <List>
                                     <Subheader>Feedbacks and Comments</Subheader>
                                     <Divider />
-                                    <ListItem
-                                        leftAvatar={<Avatar src="http://streetsincolor.com/sites/default/files/styles/user_profile_thumbnail_image/public/15337663_10209856724608870_3548580375387917609_n.jpg?itok=DwO4aMzK" />}
-                                         primaryTogglesNestedList={true}
-                                        nestedItems={[
-                                            <CardText>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                            Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-                                            Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-                                            Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
-                                            </CardText>
-                                        ]}
-                                        primaryText="Reggie Pangilinan"
-                                        secondaryText={
-                                            <p>
-                                                <span style={{ color: darkBlack }}>Bizbox Inc.</span><br />
-                                                Senior Dev Lead | QMU Team Leader
-                                            </p>
-                                        }
-                                        secondaryTextLines={2}
-                                    />
-                                    <Divider inset={true} />
-                                    <ListItem
-                                        leftAvatar={<Avatar src="http://www.noviasalcedo.es/wp-content/uploads/2016/05/person-girl-flat.png" />}
-                                       primaryTogglesNestedList={true}
-                                        nestedItems={[
-                                             <CardText>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                            Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-                                            Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-                                            Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
-                                            </CardText>
-                                        ]}
-                                        primaryText="lala cardino alanunay"
-                                        secondaryText={
-                                            <p>
-                                                <span style={{ color: darkBlack }}>Bizbox Inc.</span><br />
-                                                {/* I&apos;ll be in your neighborhood doing errands this weekend. Do you want to grab brunch? */}
-                                                HIS Team Leader
-                                            </p>
-                                        }
-                                        secondaryTextLines={2}
-
-                                    />
-                                    <Divider inset={true} />
-                                    <ListItem
-                                        leftAvatar={<Avatar src="https://avatars.githubusercontent.com/u/5535475?size=200" />}
-                                        primaryTogglesNestedList={true}
-                                        nestedItems={[
-                                            <CardText>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                            Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-                                            Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-                                            Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
-                                            </CardText>
-                                        ]}
-                                        primaryText="Kazuhito Higashioka"
-                                        secondaryText={
-                                            <p>
-                                                <span style={{ color: darkBlack }}>Bizbox Inc.</span><br />
-                                                HIS Team Leader
-                                            </p>
-                                        }
-                                        secondaryTextLines={2}
-                                    />
-                                    
-                                    
-                                    <Divider inset={true} />
-                                    <ListItem
-                                        leftAvatar={<Avatar src="https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAyQAAAAJGFhZTg0YzIyLWJjODktNDIyOS1iZThiLTdmNDdjODlhYWE1Yg.jpg" />}
-                                        primaryTogglesNestedList={true}
-                                        nestedItems={[
-                                            <CardText>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                            Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-                                            Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-                                            Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
-                                            </CardText>
-                                        ]}
-                                        primaryText="Marian Tolibas"
-                                        secondaryText={
-                                            <p>
-                                                <span style={{ color: darkBlack }}>Smart Telco</span><br />
-                                                Project Manager
-                                        </p>
-                                        }
-                                        secondaryTextLines={2}
-                                    />
-                                    <Divider inset={true} />
-                                    <ListItem
-                                        leftAvatar={<Avatar src="http://scontent.cdninstagram.com/t51.2885-15/s480x480/e35/14624829_1160670743980818_7770402368897679360_n.jpg?ig_cache_key=MTM3OTA3Mjc2NDkyOTc2MDc0MA%3D%3D.2" />}
-                                        primaryTogglesNestedList={true}
-                                        nestedItems={[
-                                             <CardText>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                            Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-                                            Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-                                            Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
-                                            </CardText>
-                                        ]}
-                                        primaryText="Herbert Namoca"
-                                        secondaryText={
-                                            <p>
-                                                <span style={{ color: darkBlack }}>Smart Telco</span><br />
-                                                Quality Assurance
-                                            </p>
-                                        }
-                                        secondaryTextLines={2}
-                                    />
-
-                                     <Divider inset={true} />
-                                    <ListItem
-                                        leftAvatar={<Avatar src="https://scontent.cdninstagram.com/t51.2885-19/11930910_426425307546786_1591369105_a.jpg" />}
-                                        primaryTogglesNestedList={true}
-                                        nestedItems={[
-                                             <CardText>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                            Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-                                            Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-                                            Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
-                                            </CardText>
-                                        ]}
-                                        primaryText="Jessie Balbin"
-                                        secondaryText={
-                                            <p>
-                                                <span style={{ color: darkBlack }}>Mapua University</span><br />
-                                                Professor | Thesis Advicer
-                                            </p>
-                                        }
-                                        secondaryTextLines={2}
-                                    />
+                                    {peopleFeedback.map((x, index) => {
+                                        return (
+                                            <div>
+                                            <ListItem key={index}
+                                            leftAvatar={<Avatar src={x.imageSource} />}
+                                            primaryTogglesNestedList={true}
+                                            nestedItems={[
+                                                <CardText>
+                                                    {x.feedback}
+                                                </CardText>]}
+                                            primaryText={x.name}
+                                            secondaryText={
+                                                <p>
+                                                    <span style={{ color: darkBlack }}>{x.company}</span><br />
+                                                    {x.position}
+                                                </p>}
+                                            secondaryTextLines={2}
+                                        />
+                                         <Divider inset={true} /></div>
+                                        )})}
                                 </List>
-
-
                             </Paper>
                             <Paper style={paperMessages} zDepth={1} rounded={false}>
                                 <Subheader>Priority Interruptions</Subheader>
@@ -662,7 +476,7 @@ class SkillSetComponent extends React.Component {
 
                                 <Subheader>Hangout Notifications</Subheader>
                                 <ListItem
-                                    leftCheckbox={<Checkbox />}
+                                    leftCheckbox={<Checkbox  onClick={this.sounds.bind(this)}/>}
                                     primaryText="Notifications"
                                     secondaryText="Allow notifications"
                                 />
@@ -680,7 +494,6 @@ class SkillSetComponent extends React.Component {
 
 
                             </Paper>
-
                         </div>
                     </Card>
                 </div>

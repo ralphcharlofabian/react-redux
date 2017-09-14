@@ -4,7 +4,7 @@ import { ActiveUserReducer } from './features/userDetail/duck';
 import {ActiveUserListReducer} from './features/userList/duck';
 import { routerReducer } from 'react-router-redux';
 import {rawDataCompany} from './features/aboutDeveloper/duck';
-import {barGraph,initialBarGraph, pieChart,initialPieChart, lineChart, initialLineChart} from './features/skillSet/duck';
+import {barGraph,initialBarGraph, pieChart,initialPieChart, lineChart, initialLineChart, peopleFeedback, scheduledStuff} from './features/skillSet/duck';
 const allReducers = combineReducers({
     users: rawData,
     activeUser: ActiveUserReducer,
@@ -16,7 +16,9 @@ const allReducers = combineReducers({
     initialPieChart:initialPieChart,
     pieChart:pieChart,
     lineChart:lineChart,
-    initialLineChart:initialLineChart
+    initialLineChart:initialLineChart,
+    peopleFeedback:peopleFeedback,
+    scheduledStuff:scheduledStuff
 });
 
 export default allReducers;
