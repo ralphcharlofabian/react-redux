@@ -189,6 +189,12 @@ export function scheduledStuff() {
             place: 'Street Corner Ave.',
             scheduledTask: 'Photo Session',
             remarks: 'Photoshoot at Eco Park with friends! Cosplay Photshooting!'
+        },{
+            id: 6,
+            imageSource: 'https://strongwork.com/images/home_icon.png',
+            place: 'Condo',
+            scheduledTask: 'Operation clean place',
+            remarks: 'i cant work if my unit was full of mess'
         },
     ]
 }
