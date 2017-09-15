@@ -125,7 +125,7 @@ export function peopleFeedback() {
         {
             id: 3,
             name: 'Ernest Vien',
-            imageSource: 'https://cdn0.iconfinder.com/data/icons/user-pictures/100/matureman1-512.png',
+            imageSource: 'https://pickaface.net/gallery/avatar/Ognjen52341d1057cf1.png',
             feedback: 'He is not into grades, This guy is looking beyond grades, but on what he can bring to this world and to the next generation, A respectable future prof I see..',
             company: 'MIT',
             position: 'Professor'
@@ -133,7 +133,7 @@ export function peopleFeedback() {
         {
             id: 4,
             name: 'Luk Yu Gao',
-            imageSource: 'https://t3.ftcdn.net/jpg/00/94/45/72/500_F_94457263_BtdFoRIdMnTzLoaxAaAbDMoqgqYpedsf.jpg',
+            imageSource: 'https://pickaface.net/gallery/avatar/jluisbuenrostro56aefb9b12553.png',
             feedback: 'A cool future team leader!',
             company: 'RobStick Company',
             position: 'Team Leader'
@@ -149,7 +149,7 @@ export function peopleFeedback() {
         {
             id: 6,
             name: 'Jane Winter',
-            imageSource: 'https://i.pinimg.com/236x/50/55/19/5055196262f2bf7fba6c1e7f5ac1b0dd.jpg',
+            imageSource: 'https://pbs.twimg.com/profile_images/780437117/kaksuzie_400x400.jpg',
             feedback: 'All I can say is, Jack of all trades!!! ',
             company: 'Deviant Corp',
             position: 'Full Stack Developer'
