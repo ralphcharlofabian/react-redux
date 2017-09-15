@@ -54,7 +54,14 @@ class SkillSetComponent extends React.Component {
             setTimeOutStateDonePie: false,
             setTimeoutStateDoneLine: false,
             opacity: 0,
-            sounds:false
+            sounds:false,
+            openDialogBoxMessage:false,
+            company:'',
+            feedback:'',
+            imageSource:'',
+            name:'',
+            position:'',
+            colorChange:false
         }
     }
 
@@ -87,7 +94,15 @@ class SkillSetComponent extends React.Component {
         this.setState({ openDialogBoxPic: true });
     }
 
-
+    handleDialogBoxMessage(info) {
+        console.log(info,'info');
+        this.setState({ openDialogBoxMessage: true,
+        company:info.company,
+            feedback:info.feedback,
+            imageSource:info.imageSource,
+            name:info.name,
+            position:info.position });
+    }
     handleToggle() {
         this.setState({ open: !this.state.open });
     }
@@ -130,6 +145,7 @@ class SkillSetComponent extends React.Component {
     handleClose() {
         this.setState({ openDialogBoxPic: false });
     };
+
     mouseOverHandlerBar(d, e) {
         this.setState({
             openSnackBarClickedBar: true
@@ -421,9 +437,10 @@ sounds(){
                                                     >
                                                         <MoreVertIcon color={grey400} />
                                                     </IconButton>}>
-                                                        <MenuItem>Reply</MenuItem>
-                                                        <MenuItem>Forward</MenuItem>
-                                                        <MenuItem>Delete</MenuItem>
+                                                       
+                                                        <MenuItem>Done</MenuItem>
+                                                        <MenuItem>Priority</MenuItem>
+                                                         <MenuItem >Canceled</MenuItem>
                                                     </IconMenu>}
                                                     primaryText={x.place}
                                                     secondaryText={
@@ -432,6 +449,7 @@ sounds(){
                                                             {x.remarks}
                                                         </p> }
                                                     secondaryTextLines={2}
+                                                   
                                                 />
                                                 <Divider inset={true} />
                                             </div>
@@ -448,10 +466,7 @@ sounds(){
                                             <ListItem key={index}
                                             leftAvatar={<Avatar src={x.imageSource} />}
                                             primaryTogglesNestedList={true}
-                                            nestedItems={[
-                                                <CardText>
-                                                    {x.feedback}
-                                                </CardText>]}
+                                           
                                             primaryText={x.name}
                                             secondaryText={
                                                 <p>
@@ -459,8 +474,26 @@ sounds(){
                                                     {x.position}
                                                 </p>}
                                             secondaryTextLines={2}
+                                             onClick={this.handleDialogBoxMessage.bind(this,x)}
                                         />
-                                         <Divider inset={true} /></div>
+                                         <Divider inset={true} />
+                                         
+                                         <Dialog
+                                                title={window.innerWidth > 400 ? "A message from" : "A message from"}
+                                                modal={false}
+                                                open={this.state.openDialogBoxMessage}
+                                                onRequestClose={() => this.setState({openDialogBoxMessage : false})}
+                                                autoScrollBodyContent={true}
+                                            >
+                                                <div style={{ fontSize: window.innerWidth > 400 ? 15 : 10 }}>
+                                                    <center>
+                                                    <Avatar src={this.state.imageSource}  size={'20%'} style={{ margin: '5%' }}/>
+                                                    <h3 style={{ color: darkBlack }}>{this.state.name} <br /> {this.state.company} | {this.state.position}</h3><br />
+                                                    "{this.state.feedback}"  
+                                                     </center>   
+                                                </div>
+                                            </Dialog>
+                                         </div>
                                         )})}
                                 </List>
                             </Paper>
