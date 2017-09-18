@@ -101,7 +101,6 @@ class SkillSetComponent extends React.Component {
     }
 
     handleDialogBoxMessage(info) {
-        console.log(info,'info');
         this.setState({ openDialogBoxMessage: true,
         company:info.company,
             feedback:info.feedback,
@@ -270,7 +269,7 @@ sounds(){
         };
         const paperBar = {
             height: '80%',
-            width: '45.5%',
+           width: window.innerWidth > 400 ? '45.5%' : '80%',
             margin: 10,
             textAlign: 'center',
             display: 'inline-block',
@@ -327,7 +326,6 @@ sounds(){
         };
         const imageSize = { padding: '2%', width: '27%', height: '20%', display: 'inline-block' };
         const { barGraph, initialBarGraph, pieChart, initialPieChart, lineChart, initialLineChart, peopleFeedback, scheduledStuff } = this.props;
-        console.log(scheduledStuff, 'scheduled');
 
         return (
             <div >
@@ -436,14 +434,14 @@ sounds(){
                                     />
                                 </Paper>
                                 <Paper style={paperBar} zDepth={1} rounded={false}>
-                                    <ListItem onClick={this.handleDialogBoxPic.bind(this)}>
+                                    <ListItem onClick={this.handleDialogBoxPic.bind(this)} style={{ textDecoration: 'none', fontSize: '15px', color: '#ECEFF1',backgroundColor: '#29B6F6', marginBottom:10 }}>
                                         Skills I used to create awesome websites!
                             </ListItem>
 
                                     <BarChart
                                         colorBars
                                         height={window.innerWidth > 400 ? window.innerHeight / 2 : window.innerHeight / 2.5}
-                                        width={window.innerWidth > 400 ? window.innerWidth / 2 : window.innerWidth / 2}
+                                        width={window.innerWidth > 400 ? window.innerWidth / 3 : window.innerWidth / 2}
                                         axes={window.innerWidth > 400 ? true : false}
                                         data={this.state.setTimeOutStateDoneBar ? barGraph : initialBarGraph}
                                         margin={window.innerWidth > 400 ? { top: 20, right: 0, bottom: 30, left: 50 } : { top: 20, right: 0, bottom: 30, left: 0 }}
@@ -469,7 +467,7 @@ sounds(){
                                         mouseOutHandler={this.mouseOutHandler.bind(this)}
                                         mouseMoveHandler={this.mouseMoveHandler.bind(this)}
                                         height={window.innerWidth > 400 ? window.innerHeight / 2 : window.innerHeight / 3}
-                                        width={window.innerWidth / 2}
+                                        width={window.innerWidth > 400 ? window.innerWidth / 3 : window.innerWidth / 2}
                                         interpolate={'cardinal'}
                                         data={this.state.setTimeoutStateDoneLine ? lineChart : initialLineChart}
                                         axisLabels={{ x: 'Time', y: 'My Mind' }}
