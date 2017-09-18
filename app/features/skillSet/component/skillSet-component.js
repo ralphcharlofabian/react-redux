@@ -230,16 +230,16 @@ sounds(){
             textAlign: 'center',
             display: 'inline-block',
             backgroundColor: '#F5F5F5',
-            fontSize: (window.innerWidth > 400 ? 12 : 8)
+            fontSize: window.innerWidth > 400 ? 12 : 8
         };
         const paperAvatar = {
             height: '20%',
             width: window.innerWidth > 400 ? '30%' : '80%',
-            margin: 20,
+            margin: window.innerWidth > 400 ? 20 : 3,
             textAlign: 'center',
             display: 'inline-block',
             backgroundColor: '#F5F5F5',
-            fontSize: (window.innerWidth > 400 ? 12 : 8)
+            fontSize: window.innerWidth > 400 ? 12 : 8
         };
         const paperChart = {
             height: '20%',
@@ -248,7 +248,7 @@ sounds(){
             textAlign: 'center',
             display: 'inline-block',
             backgroundColor: '#F5F5F5',
-            fontSize: (window.innerWidth > 400 ? 12 : 8)
+            fontSize: window.innerWidth > 400 ? 12 : 8
         };
         const paperMessages = {
             height: '20%',
@@ -256,7 +256,7 @@ sounds(){
             margin: 20,
             display: 'inline-block',
             backgroundColor: '#F5F5F5',
-            fontSize: (window.innerWidth > 400 ? 12 : 8)
+            fontSize: window.innerWidth > 400 ? 12 : 8
         };
           const paperSchedStuff = {
             height: '20%',
@@ -264,7 +264,7 @@ sounds(){
             margin: 20,
             display: 'inline-block',
             backgroundColor: '#F5F5F5',
-            fontSize: (window.innerWidth > 400 ? 12 : 8)
+            fontSize: window.innerWidth > 400 ? 12 : 8
 
         };
         const paperBar = {
@@ -275,7 +275,7 @@ sounds(){
             display: 'inline-block',
 
             backgroundColor: '#F5F5F5',
-            fontSize: (window.innerWidth > 400 ? 12 : 8)
+            fontSize: window.innerWidth > 400 ? 12 : 8
         };
  const paperLine = {
             height: '80%',
@@ -381,12 +381,14 @@ sounds(){
                                         <Avatar src={'https://scontent.cdninstagram.com/t51.2885-19/s150x150/18013186_1884415471815544_5035331559461224448_a.jpg'} size={'60%'} style={{ margin: '5%' }} />
                                         <CardText>
                                             <center>
-                                                <p>Hi My Name is RC! I am a Full stack web developer and also a UI/UX designer (full stack designer).
+                                                {window.innerWidth > 400 ? <p>Hi My Name is RC! I am a Full stack web developer and also a UI/UX designer (full stack designer).
                                              I also do motivational talks to some students and companies,
                                               for I believe I have a big part to change this world to a better one ;)
                                             Help me to achieve all of them by showcasing my skills and discover new adventure!
 
-                                        </p>
+                                        </p>: <p>Hi My Name is RC! Please Enjoy my portfolio using your phone :)</p>
+                                            }
+                                                
                                             </center>
                                         </CardText>
                                     </ListItem>
