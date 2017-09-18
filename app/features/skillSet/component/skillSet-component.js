@@ -330,38 +330,33 @@ sounds(){
         return (
             <div >
                 <div>
-                    <AppBar title={<div>
+                    <AppBar title={
+                        <div>
                         <FlatButton onClick={this.handleToggle.bind(this)} style={{ marginRight: '2%' }}>
                             <Link to={'/developersBackground'} style={{ textDecoration: 'none', fontSize: window.innerWidth > 400 ? 20 : 12, color: '#ECEFF1', marginRight: 5 }}>Work Experience</Link>
                         </FlatButton>
                         <FlatButton onClick={this.handleToggle.bind(this)} >
                             <Link to={'/userList'} style={{ textDecoration: 'none', fontSize: window.innerWidth > 400 ? 20 : 12, color: '#ECEFF1' }}>CRUD Application</Link>
                         </FlatButton>
-                    </div>}
+                        </div>}
                         onLeftIconButtonTouchTap={this.handleToggle.bind(this)}
                         style={{ backgroundColor: blue600 }} />
                 </div>
-
-                <div style={{ opacity: this.state.opacity, transition: "opacity 1s" }}>
-                    <Card style={{ backgroundColor: '#ECEFF1' }}>
-                        <Drawer open={this.state.open}>
-                            <Avatar src={'https://scontent.cdninstagram.com/t51.2885-19/s150x150/18013186_1884415471815544_5035331559461224448_a.jpg'} size={210} style={{ margin: 20 }} />
-                            <Divider style={{ marginTop: 10 }} />
-                            <Card style={{ textDecoration: 'none', color: '#424242' }}>
-                                <CardText>
-                                    <center>
-
-                                        <h3>Hi My Name is RC !</h3>
-
-                                        <p> I think We can be friends :)</p>
-                                        <p>
-                                            Full-stack Web Developer | UI/UX Designer | Motivational Speaker
-
-                                </p>
-                                        <p>Please visit my anotherw website: rcfabian-static-portfolio.surge.sh</p>
-                                    </center>
-                                </CardText>
-                            </Card>
+<Card style={{ backgroundColor: '#ECEFF1' }}>
+                     <Drawer open={this.state.open}>
+                         <div style={stylesDrawer.logo} onClick={this.handleToggle.bind(this)}>
+                             RC Fabian
+                         </div>
+                         <Divider />
+                         <div style={stylesDrawer.avatar.div}>
+                            <Avatar src="https://scontent.cdninstagram.com/t51.2885-19/s150x150/18013186_1884415471815544_5035331559461224448_a.jpg"
+                                 size={50}
+                                 style={stylesDrawer.avatar.icon} />
+                             <span style={stylesDrawer.avatar.span}>
+                                 <li>Full-stack  Dev</li>
+                                 <li>UI/UX Designer </li>
+                                <li>Speaker</li></span>
+                            </div>
                             <Divider style={{ marginTop: 10 }} />
                             <List>
                                 <ListItem onClick={this.handleToggle.bind(this)} >
@@ -373,7 +368,6 @@ sounds(){
                                 </ListItem>
                                 <ListItem onClick={this.handleToggle.bind(this)} style={{ textDecoration: 'none', color: '#424242' }}>Close</ListItem>
                             </List>
-
                         </Drawer >
                         <Divider />
                     </Card>
@@ -586,7 +580,7 @@ sounds(){
                             </Paper>
                         </div>
                     </Card>
-                </div>
+                
 
                 <Snackbar
                     open={this.state.openSnackBarClicked}
