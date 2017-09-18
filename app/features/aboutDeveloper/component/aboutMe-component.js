@@ -22,7 +22,8 @@ import {
   StepContent,
 } from 'material-ui/Stepper';
 import FlatButton from 'material-ui/FlatButton';
-
+import { spacing, typography } from 'material-ui/styles';
+import { white, blue600 } from 'material-ui/styles/colors';
 class AboutMeComponent extends React.Component {
   constructor(props) {
     super(props);
@@ -98,6 +99,46 @@ class AboutMeComponent extends React.Component {
       },
     };
     const { listOfCompany } = this.props;
+     const stylesDrawer = {
+            logo: {
+                cursor: 'pointer',
+                fontSize: 22,
+                color: typography.textFullWhite,
+                lineHeight: `${spacing.desktopKeylineIncrement}px`,
+                fontWeight: typography.fontWeightLight,
+                backgroundColor: blue600,
+                paddingLeft: 40,
+                height: 56,
+            },
+            menuItem: {
+                color: white,
+                fontSize: 14
+            },
+            avatar: {
+                div: {
+                    padding: '15px 0 20px 15px',
+                    //backgroundImage:  'url(' + require('http://www.danieleliberti.org/wp-content/uploads/2014/08/20140819_backgroundk.jpg') + ')',
+                    backgroundColor: blue600,
+                    height: '100%'
+                },
+                icon: {
+                    float: 'left',
+                    display: 'block',
+                    marginRight: 15,
+                    boxShadow: '0px 0px 0px 8px rgba(0,0,0,0.2)'
+                },
+                span: {
+                    paddingTop: 12,
+                    display: 'block',
+                    color: 'white',
+                    fontWeight: 300,
+                    textShadow: '1px 1px #444',
+                    paddingBottom: 12
+                }
+            }
+        };
+       
+
     return (
       <div>
         <div>
@@ -110,7 +151,8 @@ class AboutMeComponent extends React.Component {
               <Link to={'/userList'} style={{ textDecoration: 'none', fontSize: window.innerWidth > 400 ? 20 : 12, color: '#ECEFF1',marginRight:5 }}>CRUD Application</Link>
             </FlatButton>
           </div>}
-            onLeftIconButtonTouchTap={this.handleToggle.bind(this)} />
+            onLeftIconButtonTouchTap={this.handleToggle.bind(this)}
+             style={{ backgroundColor: blue600 }} />
         </div>
         <Card style={{ backgroundColor: '#ECEFF1' }}>
           <CardText>
@@ -120,37 +162,33 @@ class AboutMeComponent extends React.Component {
                         And I have a vision for this vision will lead me to far beyond imagination,
                         Making this vision to reality. "Pursue for greatness for success will follow"
                     </CardText>
-          <Drawer open={this.state.open}>
-            <Avatar src={'https://scontent.cdninstagram.com/t51.2885-19/s150x150/18013186_1884415471815544_5035331559461224448_a.jpg'} size={210} style={{ margin: 20 }} />
-            <Divider style={{ marginTop: 10 }} />
-            <Card style={{ textDecoration: 'none', color: '#424242' }}>
-              <CardText>
-                <center>
-
-                  <h3>Hi My Name is RC !</h3>
-
-                  <p> I think We can be friends :)</p>
-                  <p>
-                    Full-stack Web Developer | UI/UX Designer | Motivational Speaker
-
-                                </p>
-                  <p>Please visit my anotherw website: rcfabian-static-portfolio.surge.sh</p>
-                </center>
-              </CardText>
-            </Card>
-            <Divider style={{ marginTop: 10 }} />
-            <List>
-
-              <ListItem onClick={this.handleToggle.bind(this)} >
-                <Link to={'/'} style={{ textDecoration: 'none', color: '#424242' }}>My Skill Set</Link>
+         
+           <Drawer open={this.state.open}>
+                        <div style={stylesDrawer.logo} onClick={this.handleToggle.bind(this)}>
+                            RC Fabian
+                    </div>
+                        <Divider />
+                        <div style={stylesDrawer.avatar.div}>
+                            <Avatar src="https://scontent.cdninstagram.com/t51.2885-19/s150x150/18013186_1884415471815544_5035331559461224448_a.jpg"
+                                size={50}
+                                style={stylesDrawer.avatar.icon} />
+                            <span style={stylesDrawer.avatar.span}>
+                                <li>Full-stack  Dev</li>
+                                <li>UI/UX Designer </li>
+                                <li>Speaker</li></span>
+                            <Divider style={{ marginTop: 10 }} />
+                            <List>
+                               <ListItem onClick={this.handleToggle.bind(this)} >
+                <Link to={'/'} style={{ textDecoration: 'none', color: '#ECEFF1' }}>My Skill Set</Link>
               </ListItem>
-              <ListItem onClick={this.handleToggle.bind(this)} >
-                <Link to={'/userList'} style={{ textDecoration: 'none', color: '#424242' }}>CRUD Application</Link>
-              </ListItem>
-              <ListItem onClick={this.handleToggle.bind(this)} style={{ textDecoration: 'none', color: '#424242' }}>Close</ListItem>
-            </List>
 
-          </Drawer >
+                                <ListItem onClick={this.handleToggle.bind(this)} >
+                                    <Link to={'/userList'} style={{ textDecoration: 'none', color: '#ECEFF1' }}>CRUD Application</Link>
+                                </ListItem>
+                                <ListItem onClick={this.handleToggle.bind(this)} style={{ textDecoration: 'none', color: '#ECEFF1' }}>Close</ListItem>
+                            </List>
+                        </div>
+                    </Drawer >
           <Divider />
 
 

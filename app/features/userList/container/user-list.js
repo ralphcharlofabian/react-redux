@@ -8,7 +8,7 @@ class UserList extends Component {
     render() {
         const { users , selectUser,addUser,firstName,lastName,age,description } = this.props;
         return (
-            <ul>
+            <div>
                 <UserListComponent
                     listOfUsers={users}
                     selectUser ={selectUser}
@@ -19,7 +19,7 @@ class UserList extends Component {
                     description={description}
 
                 />
-            </ul>
+            </div>
         );
     }
 }

@@ -28,6 +28,10 @@ import { BarChart } from 'react-easy-chart';
 import { LineChart } from 'react-easy-chart';
 import InfiniteCalendar from 'react-infinite-calendar';
 import Snackbar from 'material-ui/Snackbar';
+import { spacing, typography } from 'material-ui/styles';
+import { white, blue600 } from 'material-ui/styles/colors';
+
+
 //import 'react-infinite-calendar/styles.css';
 import Dialog from 'material-ui/Dialog';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
@@ -48,6 +52,7 @@ class SkillSetComponent extends React.Component {
             y: null,
             x: null,
             openSnackBarClickedBar: false,
+
             openSnackBarClickedPie: false,
             openDialogBoxPic: false,
             setTimeOutStateDoneBar: false,
@@ -62,6 +67,7 @@ class SkillSetComponent extends React.Component {
             name:'',
             position:'',
             colorChange:false
+
         }
     }
 
@@ -219,6 +225,7 @@ sounds(){
         };
         const paperSkills = {
             height: '20%',
+
             width: window.innerWidth > 400 ? '15%' : '80%',
             margin: 20,
             textAlign: 'center',
@@ -259,21 +266,69 @@ sounds(){
             display: 'inline-block',
             backgroundColor: '#F5F5F5',
             fontSize: (window.innerWidth > 400 ? 12 : 8)
+
         };
         const paperBar = {
             height: '80%',
-            width: '80%',
-            margin: 20,
+            width: '45.5%',
+            margin: 10,
             textAlign: 'center',
             display: 'inline-block',
+
             backgroundColor: '#F5F5F5',
             fontSize: (window.innerWidth > 400 ? 12 : 8)
         };
+ const paperLine = {
+            height: '80%',
+            width: '45.5%',
+            margin: 10,
+            textAlign: 'center',
+            display: 'inline-block',
+            backgroundColor: white
+        };
 
-
-        const imageSize = { padding: '2%', width: '30%', height: '20%', display: 'inline-block' };
+        const stylesDrawer = {
+            logo: {
+                cursor: 'pointer',
+                fontSize: 22,
+                color: typography.textFullWhite,
+                lineHeight: `${spacing.desktopKeylineIncrement}px`,
+                fontWeight: typography.fontWeightLight,
+                backgroundColor: blue600,
+                paddingLeft: 40,
+                height: 56,
+            },
+            menuItem: {
+                color: white,
+                fontSize: 14
+            },
+            avatar: {
+                div: {
+                    padding: '15px 0 20px 15px',
+                    //backgroundImage:  'url(' + require('http://www.danieleliberti.org/wp-content/uploads/2014/08/20140819_backgroundk.jpg') + ')',
+                    backgroundColor: blue600,
+                    height: '100%'
+                },
+                icon: {
+                    float: 'left',
+                    display: 'block',
+                    marginRight: 15,
+                    boxShadow: '0px 0px 0px 8px rgba(0,0,0,0.2)'
+                },
+                span: {
+                    paddingTop: 12,
+                    display: 'block',
+                    color: 'white',
+                    fontWeight: 300,
+                    textShadow: '1px 1px #444',
+                    paddingBottom: 12
+                }
+            }
+        };
+        const imageSize = { padding: '2%', width: '27%', height: '20%', display: 'inline-block' };
         const { barGraph, initialBarGraph, pieChart, initialPieChart, lineChart, initialLineChart, peopleFeedback, scheduledStuff } = this.props;
         console.log(scheduledStuff, 'scheduled');
+
         return (
             <div >
                 <div>
@@ -286,8 +341,9 @@ sounds(){
                         </FlatButton>
                     </div>}
                         onLeftIconButtonTouchTap={this.handleToggle.bind(this)}
-                        style={{ backgroundColor: '#00B0FF' }} />
+                        style={{ backgroundColor: blue600 }} />
                 </div>
+
                 <div style={{ opacity: this.state.opacity, transition: "opacity 1s" }}>
                     <Card style={{ backgroundColor: '#ECEFF1' }}>
                         <Drawer open={this.state.open}>
@@ -343,7 +399,7 @@ sounds(){
                                     </ListItem>
                                 </Paper>
                                 <Paper style={paperSkills} zDepth={1} rounded={false} >
-                                    <ListItem onClick={this.handleDialogBoxPic.bind(this)}>
+                                    <ListItem onClick={this.handleDialogBoxPic.bind(this)} style={{ textDecoration: 'none', fontSize: '15px', color: '#ECEFF1',backgroundColor: '#29B6F6', marginBottom:10 }}>
                                         Code | Language | stuffs
                             </ListItem>
                                     <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/HTML5_Badge.svg/600px-HTML5_Badge.svg.png' alt="Mountain View" style={imageSize} />
@@ -359,7 +415,7 @@ sounds(){
 
                                 </Paper>
                                 <Paper style={paperChart} zDepth={1} rounded={false}>
-                                    <ListItem onClick={this.handleDialogBoxPic.bind(this)}>
+                                    <ListItem onClick={this.handleDialogBoxPic.bind(this)} style={{ textDecoration: 'none', fontSize: '15px', color: '#ECEFF1',backgroundColor: '#29B6F6', marginBottom:10 }}>
                                         May I know how can I help you base on my overall assesment in website?
                             </ListItem>
                                     <PieChart
@@ -399,7 +455,7 @@ sounds(){
                                     />
                                 </Paper>
                                 <Paper style={paperBar} zDepth={1} rounded={false}>
-                                    <ListItem onClick={this.handleDialogBoxPic.bind(this)}>
+                                    <ListItem onClick={this.handleDialogBoxPic.bind(this)} style={{ textDecoration: 'none', fontSize: '15px', color: '#ECEFF1',backgroundColor: '#29B6F6', marginBottom:10 }}>
                                         I can do line chart example too!
                             </ListItem>
 
@@ -456,6 +512,7 @@ sounds(){
                                         )})}
                                 </List>
                             </Paper>
+
                             <Paper style={paperMessages} zDepth={1} rounded={false}>
                                 <List>
                                     <Subheader>Feedbacks and Comments</Subheader>
@@ -499,13 +556,13 @@ sounds(){
                             </Paper>
                             <Paper style={paperMessages} zDepth={1} rounded={false}>
                                 <Subheader>Priority Interruptions</Subheader>
-
                                 <ListItem primaryText="Events and reminders" rightToggle={<Toggle />} />
                                 <ListItem primaryText="Calls" rightToggle={<Toggle />} />
                                 <ListItem primaryText="Messages" rightToggle={<Toggle />} />
                                 <ListItem primaryText="Others" rightToggle={<Toggle />} />
 
                                 <Divider />
+
 
                                 <Subheader>Hangout Notifications</Subheader>
                                 <ListItem
@@ -522,7 +579,9 @@ sounds(){
                                     leftCheckbox={<Checkbox />}
                                     primaryText="Video sounds"
                                     secondaryText="Hangouts video call"
+
                                 />
+
 
 
 
@@ -530,6 +589,7 @@ sounds(){
                         </div>
                     </Card>
                 </div>
+
                 <Snackbar
                     open={this.state.openSnackBarClicked}
                     message="You Ticle me :)"
@@ -548,6 +608,7 @@ sounds(){
                     autoHideDuration={4000}
                     onRequestClose={this.handleRequestClose.bind(this)}
                 />
+
                 <Dialog
                     title={window.innerWidth > 400 ? "Hi! Want to know more about me?" : "Hello There !"}
                     modal={false}
@@ -567,6 +628,7 @@ sounds(){
                         <li>http://rcfabian-dynamic-portfolio.surge.sh</li>
                     </div>
                 </Dialog>
+
             </div>
         );
     }
