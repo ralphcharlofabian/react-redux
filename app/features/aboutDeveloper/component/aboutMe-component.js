@@ -30,9 +30,18 @@ class AboutMeComponent extends React.Component {
     this.state = {
       open: false,
       stepIndex: 0,
+      opacity:0
     }
   }
-
+ componentDidMount() {
+        setTimeout(
+            () => this.setState({
+               
+                opacity:1
+            }),
+            200
+        );
+    }
   handleNext() {
     const { stepIndex } = this.state;
     if (stepIndex < 5) {
@@ -136,10 +145,10 @@ class AboutMeComponent extends React.Component {
 
           <AppBar title={<div>
             <FlatButton onClick={this.handleToggle.bind(this)} style={{ marginRight: '2%' }}>
-              <Link to={'/'} style={{ textDecoration: 'none', fontSize: '20px', color: '#ECEFF1' }}>Skill Set</Link>
+              <Link to={'/'} style={{ textDecoration: 'none', fontSize: window.innerWidth > 400 ? 20 : 12, color: '#ECEFF1',marginRight:5 }}>Skill Set</Link>
             </FlatButton>
             <FlatButton onClick={this.handleToggle.bind(this)} >
-              <Link to={'/userList'} style={{ textDecoration: 'none', fontSize: '20px', color: '#ECEFF1' }}>CRUD Application</Link>
+              <Link to={'/userList'} style={{ textDecoration: 'none', fontSize: window.innerWidth > 400 ? 20 : 12, color: '#ECEFF1',marginRight:5 }}>CRUD Application</Link>
             </FlatButton>
           </div>}
             onLeftIconButtonTouchTap={this.handleToggle.bind(this)}
@@ -191,9 +200,9 @@ class AboutMeComponent extends React.Component {
 
         </Card>
 
-        <Card expanded={true}>
+        <Card expanded={true} >
           <CardText>
-            <div style={{ maxWidth: '70%', maxHeight: '80%', margin: 'auto' }}>
+            <div style={{ maxWidth: '70%', maxHeight: '80%', margin: 'auto',opacity: this.state.opacity, transition: "opacity 1s" }}>
               <Stepper
                 activeStep={this.state.stepIndex}
                 linear={false}
@@ -202,12 +211,12 @@ class AboutMeComponent extends React.Component {
                 <Step>
                   <StepButton onClick={() => this.setState({ stepIndex: 0 })}>
                     <CardHeader
-                      title="Bizbox Inc."
-                      subtitle="Fullstack Web Developer | Oct 2016 – Present"
+                      title={window.innerWidth > 400 ? "Bizbox Inc." : "Bizbox Inc."}
+                      subtitle= {window.innerWidth > 400 ? "Fullstack Web Developer | Oct 2016 – Present" : "Developer"}
                       avatar="https://siva.jsstatic.com/ph/15620/images/banner/15620_banner_0_334839.jpg"
                     />
                   </StepButton>
-                  <StepContent>
+                  <StepContent style={{fontSize: window.innerWidth > 400 ? 15 : 12}}>
                     <p>
                       Develop functional and bug-free codes base on Project Backlog Items. Apply the concept of KISS,
                  SRP and other code guidelines for better and easy to read code.
@@ -246,12 +255,12 @@ class AboutMeComponent extends React.Component {
                 <Step>
                   <StepButton onClick={() => this.setState({ stepIndex: 1 })}>
                     <CardHeader
-                      title="Smart Telecommunication Inc."
-                      subtitle="Software Test Engineer | Apr 2015 – Sept 2016"
+                      title={window.innerWidth > 400 ? "Smart Telecommunication Inc." : "Smart Telco."}
+                      subtitle={window.innerWidth > 400 ? "Software Engineer | Apr 2015 – Sept 2016" : "Software Engr."}
                       avatar="http://newsinfo.inquirer.net/wp-content/blogs.dir/10/files/2016/06/pldt-smart-logo-e1490815989858.jpg"
                     />
                   </StepButton>
-                  <StepContent>
+                  <StepContent style={{fontSize: window.innerWidth > 400 ? 15 : 12}}>
                     <p>
                       Capable of designing test suites and have the ability to understand usability issues.
             Interact with the Project Manager and Developer as well as third party regarding the project handled.
@@ -271,12 +280,12 @@ class AboutMeComponent extends React.Component {
                 <Step>
                   <StepButton onClick={() => this.setState({ stepIndex: 2 })}>
                     <CardHeader
-                      title="First Academy of Computer Art"
-                      subtitle="Multimedia | 2014 – 2015"
+                      title={window.innerWidth > 400 ? "First Academy of Computer Art" : "FACA"}
+                      subtitle={window.innerWidth > 400 ? "Multimedia | 2014 – 2015" : "MAS"}
                       avatar="http://i113.photobucket.com/albums/n209/komikon/FACALOGO.jpg"
                     />
                   </StepButton>
-                  <StepContent>
+                  <StepContent style={{fontSize: window.innerWidth > 400 ? 15 : 12}}>
                     <p>
                       Embracing the world of art and creating a new horizon in the path of multimedia.
                 Focusing on User Interface and User Experience that will be able to use in web development.
@@ -288,12 +297,12 @@ class AboutMeComponent extends React.Component {
                 <Step>
                   <StepButton onClick={() => this.setState({ stepIndex: 3 })}>
                     <CardHeader
-                      title="Denso Techno PHilippines Inc."
-                      subtitle="Software Engineer | Oct 2012 – Apr 2015"
+                      title={window.innerWidth > 400 ? "Denso Techno PHilippines Inc." : "DTPH"}
+                      subtitle={window.innerWidth > 400 ? "Software Engineer | Oct 2012 – Apr 2015" : "Software Engr."}
                       avatar="http://www.jobhero.ph/media/emp/emp_4228.jpg"
                     />
                   </StepButton>
-                  <StepContent>
+                  <StepContent style={{fontSize: window.innerWidth > 400 ? 15 : 12}}>
                     <p>Capable of code manipulation and debugging base on the specifications sent by Denso Japan (codes written in Japanese).
                 Interact with Japanese managers regarding the project to be tested.
                 Supervise all testing activities carried out by the team and identify member who need for further training.</p>
@@ -308,29 +317,29 @@ class AboutMeComponent extends React.Component {
                 <Step>
                   <StepButton onClick={() => this.setState({ stepIndex: 4 })}>
                     <CardHeader
-                      title="Mapua Institute of Technology"
-                      subtitle="BS Computer Engineer"
+                      title= {window.innerWidth > 400 ? "Mapua Institute of Technology" : "MAPUA"}
+                      subtitle={window.innerWidth > 400 ? "BS Computer Engineer": "Comp. Engr"}
                       avatar="http://www.gdap.org.ph/assets/logos/mapua.png"
                     />
                   </StepButton>
-                  <StepContent>
+                  <StepContent style={{fontSize: window.innerWidth > 400 ? 15 : 12}}>
                     <p>
                       Create hardware and software based prototype as well as documentation.
               Experienced many hardship to pass the subject and develop an early maturity to be a professional.
               Develop softskills and baseskills t obe used in IT field focusing on software engineering and the like.
               </p>
                     {this.renderStepActions(4)}
-                  </StepContent>
+                  </StepContent >
                 </Step>
 <Step>
                   <StepButton onClick={() => this.setState({ stepIndex: 5 })}>
                     <CardHeader
                       title="Milestones"
-                      subtitle="Achievements | Certificates | Training Attended | Seminars Conducted"
+                      subtitle={window.innerWidth > 400 ? "Achievements | Certificates | Training Attended | Seminars Conducted" : "Others"}
                       avatar="https://image.flaticon.com/icons/png/128/179/179249.png"
                     />
                   </StepButton>
-                  <StepContent>
+                  <StepContent style={{fontSize: window.innerWidth > 400 ? 15 : 12}}>
                     <p>
                      Hi! This part is more about my personal achievements and milestones as I climb to the mountain of success and awesomeness!
               </p>

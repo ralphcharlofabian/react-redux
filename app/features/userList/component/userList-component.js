@@ -94,10 +94,10 @@ const stylesDrawer = {
                 <div>
                     <AppBar title={<div>
                         <FlatButton onClick={this.handleToggle.bind(this)} style={{marginRight:'2%'}}>
-                            <Link to={'/'} style={{ textDecoration: 'none', fontSize: '20px',color: '#ECEFF1' }}>My Skill Set</Link>
+                            <Link to={'/'} style={{ textDecoration: 'none', fontSize: window.innerWidth > 400 ? 20 : 12, color: '#ECEFF1',marginRight:5 }}>My Skill Set</Link>
                         </FlatButton>
                         <FlatButton onClick={this.handleToggle.bind(this)} >
-                            <Link to={'/developersBackground'} style={{ textDecoration: 'none', fontSize: '20px',color: '#ECEFF1'  }}>Work Experience</Link>
+                            <Link to={'/developersBackground'} style={{ textDecoration: 'none', fontSize: window.innerWidth > 400 ? 20 : 12, color: '#ECEFF1',marginRight:5  }}>Work Experience</Link>
                         </FlatButton>
                     </div>}
                         onLeftIconButtonTouchTap={this.handleToggle.bind(this)}

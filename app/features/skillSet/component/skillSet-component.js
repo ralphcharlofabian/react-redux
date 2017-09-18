@@ -33,7 +33,12 @@ import { white, blue600 } from 'material-ui/styles/colors';
 
 
 //import 'react-infinite-calendar/styles.css';
-
+import Dialog from 'material-ui/Dialog';
+import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
+import IconMenu from 'material-ui/IconMenu';
+import { grey400, darkBlack, lightBlack } from 'material-ui/styles/colors';
+import Checkbox from 'material-ui/Checkbox';
+import Toggle from 'material-ui/Toggle';
 class SkillSetComponent extends React.Component {
     constructor(props) {
         super(props);
@@ -47,14 +52,63 @@ class SkillSetComponent extends React.Component {
             y: null,
             x: null,
             openSnackBarClickedBar: false,
-            openSnackBarClickedPie: false
+
+            openSnackBarClickedPie: false,
+            openDialogBoxPic: false,
+            setTimeOutStateDoneBar: false,
+            setTimeOutStateDonePie: false,
+            setTimeoutStateDoneLine: false,
+            opacity: 0,
+            sounds:false,
+            openDialogBoxMessage:false,
+            company:'',
+            feedback:'',
+            imageSource:'',
+            name:'',
+            position:'',
+            colorChange:false
+
         }
     }
-    handleImageLoad(event) {
-        console.log('Image loaded ', event.target)
+
+    componentDidMount() {
+        setTimeout(
+            () => this.setState({
+                setTimeOutStateDoneBar: true,
+                setTimeOutStateDonePie: true,
+                setTimeoutStateDoneLine: true,
+                opacity: 1
+            }),
+            200
+        );
+    }
+    pieClickAnimation() {
+        this.setState({ setTimeOutStateDonePie: false });
+        setTimeout(
+            () => this.setState({ setTimeOutStateDonePie: true }),
+            500
+        );
+    }
+    barClickAnimation() {
+        this.setState({ setTimeOutStateDoneBar: false });
+        setTimeout(
+            () => this.setState({ setTimeOutStateDoneBar: true }),
+            500
+        );
+    }
+    handleDialogBoxPic(event) {
+        this.setState({ openDialogBoxPic: true });
     }
 
-
+    handleDialogBoxMessage(info) {
+        console.log(info,'info');
+        this.setState({ openDialogBoxMessage: true,
+        company:info.company,
+            feedback:info.feedback,
+            imageSource:info.imageSource,
+            name:info.name,
+            position:info.position });
+    }
     handleToggle() {
         this.setState({ open: !this.state.open });
     }
@@ -94,6 +148,9 @@ class SkillSetComponent extends React.Component {
         });
     }
 
+    handleClose() {
+        this.setState({ openDialogBoxPic: false });
+    };
 
     mouseOverHandlerBar(d, e) {
         this.setState({
@@ -142,7 +199,13 @@ class SkillSetComponent extends React.Component {
         return false;
     }
 
+sounds(){
 
+   
+        var audioElement = document.getElementById('beep');
+        audioElement.play();
+        console.log("stop sound 2");
+}
 
     render() {
         var today = new Date();
@@ -162,36 +225,58 @@ class SkillSetComponent extends React.Component {
         };
         const paperSkills = {
             height: '20%',
-            width: '20%',
-            margin: 10,
+
+            width: window.innerWidth > 400 ? '15%' : '80%',
+            margin: 20,
             textAlign: 'center',
             display: 'inline-block',
-            backgroundColor: white
+            backgroundColor: '#F5F5F5',
+            fontSize: (window.innerWidth > 400 ? 12 : 8)
         };
         const paperAvatar = {
             height: '20%',
-            width: '30%',
-            margin: 10,
+            width: window.innerWidth > 400 ? '30%' : '80%',
+            margin: 20,
             textAlign: 'center',
             display: 'inline-block',
-            backgroundColor: white
+            backgroundColor: '#F5F5F5',
+            fontSize: (window.innerWidth > 400 ? 12 : 8)
         };
         const paperChart = {
-            height: '80%',
-            width: '40%',
-            margin: 10,
+            height: '20%',
+            width: window.innerWidth > 400 ? '30%' : '80%',
+            margin: 20,
             textAlign: 'center',
             display: 'inline-block',
-            backgroundColor: white
+            backgroundColor: '#F5F5F5',
+            fontSize: (window.innerWidth > 400 ? 12 : 8)
         };
+        const paperMessages = {
+            height: '20%',
+            width: window.innerWidth > 400 ? '30%' : '80%',
+            margin: 20,
+            display: 'inline-block',
+            backgroundColor: '#F5F5F5',
+            fontSize: (window.innerWidth > 400 ? 12 : 8)
+        };
+          const paperSchedStuff = {
+            height: '20%',
+            width: window.innerWidth > 400 ? '30%' : '80%',
+            margin: 20,
+            display: 'inline-block',
+            backgroundColor: '#F5F5F5',
+            fontSize: (window.innerWidth > 400 ? 12 : 8)
 
+        };
         const paperBar = {
             height: '80%',
             width: '45.5%',
             margin: 10,
             textAlign: 'center',
             display: 'inline-block',
-            backgroundColor: white
+
+            backgroundColor: '#F5F5F5',
+            fontSize: (window.innerWidth > 400 ? 12 : 8)
         };
  const paperLine = {
             height: '80%',
@@ -241,192 +326,270 @@ class SkillSetComponent extends React.Component {
             }
         };
         const imageSize = { padding: '2%', width: '27%', height: '20%', display: 'inline-block' };
-        
+        const { barGraph, initialBarGraph, pieChart, initialPieChart, lineChart, initialLineChart, peopleFeedback, scheduledStuff } = this.props;
+        console.log(scheduledStuff, 'scheduled');
+
         return (
             <div >
                 <div>
                     <AppBar title={<div>
                         <FlatButton onClick={this.handleToggle.bind(this)} style={{ marginRight: '2%' }}>
-                            <Link to={'/developersBackground'} style={{ textDecoration: 'none', fontSize: '20px', color: '#ECEFF1' }}>Work Experience</Link>
+                            <Link to={'/developersBackground'} style={{ textDecoration: 'none', fontSize: window.innerWidth > 400 ? 20 : 12, color: '#ECEFF1', marginRight: 5 }}>Work Experience</Link>
                         </FlatButton>
                         <FlatButton onClick={this.handleToggle.bind(this)} >
-                            <Link to={'/userList'} style={{ textDecoration: 'none', fontSize: '20px', color: '#ECEFF1' }}>CRUD Application</Link>
+                            <Link to={'/userList'} style={{ textDecoration: 'none', fontSize: window.innerWidth > 400 ? 20 : 12, color: '#ECEFF1' }}>CRUD Application</Link>
                         </FlatButton>
                     </div>}
                         onLeftIconButtonTouchTap={this.handleToggle.bind(this)}
                         style={{ backgroundColor: blue600 }} />
                 </div>
-                <Card style={{ backgroundColor: '#ECEFF1' }}>
-                    <Drawer open={this.state.open}>
-                        <div style={stylesDrawer.logo} onClick={this.handleToggle.bind(this)}>
-                            RC Fabian
-                    </div>
-                        <Divider />
-                        <div style={stylesDrawer.avatar.div}>
-                            <Avatar src="https://scontent.cdninstagram.com/t51.2885-19/s150x150/18013186_1884415471815544_5035331559461224448_a.jpg"
-                                size={50}
-                                style={stylesDrawer.avatar.icon} />
-                            <span style={stylesDrawer.avatar.span}>
-                                <li>Full-stack  Dev</li>
-                                <li>UI/UX Designer </li>
-                                <li>Speaker</li></span>
+
+                <div style={{ opacity: this.state.opacity, transition: "opacity 1s" }}>
+                    <Card style={{ backgroundColor: '#ECEFF1' }}>
+                        <Drawer open={this.state.open}>
+                            <Avatar src={'https://scontent.cdninstagram.com/t51.2885-19/s150x150/18013186_1884415471815544_5035331559461224448_a.jpg'} size={210} style={{ margin: 20 }} />
+                            <Divider style={{ marginTop: 10 }} />
+                            <Card style={{ textDecoration: 'none', color: '#424242' }}>
+                                <CardText>
+                                    <center>
+
+                                        <h3>Hi My Name is RC !</h3>
+
+                                        <p> I think We can be friends :)</p>
+                                        <p>
+                                            Full-stack Web Developer | UI/UX Designer | Motivational Speaker
+
+                                </p>
+                                        <p>Please visit my anotherw website: rcfabian-static-portfolio.surge.sh</p>
+                                    </center>
+                                </CardText>
+                            </Card>
                             <Divider style={{ marginTop: 10 }} />
                             <List>
                                 <ListItem onClick={this.handleToggle.bind(this)} >
-                                    <Link to={'/developersBackground'} style={{ textDecoration: 'none', color: '#ECEFF1' }}>Work Experience</Link>
+                                    <Link to={'/developersBackground'} style={{ textDecoration: 'none', color: '#424242' }}>Work Experience</Link>
                                 </ListItem>
 
                                 <ListItem onClick={this.handleToggle.bind(this)} >
-                                    <Link to={'/userList'} style={{ textDecoration: 'none', color: '#ECEFF1' }}>CRUD Application</Link>
+                                    <Link to={'/userList'} style={{ textDecoration: 'none', color: '#424242' }}>CRUD Application</Link>
                                 </ListItem>
-                                <ListItem onClick={this.handleToggle.bind(this)} style={{ textDecoration: 'none', color: '#ECEFF1' }}>Close</ListItem>
+                                <ListItem onClick={this.handleToggle.bind(this)} style={{ textDecoration: 'none', color: '#424242' }}>Close</ListItem>
                             </List>
-                        </div>
-                    </Drawer >
-                    <Divider />
-                </Card>
-                <Card>
-                    <div style={{ alignSelf: 'flexStart',backgroundColor: '#ECEFF1' }}>
-                        <center>
 
-                            <Paper style={paperAvatar} zDepth={1} rounded={false} >
-                                   <ListItem  style={{ textDecoration: 'none', fontSize: '15px', color: '#ECEFF1',backgroundColor: '#29B6F6', marginBottom:10 }}>
-                                    Hi I'm RC! Welcome to my page!
-                            </ListItem>
-                                <Avatar src={'https://scontent.cdninstagram.com/t51.2885-19/s150x150/18013186_1884415471815544_5035331559461224448_a.jpg'} size={'50%'} style={{ margin: '3%' }} />
-                                <CardText style={{marginBottom:0, paddingBottom:0}}>
-                                    <center >
-                                        <p style={{marginBottom:0, paddingTop:0}}>I am a Full stack web developer and also a UI/UX designer (full stack designer).
+                        </Drawer >
+                        <Divider />
+                    </Card>
+                    <Card style={{ flex: 1, flexDirection: 'row', flexWrap: 'wrap', alignItems: 'flex-start' }}>
+                        <div >
+                            <center>
+
+                                <Paper style={paperAvatar} zDepth={1} rounded={false} onClick={this.handleDialogBoxPic.bind(this)}>
+                                    <ListItem >
+                                        <Avatar src={'https://scontent.cdninstagram.com/t51.2885-19/s150x150/18013186_1884415471815544_5035331559461224448_a.jpg'} size={'60%'} style={{ margin: '5%' }} />
+                                        <CardText>
+                                            <center>
+                                                <p>Hi My Name is RC! I am a Full stack web developer and also a UI/UX designer (full stack designer).
                                              I also do motivational talks to some students and companies,
                                               for I believe I have a big part to change this world to a better one ;)
                                             Help me to achieve all of them by showcasing my skills and discover new adventure!
 
                                         </p>
-
-                                    </center>
-
-
-                                </CardText>
-                            </Paper>
-                            <Paper style={paperSkills} zDepth={1} rounded={false} >
-                                <ListItem  style={{ textDecoration: 'none', fontSize: '15px', color: '#ECEFF1',backgroundColor: '#29B6F6', marginBottom:10 }}>
-                                    Code | Language | stuffs
+                                            </center>
+                                        </CardText>
+                                    </ListItem>
+                                </Paper>
+                                <Paper style={paperSkills} zDepth={1} rounded={false} >
+                                    <ListItem onClick={this.handleDialogBoxPic.bind(this)} style={{ textDecoration: 'none', fontSize: '15px', color: '#ECEFF1',backgroundColor: '#29B6F6', marginBottom:10 }}>
+                                        Code | Language | stuffs
                             </ListItem>
-                                <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/HTML5_Badge.svg/600px-HTML5_Badge.svg.png' alt="Mountain View" style={imageSize} />
-                                <img src='http://io13-high-dpi.appspot.com/images/CSS3_Logo.svg' alt="Mountain View" style={imageSize} />
-                                <img src='http://adriendecoster.fr/images/js.png' alt="Mountain View" style={imageSize} />
-                                <img src='https://www.codesai.com/assets/csharp_logo.svg' alt="Mountain View" style={imageSize} />
-                                <img src='https://angular.io/assets/images/logos/angularjs/AngularJS-Shield.svg' alt="Mountain View" style={imageSize} />
-                                <img src='https://prepros.io/img/less-logo.png' alt="Mountain View" style={imageSize} />
-                                <img src='https://knowellg.github.io/assets/img/icons/redux-logo.png' alt="Mountain View" style={imageSize} />
+                                    <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/HTML5_Badge.svg/600px-HTML5_Badge.svg.png' alt="Mountain View" style={imageSize} />
+                                    <img src='http://io13-high-dpi.appspot.com/images/CSS3_Logo.svg' alt="Mountain View" style={imageSize} />
+                                    <img src='http://adriendecoster.fr/images/js.png' alt="Mountain View" style={imageSize} />
+                                    <img src='https://www.codesai.com/assets/csharp_logo.svg' alt="Mountain View" style={imageSize} />
+                                    <img src='https://cdn.worldvectorlogo.com/logos/angular-3.svg' alt="Mountain View" style={imageSize} />
+                                    <img src='https://prepros.io/img/less-logo.png' alt="Mountain View" style={imageSize} />
+                                    <img src='https://knowellg.github.io/assets/img/icons/redux-logo.png' alt="Mountain View" style={imageSize} />
+                                    <img src='https://cdn.worldvectorlogo.com/logos/react.svg' alt="Mountain View" style={imageSize} />
+                                    <img src='https://cdn.worldvectorlogo.com/logos/material-ui.svg' alt="Mountain View" style={imageSize} />
+                                    <img src='https://v4-alpha.getbootstrap.com/assets/brand/bootstrap-solid.svg' alt="Mountain View" style={imageSize} />
 
-
-                                <img src='https://cdn.worldvectorlogo.com/logos/react.svg' alt="Mountain View" style={imageSize} />
-                                <img src='https://cdn.worldvectorlogo.com/logos/material-ui.svg' alt="Mountain View" style={imageSize} />
-                                <img src='https://v4-alpha.getbootstrap.com/assets/brand/bootstrap-solid.svg' alt="Mountain View" style={imageSize} />
-
-                            </Paper>
-                            <Paper style={paperChart} zDepth={1} rounded={false}>
-                                 <ListItem  style={{ textDecoration: 'none', fontSize: '15px', color: '#ECEFF1',backgroundColor: '#29B6F6', marginBottom:10 }}>
-                                    May I know how can I help you base on my overall assesment?
+                                </Paper>
+                                <Paper style={paperChart} zDepth={1} rounded={false}>
+                                    <ListItem onClick={this.handleDialogBoxPic.bind(this)} style={{ textDecoration: 'none', fontSize: '15px', color: '#ECEFF1',backgroundColor: '#29B6F6', marginBottom:10 }}>
+                                        May I know how can I help you base on my overall assesment in website?
                             </ListItem>
-                                <PieChart
-                                    labels
-                                    data={[
-                                        { key: 'UI/UX Design', value: 600, color: '#009bcc' },
-                                        { key: 'Front End', value: 700, color: '#f58b1f' },
-                                        { key: 'Back End', value: 500, color: '#005a9e' },
-                                        { key: 'Testing', value: 400, color: '#e21f36' }
+                                    <PieChart
+                                        labels={window.innerWidth > 400 ? true : false}
+                                        data={this.state.setTimeOutStateDonePie ? pieChart : initialPieChart}
+                                        styles={{
+                                            '.chart_text': {
+                                                fontSize: '2em',
+                                                fill: '#fff'
+                                            }
+                                        }}
+                                        innerHoleSize={window.innerWidth > 400 ? window.innerWidth / 10 : window.innerWidth / 5}
+                                        size={window.innerWidth > 400 ? window.innerWidth / 4 : window.innerWidth / 2}
+                                        mouseOverHandler={this.mouseOverHandlerPie.bind(this)}
+                                        mouseOutHandler={this.mouseOutHandlerPie.bind(this)}
+                                        mouseMoveHandler={this.mouseMoveHandlerPie.bind(this)}
+                                        clickHandler={this.pieClickAnimation.bind(this)}
+                                    />
+                                </Paper>
+                                <Paper style={paperBar} zDepth={1} rounded={false}>
+                                    <ListItem onClick={this.handleDialogBoxPic.bind(this)}>
+                                        Skills I used to create awesome websites!
+                            </ListItem>
 
-                                    ]}
-                                    styles={{
-                                        '.chart_text': {
-                                            fontSize: '2em',
-                                            fill: '#fff'
-                                        }
-                                    }}
-                                    innerHoleSize={80}
-                                    size={350}
-                                    mouseOverHandler={this.mouseOverHandlerPie.bind(this)}
-                                    mouseOutHandler={this.mouseOutHandlerPie.bind(this)}
-                                    mouseMoveHandler={this.mouseMoveHandlerPie.bind(this)}
+                                    <BarChart
+                                        colorBars
+                                        height={window.innerWidth > 400 ? window.innerHeight / 2 : window.innerHeight / 2.5}
+                                        width={window.innerWidth > 400 ? window.innerWidth / 2 : window.innerWidth / 2}
+                                        axes={window.innerWidth > 400 ? true : false}
+                                        data={this.state.setTimeOutStateDoneBar ? barGraph : initialBarGraph}
+                                        margin={window.innerWidth > 400 ? { top: 20, right: 0, bottom: 30, left: 50 } : { top: 20, right: 0, bottom: 30, left: 0 }}
+                                        mouseOverHandler={this.mouseOverHandlerBar.bind(this)}
+                                        mouseOutHandler={this.mouseOutHandlerBar.bind(this)}
+                                        mouseMoveHandler={this.mouseMoveHandlerBar.bind(this)}
+                                        clickHandler={this.barClickAnimation.bind(this)}
+
+                                    />
+                                </Paper>
+                                <Paper style={paperBar} zDepth={1} rounded={false}>
+                                    <ListItem onClick={this.handleDialogBoxPic.bind(this)} style={{ textDecoration: 'none', fontSize: '15px', color: '#ECEFF1',backgroundColor: '#29B6F6', marginBottom:10 }}>
+                                        I can do line chart example too!
+                            </ListItem>
+
+                                    <LineChart
+                                        axes={window.innerWidth > 400 ? true : false}
+                                        dataPoints={window.innerWidth > 400 ? true : false}
+                                        grid={false}
+                                        xDomainRange={[0, 60]}
+                                        yDomainRange={[0, 60]}
+                                        mouseOverHandler={this.mouseOverHandler.bind(this)}
+                                        mouseOutHandler={this.mouseOutHandler.bind(this)}
+                                        mouseMoveHandler={this.mouseMoveHandler.bind(this)}
+                                        height={window.innerWidth > 400 ? window.innerHeight / 2 : window.innerHeight / 3}
+                                        width={window.innerWidth / 2}
+                                        interpolate={'cardinal'}
+                                        data={this.state.setTimeoutStateDoneLine ? lineChart : initialLineChart}
+                                        axisLabels={{ x: 'Time', y: 'My Mind' }}
+
+                                    />
+                                </Paper>
+                            </center>
+                            <Paper style={paperSchedStuff} zDepth={1} rounded={false}>
+                                <List>
+                                    <Subheader>Scheduled Stuffs </Subheader>
+                                    <Divider />
+                                    {scheduledStuff.map((x, index) => {
+                                        return (
+                                            <div>
+                                                <ListItem key={index}
+                                                    leftAvatar={<Avatar src={x.imageSource} />}
+                                                    rightIconButton={<IconMenu iconButtonElement={<IconButton
+                                                        touch={true}
+                                                        tooltip="more"
+                                                        tooltipPosition="bottom-left"
+                                                    >
+                                                        <MoreVertIcon color={grey400} />
+                                                    </IconButton>}>
+                                                       
+                                                        <MenuItem>Done</MenuItem>
+                                                        <MenuItem>Priority</MenuItem>
+                                                         <MenuItem >Canceled</MenuItem>
+                                                    </IconMenu>}
+                                                    primaryText={x.place}
+                                                    secondaryText={
+                                                        <p>
+                                                            <span style={{ color: darkBlack }}>{x.scheduledTask}</span><br />
+                                                            {x.remarks}
+                                                        </p> }
+                                                    secondaryTextLines={2}
+                                                   
+                                                />
+                                                <Divider inset={true} />
+                                            </div>
+                                        )})}
+                                </List>
+                            </Paper>
+
+                            <Paper style={paperMessages} zDepth={1} rounded={false}>
+                                <List>
+                                    <Subheader>Feedbacks and Comments</Subheader>
+                                    <Divider />
+                                    {peopleFeedback.map((x, index) => {
+                                        return (
+                                            <div>
+                                            <ListItem key={index}
+                                            leftAvatar={<Avatar src={x.imageSource} />}
+                                            primaryTogglesNestedList={true}
+                                           
+                                            primaryText={x.name}
+                                            secondaryText={
+                                                <p>
+                                                    <span style={{ color: darkBlack }}>{x.company}</span><br />
+                                                    {x.position}
+                                                </p>}
+                                            secondaryTextLines={2}
+                                             onClick={this.handleDialogBoxMessage.bind(this,x)}
+                                        />
+                                         <Divider inset={true} />
+                                         
+                                         <Dialog
+                                                title={window.innerWidth > 400 ? "A message from" : "A message from"}
+                                                modal={false}
+                                                open={this.state.openDialogBoxMessage}
+                                                onRequestClose={() => this.setState({openDialogBoxMessage : false})}
+                                                autoScrollBodyContent={true}
+                                            >
+                                                <div style={{ fontSize: window.innerWidth > 400 ? 15 : 10 }}>
+                                                    <center>
+                                                    <Avatar src={this.state.imageSource}  size={'20%'} style={{ margin: '5%' }}/>
+                                                    <h3 style={{ color: darkBlack }}>{this.state.name} <br /> {this.state.company} | {this.state.position}</h3><br />
+                                                    "{this.state.feedback}"  
+                                                     </center>   
+                                                </div>
+                                            </Dialog>
+                                         </div>
+                                        )})}
+                                </List>
+                            </Paper>
+                            <Paper style={paperMessages} zDepth={1} rounded={false}>
+                                <Subheader>Priority Interruptions</Subheader>
+                                <ListItem primaryText="Events and reminders" rightToggle={<Toggle />} />
+                                <ListItem primaryText="Calls" rightToggle={<Toggle />} />
+                                <ListItem primaryText="Messages" rightToggle={<Toggle />} />
+                                <ListItem primaryText="Others" rightToggle={<Toggle />} />
+
+                                <Divider />
+
+
+                                <Subheader>Hangout Notifications</Subheader>
+                                <ListItem
+                                    leftCheckbox={<Checkbox  onClick={this.sounds.bind(this)}/>}
+                                    primaryText="Notifications"
+                                    secondaryText="Allow notifications"
                                 />
-                            </Paper>
-                            <Paper style={paperBar} zDepth={1} rounded={false}>
-                                 <ListItem  style={{ textDecoration: 'none', fontSize: '15px', color: '#ECEFF1',backgroundColor: '#29B6F6', marginBottom:10 }}>
-                                    Skills I used to create awesome websites!
-                            </ListItem>
-
-                                <BarChart
-                                    colorBars
-                                    height={300}
-                                    width={500}
-                                    axes
-                                    data={[
-                                        { x: 'CSS3', y: 80, color: '#009bcc' },
-                                        { x: 'Javascript', y: 100, color: '#e1f92c' },
-                                        { x: 'HTML5', y: 120, color: '#f58b1f' },
-                                        { x: 'C#', y: 99, color: '#005a9e' },
-                                        { x: 'Others', y: 50, color: '#e3a51a' },
-                                        { x: 'React.js', y: 70, color: '#17c5e8' },
-                                        { x: 'Angular.js', y: 115, color: '#ea3027' },
-                                        { x: 'Ionic.js', y: 55, color: '#4DB6AC' }
-                                    ]}
-                                    margin={{ top: 20, right: 0, bottom: 30, left: 50 }}
-                                    mouseOverHandler={this.mouseOverHandlerBar.bind(this)}
-                                    mouseOutHandler={this.mouseOutHandlerBar.bind(this)}
-                                    mouseMoveHandler={this.mouseMoveHandlerBar.bind(this)}
+                                <ListItem
+                                    leftCheckbox={<Checkbox />}
+                                    primaryText="Sounds"
+                                    secondaryText="Hangouts message"
                                 />
-                            </Paper>
-                            <Paper style={paperLine} zDepth={1} rounded={false}>
-                                <ListItem  style={{ textDecoration: 'none', fontSize: '15px', color: '#ECEFF1',backgroundColor: '#29B6F6', marginBottom:10 }}>
-                                    I can do line chart example too!
-                            </ListItem>
+                                <ListItem
+                                    leftCheckbox={<Checkbox />}
+                                    primaryText="Video sounds"
+                                    secondaryText="Hangouts video call"
 
-                                <LineChart
-                                    axes
-                                    dataPoints={true}
-                                    grid={false}
-                                    xDomainRange={[0, 60]}
-                                    yDomainRange={[0, 60]}
-                                    mouseOverHandler={this.mouseOverHandler.bind(this)}
-                                    mouseOutHandler={this.mouseOutHandler.bind(this)}
-                                    mouseMoveHandler={this.mouseMoveHandler.bind(this)}
-                                    width={500}
-                                    height={300}
-                                    interpolate={'cardinal'}
-                                    data={[
-                                        [
-                                            { x: 10, y: 25 },
-                                            { x: 20, y: 10 },
-                                            { x: 30, y: 25 },
-                                            { x: 40, y: 10 },
-                                            { x: 50, y: 12 },
-                                            { x: 60, y: 25 }
-                                        ], [
-                                            { x: 10, y: 40 },
-                                            { x: 20, y: 30 },
-                                            { x: 30, y: 25 },
-                                            { x: 40, y: 60 },
-                                            { x: 50, y: 22 },
-                                            { x: 60, y: 9 }
-                                        ],
-                                        [
-                                            { x: 5, y: 20 },
-                                            { x: 15, y: 30 },
-                                            { x: 25, y: 25 },
-                                            { x: 35, y: 43 },
-                                            { x: 45, y: 50 },
-                                            { x: 60, y: 60 }
-                                        ]
-                                    ]}
-                                    axisLabels={{ x: 'Time', y: 'My Mind' }}
                                 />
-                            </Paper>
 
-                        </center>
-                    </div>
-                </Card>
+
+
+
+                            </Paper>
+                        </div>
+                    </Card>
+                </div>
+
                 <Snackbar
                     open={this.state.openSnackBarClicked}
                     message="You Ticle me :)"
@@ -445,6 +608,27 @@ class SkillSetComponent extends React.Component {
                     autoHideDuration={4000}
                     onRequestClose={this.handleRequestClose.bind(this)}
                 />
+
+                <Dialog
+                    title={window.innerWidth > 400 ? "Hi! Want to know more about me?" : "Hello There !"}
+                    modal={false}
+                    open={this.state.openDialogBoxPic}
+                    onRequestClose={this.handleClose.bind(this)}
+                    autoScrollBodyContent={true}
+                >
+                    <div style={{ fontSize: window.innerWidth > 400 ? 15 : 10 }}>
+                        <h4>Contact me at:</h4>
+                        <li>(+63) 995 405 7249</li>
+                        <li>ralphcharlofabian@yahoo.com</li>
+                        <li>https://github.com/ralphcharlofabian</li>
+                        <li>https://www.linkedin.com/in/ralph-charlo-fabian-83531aab</li>
+
+                        <p>Online Portfolio:</p>
+                        <li>http://rcfabian-static-portfolio.surge.sh</li>
+                        <li>http://rcfabian-dynamic-portfolio.surge.sh</li>
+                    </div>
+                </Dialog>
+
             </div>
         );
     }
