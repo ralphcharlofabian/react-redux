@@ -356,7 +356,7 @@ sounds(){
                                  <li>Full-stack  Dev</li>
                                  <li>UI/UX Designer </li>
                                 <li>Speaker</li></span>
-                            </div>
+                            
                             <Divider style={{ marginTop: 10 }} />
                             <List>
                                 <ListItem onClick={this.handleToggle.bind(this)} >
@@ -368,6 +368,7 @@ sounds(){
                                 </ListItem>
                                 <ListItem onClick={this.handleToggle.bind(this)} style={{ textDecoration: 'none', color: '#424242' }}>Close</ListItem>
                             </List>
+                            </div>
                         </Drawer >
                         <Divider />
                     </Card>
