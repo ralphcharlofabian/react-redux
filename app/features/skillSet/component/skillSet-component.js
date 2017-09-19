@@ -324,6 +324,26 @@ sounds(){
                 }
             }
         };
+
+        const colorBarGraph=[
+            {color: '#009bcc'},
+            {color: '#e1f92c'},
+            {color: '#f58b1f'},
+             {color: '#005a9e'},
+            {color: '#e3a51a'},
+            {color: '#17c5e8'},
+             {color: '#ea3027'},
+            {color: '#4DB6AC'}
+        ]
+        // const colorLineGraph =[
+        //     {color:'#e8bd5c'},
+        //     {color:'#81898e'},
+        //     {color:'#f3ec96'}
+        // ]
+
+        
+
+
         const imageSize = { padding: '2%', width: '27%', height: '20%', display: 'inline-block' };
         const { barGraph, initialBarGraph, pieChart, initialPieChart, lineChart, initialLineChart, peopleFeedback, scheduledStuff } = this.props;
 
@@ -440,7 +460,7 @@ sounds(){
                                         colorBars
                                         height={window.innerWidth > 400 ? window.innerHeight / 2 : window.innerHeight / 2.5}
                                         width={window.innerWidth > 400 ? window.innerWidth / 3 : window.innerWidth / 2}
-                                        axes={window.innerWidth > 400 ? true : false}
+                                        
                                         data={this.state.setTimeOutStateDoneBar ? barGraph : initialBarGraph}
                                         margin={window.innerWidth > 400 ? { top: 20, right: 0, bottom: 30, left: 50 } : { top: 20, right: 0, bottom: 30, left: 0 }}
                                         mouseOverHandler={this.mouseOverHandlerBar.bind(this)}
@@ -449,7 +469,7 @@ sounds(){
                                         clickHandler={this.barClickAnimation.bind(this)}
 
                                     />
-                                     
+                                     <Legend data={barGraph} dataId={'x'} horizontal config={colorBarGraph} />
                                 </Paper>
                                 <Paper style={paperBar} zDepth={1} rounded={false}>
                                     <ListItem onClick={this.handleDialogBoxPic.bind(this)} style={{ textDecoration: 'none', fontSize: '15px', color: '#ECEFF1',backgroundColor: '#29B6F6', marginBottom:10 }}>
@@ -472,6 +492,7 @@ sounds(){
                                         axisLabels={{ x: 'Time', y: 'My Mind' }}
 
                                     />
+                                      {/* <Legend data={lineChart} horizontal config={colorLineGraph} /> */}
                                 </Paper>
                             </center>
                             <Paper style={paperSchedStuff} zDepth={1} rounded={false}>
