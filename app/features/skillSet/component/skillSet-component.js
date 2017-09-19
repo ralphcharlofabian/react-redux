@@ -23,7 +23,7 @@ import {
 } from 'material-ui/Stepper';
 import FlatButton from 'material-ui/FlatButton';
 import Paper from 'material-ui/Paper';
-import { PieChart } from 'react-easy-chart';
+import { PieChart ,Legend } from 'react-easy-chart';
 import { BarChart } from 'react-easy-chart';
 import { LineChart } from 'react-easy-chart';
 import InfiniteCalendar from 'react-infinite-calendar';
@@ -414,7 +414,7 @@ sounds(){
                                         May I know how can I help you base on my overall assesment in website?
                             </ListItem>
                                     <PieChart
-                                        labels={window.innerWidth > 400 ? true : false}
+                                        //labels={window.innerWidth > 400 ? true : false}
                                         data={this.state.setTimeOutStateDonePie ? pieChart : initialPieChart}
                                         styles={{
                                             '.chart_text': {
@@ -429,6 +429,7 @@ sounds(){
                                         mouseMoveHandler={this.mouseMoveHandlerPie.bind(this)}
                                         clickHandler={this.pieClickAnimation.bind(this)}
                                     />
+                                    <Legend data={pieChart} dataId={'key'} horizontal />
                                 </Paper>
                                 <Paper style={paperBar} zDepth={1} rounded={false}>
                                     <ListItem onClick={this.handleDialogBoxPic.bind(this)} style={{ textDecoration: 'none', fontSize: '15px', color: '#ECEFF1',backgroundColor: '#29B6F6', marginBottom:10 }}>
@@ -448,6 +449,7 @@ sounds(){
                                         clickHandler={this.barClickAnimation.bind(this)}
 
                                     />
+                                     
                                 </Paper>
                                 <Paper style={paperBar} zDepth={1} rounded={false}>
                                     <ListItem onClick={this.handleDialogBoxPic.bind(this)} style={{ textDecoration: 'none', fontSize: '15px', color: '#ECEFF1',backgroundColor: '#29B6F6', marginBottom:10 }}>
