@@ -335,11 +335,12 @@ sounds(){
              {color: '#ea3027'},
             {color: '#4DB6AC'}
         ]
-        // const colorLineGraph =[
-        //     {color:'#e8bd5c'},
-        //     {color:'#81898e'},
-        //     {color:'#f3ec96'}
-        // ]
+        const colorPieGraph =[
+            {color:'#009bcc'},
+            {color:'#f58b1f'},
+            {color:'#005a9e'},
+             {color:'#e21f36'}
+        ]
 
         
 
@@ -449,7 +450,7 @@ sounds(){
                                         mouseMoveHandler={this.mouseMoveHandlerPie.bind(this)}
                                         clickHandler={this.pieClickAnimation.bind(this)}
                                     />
-                                    <Legend data={pieChart} dataId={'key'} horizontal />
+                                    <Legend data={pieChart} dataId={'key'} horizontal config={colorPieGraph}/>
                                 </Paper>
                                 <Paper style={paperBar} zDepth={1} rounded={false}>
                                     <ListItem onClick={this.handleDialogBoxPic.bind(this)} style={{ textDecoration: 'none', fontSize: '15px', color: '#ECEFF1',backgroundColor: '#29B6F6', marginBottom:10 }}>
